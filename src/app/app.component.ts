@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { User } from './_models/user';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './_services';
+import { Role } from './_models';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CrownSecurity';
+  currentUser: User;
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.Admin;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }
