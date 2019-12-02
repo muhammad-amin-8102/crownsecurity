@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { User } from './_models/user';
-import { Router } from '@angular/router';
 import { AuthenticationService } from './_services';
 import { Role } from './_models';
 
@@ -14,7 +13,6 @@ export class AppComponent {
   currentUser: User;
 
   constructor(
-    private router: Router,
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -24,8 +22,7 @@ export class AppComponent {
     return this.currentUser && this.currentUser.role === Role.Admin;
   }
 
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+  get isLoggedin() {
+    return this.currentUser;
   }
 }
