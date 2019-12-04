@@ -39,10 +39,10 @@
 						 with font-awesome or any other icon font library -->
 							
 							<li class="nav-item">
-								<a href="pages/widgets.html" class="nav-link">
+								<a [routerLink]="['/call-reporting']" class="nav-link" [ngClass]="{'active': router.url === '/call-reporting'}">
 									<i class="nav-icon fas fa-user-cog"></i>
 									<p>
-										Operations
+										Call Reporting
 									</p>
 								</a>
 							</li>

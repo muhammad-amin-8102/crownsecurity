@@ -10,7 +10,8 @@ import { Role } from './_models';
 })
 export class AppComponent {
   title = 'CrownSecurity';
-  currentUser: User;
+	currentUser: User;
+	pageTitle = '';
 
   constructor(
     private authenticationService: AuthenticationService

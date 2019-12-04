@@ -10,7 +10,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CallReportingComponent } from './call-reporting/call-reporting.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -19,20 +22,24 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     SidebarComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    CallReportingComponent
   ],
   imports: [
-    BrowserModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+		HttpClientModule,
+		DropdownModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    // fakeBackendProvider
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
