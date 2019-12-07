@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Host } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '@app/app.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    @Host() private appComponent: AppComponent) { }
 
   ngOnInit() {
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit, Host } from '@angular/core';
 import { AppComponent } from '@app/app.component';
+import { Site } from '@app/_models/site';
+import { SiteService } from '@app/_services/site.service';
 
 interface City {
   name: string;
@@ -12,21 +14,20 @@ interface City {
 	styleUrls: ['./call-reporting.component.scss']
 })
 export class CallReportingComponent implements OnInit {
-	cities1: Array<any>;
-	selectedCity1: City;
+	sites: Array<Site>;
+	selectedSite: Site;
 
-	constructor(@Host() private appComponent: AppComponent) { }
+	constructor(@Host() private appComponent: AppComponent,
+	private siteService: SiteService) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
-		this.cities1 = [
-			{label:'Select City', value:null},
-			{label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
-			{label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
-			{label:'London', value:{id:3, name: 'London', code: 'LDN'}},
-			{label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
-			{label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
-	];
+		this.getSites();
 	}
 
+	getSites() {
+		this.siteService.getAll().subscribe(data => {
+			this.sites = data;
+		});
+	}
 }
