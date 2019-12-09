@@ -8,10 +8,14 @@ import { AppComponent } from '@app/app.component';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
+  router: Router;
+  appComponent: AppComponent;
   constructor(
-    private router: Router,
-    @Host() private appComponent: AppComponent) { }
+    private _router: Router,
+    @Host() private _appComponent: AppComponent) { 
+      this.router = this._router;
+      this.appComponent = this._appComponent;
+    }
 
   ngOnInit() {
   }
