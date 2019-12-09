@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CallReportingComponent } from './call-reporting/call-reporting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
+import { SiteComponent } from './site/site.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DropdownModule } from 'primeng/dropdown';
     SidebarComponent,
     DashboardComponent,
     LoginComponent,
-    CallReportingComponent
+    CallReportingComponent,
+    SiteComponent
   ],
   imports: [
 		BrowserModule,

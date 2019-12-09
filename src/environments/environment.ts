@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000/api'
+  apiUrl: 'https://immense-chamber-71335.herokuapp.com/api',
+  // apiUrl: 'http://localhost:4000/api'
 };
 
 /*
