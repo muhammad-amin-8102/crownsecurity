@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CallReportingComponent } from './call-reporting/call-reporting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
 import { SiteComponent } from './site/site.component';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SiteComponent } from './site/site.component';
     AppRoutingModule,
     ReactiveFormsModule,
 		HttpClientModule,
-		DropdownModule
+		DropdownModule,
+		TableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

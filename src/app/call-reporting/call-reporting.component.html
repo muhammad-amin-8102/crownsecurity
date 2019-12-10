@@ -1,14 +1,29 @@
 <div class="row">
-	<p-dropdown [options]="sites" [(ngModel)]="selectedSite" optionLabel="name" placeholder="Select a site" (onChange)="changeSite()"></p-dropdown>
+	<div class="col-md-4">
+		<p-dropdown [options]="sites" [(ngModel)]="selectedSite" optionLabel="name" placeholder="Select a site"
+			(onChange)="changeSite()"></p-dropdown>
+	</div>
+	<div class="col-md-4">
+		<p-dropdown [options]="shifts" [(ngModel)]="selectedShift" optionLabel="name" placeholder="Select a shift"
+			(onChange)="changeShift()"></p-dropdown>
+	</div>
 </div>
-<div class="row" [hidden]="!selectedSite">
+<div class="row">
 	<p-table [value]="usersReporting">
 		<ng-template pTemplate="header">
 			<tr>
+				<th>Role</th>
 				<th>User ID</th>
 				<th>Name</th>
-				<th>Brand</th>
-				<th>Color</th>
+				<th>Attendance</th>
+				<th>Beard</th>
+				<th>Uniform</th>
+				<th>Shoes</th>
+				<th>Socks</th>
+				<th>Accessories</th>
+				<th>Haircut</th>
+				<th>ID Failure</th>
+				<th>Comments</th>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="body" let-rowData>

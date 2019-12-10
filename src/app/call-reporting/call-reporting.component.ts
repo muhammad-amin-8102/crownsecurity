@@ -5,11 +5,6 @@ import { SiteService } from '@app/_services/site.service';
 import { User } from '@app/_models/user';
 import { head } from 'lodash';
 
-interface City {
-  name: string;
-  code: string;
-}
-
 @Component({
 	selector: 'app-call-reporting',
 	templateUrl: './call-reporting.component.html',
@@ -19,6 +14,14 @@ export class CallReportingComponent implements OnInit {
 	sites: Array<Site>;
 	selectedSite: Site;
 	usersReporting: Array<User>;
+	shifts: Array<{
+		name: number;
+		value: number;
+	}> = [];
+	selectedShift: {
+		name: number;
+		value: number;
+	};
 
 	constructor(@Host() private appComponent: AppComponent,
 	private siteService: SiteService) { }
@@ -35,7 +38,26 @@ export class CallReportingComponent implements OnInit {
 	}
 
 	changeSite() {
-		this.populateReportingGrid();
+		if (this.selectedSite) {
+			const shiftCount = this.selectedSite.shift;
+			this.shifts = [];
+			for (let i = 1; i <= shiftCount; i++) {
+				this.shifts.push({
+					name: i,
+					value: i
+				});
+			}
+		} else {
+			this.shifts = [];
+		}
+	}
+
+	changeShift() {
+		if (this.selectedSite) {
+			this.populateReportingGrid();
+		} else {
+			this.usersReporting = [];
+		}
 	}
 
 	populateReportingGrid() {
