@@ -5,8 +5,16 @@ export class Site {
     contact: string;
     contact_person: string;
     active: boolean;
-    strength_count: number;
+    site_strengths: Array<SiteStrength>;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export class SiteStrength {
+    id: number;
     requirement_date: Date;
+    site_id: number;
+    strength_count: number;
     createdAt: Date;
     updatedAt: Date;
 }

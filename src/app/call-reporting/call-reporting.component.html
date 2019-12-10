@@ -1,3 +1,59 @@
 <div class="row">
-	<p-dropdown [options]="sites" [(ngModel)]="selectedSite" optionLabel="name" placeholder="Select a site"></p-dropdown>
+	<p-dropdown [options]="sites" [(ngModel)]="selectedSite" optionLabel="name" placeholder="Select a site" (onChange)="changeSite()"></p-dropdown>
+</div>
+<div class="row" [hidden]="!selectedSite">
+	<p-table [value]="usersReporting">
+		<ng-template pTemplate="header">
+			<tr>
+				<th>User ID</th>
+				<th>Name</th>
+				<th>Brand</th>
+				<th>Color</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-rowData>
+			<tr>
+				<td pEditableColumn>
+					<p-cellEditor>
+						<ng-template pTemplate="input">
+							<input pInputText type="text" [(ngModel)]="rowData.vin">
+						</ng-template>
+						<ng-template pTemplate="output">
+							{{rowData.vin}}
+						</ng-template>
+					</p-cellEditor>
+				</td>
+				<td pEditableColumn>
+					<p-cellEditor>
+						<ng-template pTemplate="input">
+							<input pInputText type="text" [(ngModel)]="rowData.year" required>
+						</ng-template>
+						<ng-template pTemplate="output">
+							{{rowData.year}}
+						</ng-template>
+					</p-cellEditor>
+				</td>
+				<td pEditableColumn>
+					<p-cellEditor>
+						<ng-template pTemplate="input">
+							<p-dropdown [options]="brands" [(ngModel)]="rowData.brand" [style]="{'width':'100%'}"></p-dropdown>
+						</ng-template>
+						<ng-template pTemplate="output">
+							{{rowData.brand}}
+						</ng-template>
+					</p-cellEditor>
+				</td>
+				<td pEditableColumn>
+					<p-cellEditor>
+						<ng-template pTemplate="input">
+							<input pInputText type="text" [(ngModel)]="rowData.color">
+						</ng-template>
+						<ng-template pTemplate="output">
+							{{rowData.color}}
+						</ng-template>
+					</p-cellEditor>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
 </div>
