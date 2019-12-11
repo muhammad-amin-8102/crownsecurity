@@ -15,6 +15,7 @@ import { CallReportingComponent } from './call-reporting/call-reporting.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
+import { CheckboxModule } from 'primeng/checkbox';
 import { SiteComponent } from './site/site.component';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SiteComponent } from './site/site.component';
     ReactiveFormsModule,
 		HttpClientModule,
 		DropdownModule,
-		TableModule
+		TableModule,
+		CheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

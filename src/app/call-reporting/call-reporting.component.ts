@@ -26,6 +26,8 @@ export class CallReportingComponent implements OnInit {
 		value: number;
 	};
 	roles: Array<UserRole> = [];
+	cols: any[];
+	frozenCols: any[];
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
@@ -35,6 +37,23 @@ export class CallReportingComponent implements OnInit {
 		this.appComponent.pageTitle = 'Call Reporting';
 		this.getSites();
 		this.getRoles();
+		this.cols = [
+			{ field: 'name', header: 'Name', width: '200px' },
+			{ field: 'role', header: 'Role', width: '200px'},
+			{ field: 'user_id', header: 'User ID', width: '200px' },
+			{ field: 'attendance', header: 'Attendance', width: '100px' },
+			{ field: 'beard', header: 'Beard', width: '100px' },
+			{ field: 'uniform', header: 'Uniform', width: '100px' },
+			{ field: 'shoes', header: 'Shoes', width: '100px' },
+			{ field: 'socks', header: 'Socks', width: '100px' },
+			{ field: 'accessories', header: 'Accessories', width: '100px' },
+			{ field: 'hair_cut', header: 'Haircut', width: '100px' },
+			{ field: 'idf', header: 'ID Failure', width: '100px' },
+			{ field: 'comments', header: 'Comments', width: '200px' }
+	];
+		this.frozenCols = [
+			{ field: 'name', header: 'Name' }
+		];
 	}
 
 	getSites() {
