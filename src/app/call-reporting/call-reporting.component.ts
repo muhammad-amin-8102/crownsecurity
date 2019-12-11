@@ -1,9 +1,12 @@
 import { Component, OnInit, Host } from '@angular/core';
 import { AppComponent } from '@app/app.component';
-import { Site } from '@app/_models/site';
+import { Site, SiteStrength } from '@app/_models/site';
 import { SiteService } from '@app/_services/site.service';
 import { User } from '@app/_models/user';
-import { head } from 'lodash';
+import { head, range } from 'lodash';
+import { UserRole } from '@app/_models';
+import { RoleService } from '@app/_services/role.service';
+import { CallReportingGrid } from '@app/_models/call-reporting';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -13,7 +16,7 @@ import { head } from 'lodash';
 export class CallReportingComponent implements OnInit {
 	sites: Array<Site>;
 	selectedSite: Site;
-	usersReporting: Array<User>;
+	usersReporting: Array<CallReportingGrid> = [];
 	shifts: Array<{
 		name: number;
 		value: number;
@@ -22,18 +25,27 @@ export class CallReportingComponent implements OnInit {
 		name: number;
 		value: number;
 	};
+	roles: Array<UserRole> = [];
 
 	constructor(@Host() private appComponent: AppComponent,
-	private siteService: SiteService) { }
+		private siteService: SiteService,
+		private roleService: RoleService) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
 		this.getSites();
+		this.getRoles();
 	}
 
 	getSites() {
 		this.siteService.getAll().subscribe(data => {
 			this.sites = data;
+		});
+	}
+
+	getRoles() {
+		this.roleService.getAll().subscribe(data => {
+			this.roles = data;
 		});
 	}
 
@@ -61,9 +73,14 @@ export class CallReportingComponent implements OnInit {
 	}
 
 	populateReportingGrid() {
-		const latestSiteStrength = head(this.selectedSite.site_strengths);
-		if (latestSiteStrength) {
-			
+		const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
+		if (latestSiteStrength && latestSiteStrength.strength_count) {
+			range(1, latestSiteStrength.strength_count + 1).forEach(e => {
+				const callReportingGridObject: CallReportingGrid = {
+					selectedRole: {} as UserRole
+				}; 
+				this.usersReporting.push(callReportingGridObject);
+			});
 		}
 	}
 }

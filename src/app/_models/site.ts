@@ -4,8 +4,8 @@ export class Site {
     address: string;
     contact: string;
     contact_person: string;
-		active: boolean;
-		shift: number;
+    active: boolean;
+    shift: number;
     site_strengths: Array<SiteStrength>;
     createdAt: Date;
     updatedAt: Date;
@@ -15,8 +15,8 @@ export class SiteStrength {
     id: number;
     requirement_date: Date;
     site_id: number;
-		strength_count: number;
-		shift: number;
+    strength_count: number;
+    shift: number;
     createdAt: Date;
     updatedAt: Date;
 }
