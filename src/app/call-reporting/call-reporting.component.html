@@ -7,9 +7,12 @@
 		<p-dropdown [options]="shifts" [(ngModel)]="selectedShift" optionLabel="name" placeholder="Select a shift"
 			(onChange)="changeShift()"></p-dropdown>
 	</div>
+	<div class="col-md-2">
+		<p-calendar [(ngModel)]="reportingDate" [maxDate]="maxDate" [readonlyInput]="true"></p-calendar>
+	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 mt-3">
 		<p-table [value]="usersReporting" [columns]="cols" [scrollable]="true" scrollHeight="25vw" [style.width]="'100%'">
 			<ng-template pTemplate="colgroup" let-columns>
 				<colgroup>

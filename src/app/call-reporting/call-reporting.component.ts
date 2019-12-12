@@ -28,6 +28,8 @@ export class CallReportingComponent implements OnInit {
 	roles: Array<UserRole> = [];
 	cols: any[];
 	frozenCols: any[];
+	reportingDate: Date = null;
+	maxDate: Date;
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
@@ -54,6 +56,7 @@ export class CallReportingComponent implements OnInit {
 		this.frozenCols = [
 			{ field: 'name', header: 'Name' }
 		];
+		this.maxDate = new Date();
 	}
 
 	getSites() {
