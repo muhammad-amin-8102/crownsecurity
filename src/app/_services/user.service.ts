@@ -14,5 +14,9 @@ export class UserService {
 
     getById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
-    }
+		}
+		
+		getByRole(roleId: number) {
+			return this.http.get(`${environment.apiUrl}/users/role/${roleId}`);
+		}
 }

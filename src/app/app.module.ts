@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { SiteComponent } from './site/site.component';
 
 @NgModule({
@@ -38,7 +40,9 @@ import { SiteComponent } from './site/site.component';
 		HttpClientModule,
 		DropdownModule,
 		TableModule,
-		CheckboxModule
+		CheckboxModule,
+		CalendarModule,
+		CardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

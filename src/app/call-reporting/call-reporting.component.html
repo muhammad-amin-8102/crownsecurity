@@ -1,18 +1,19 @@
-<div class="row">
+<form [formGroup]="reportSearchForm" class="row">
 	<div class="col-md-2">
-		<p-dropdown [options]="sites" [(ngModel)]="selectedSite" optionLabel="name" placeholder="Select a site"
+		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="name" placeholder="Select a site"
 			(onChange)="changeSite()"></p-dropdown>
 	</div>
 	<div class="col-md-2">
-		<p-dropdown [options]="shifts" [(ngModel)]="selectedShift" optionLabel="name" placeholder="Select a shift"
+		<p-dropdown [options]="shifts" formControlName="selectedShift" optionLabel="name" placeholder="Select a shift"
 			(onChange)="changeShift()"></p-dropdown>
 	</div>
-	<div class="col-md-2">
-		<p-calendar [(ngModel)]="reportingDate" [maxDate]="maxDate" [readonlyInput]="true"></p-calendar>
+	<div class="col-md-3">
+		<p-calendar formControlName="reportingDate" [maxDate]="maxDate" [readonlyInput]="true" [showIcon]="true"></p-calendar>
 	</div>
-</div>
-<div class="row">
+</form>
+<div class="row" *ngIf="usersReporting.length">
 	<div class="col-md-12 mt-3">
+		<p-card>
 		<p-table [value]="usersReporting" [columns]="cols" [scrollable]="true" scrollHeight="25vw" [style.width]="'100%'">
 			<ng-template pTemplate="colgroup" let-columns>
 				<colgroup>
@@ -29,45 +30,45 @@
 			<ng-template pTemplate="body" let-rowData>
 				<tr>
 					<td>
-						<p-dropdown [options]="roles" [(ngModel)]="rowData.selectedRole" placeholder="Select a role"
-							optionLabel="name"></p-dropdown>
+						<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role"
+							optionLabel="name" (onChange)="changeRole(rowData)"></p-dropdown>
 					</td>
 					<td>
-						<p-dropdown [options]="roles" [(ngModel)]="rowData.selectedRole" placeholder="Select a role"
-							optionLabel="name"></p-dropdown>
+						<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.name" placeholder="Search a name"
+							optionLabel="name" (onChange)="changeName(rowData)" [disabled]="!rowData.role"></p-dropdown>
 					</td>
 					<td>
-						<p-dropdown [options]="roles" [(ngModel)]="rowData.selectedRole" placeholder="Select a role"
-							optionLabel="name"></p-dropdown>
+						<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user_id" placeholder="Search a user id"
+							optionLabel="email" (onChange)="changeUserId(rowData)" [disabled]="!rowData.role"></p-dropdown>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.attendance"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.attendance" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.beard"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.beard" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.uniform"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.uniform" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.shoes"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.shoes" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.socks"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.socks" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.accessories"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.accessories" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.idf"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user_id"></p-checkbox>
 					</td>
 					<td pEditableColumn>
 						<p-cellEditor>
 							<ng-template pTemplate="input">
-								<input pInputText type="text" [(ngModel)]="rowData.comments" required>
+								<input pInputText type="text" [(ngModel)]="rowData.comments" [disabled]="!rowData.user_id">
 							</ng-template>
 							<ng-template pTemplate="output">
 								{{rowData.comments}}
@@ -77,5 +78,9 @@
 				</tr>
 			</ng-template>
 		</p-table>
+		<p-footer>
+			<button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
+		</p-footer>
+	</p-card>
 	</div>
 </div>
