@@ -162,11 +162,16 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	changeName(rowData: any) {
-		
+		this.setUserData(rowData);
 	}
 
 	changeUserId(rowData: any) {
+		this.setUserData(rowData);
+	}
 
+	setUserData(rowData: any) {
+		rowData.name = rowData.user.name;
+		rowData.user_id = rowData.user.id;
 	}
 	
 	ngOnDestroy() {

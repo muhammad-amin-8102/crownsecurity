@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 a { cursor: pointer }
+
 .ui-datepicker table td {
     padding: 0em !important;
+}
+
+.ui-dropdown {
+  width:100% !important;
 }
