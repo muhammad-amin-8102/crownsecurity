@@ -31,48 +31,48 @@
 				<tr>
 					<td>
 						<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role"
-							optionLabel="name" (onChange)="changeRole(rowData)"></p-dropdown>
+							optionLabel="name" (onChange)="changeRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
 					</td>
 					<td>
 						<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
-							optionLabel="name" (onChange)="changeName(rowData)" 
-							[disabled]="!rowData.role || !rowData.users || !rowData.users.length"
-							[filter]="true" filterBy="value.name"></p-dropdown>
+							optionLabel="firstname" (onChange)="changeName(rowData)" 
+							[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+							[filter]="true" filterBy="value.firstname"></p-dropdown>
 					</td>
 					<td>
 						<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a user id"
-							optionLabel="email" (onChange)="changeUserId(rowData)" 
-							[disabled]="!rowData.role || !rowData.users || !rowData.users.length"
-							[filter]="true" filterBy="value.email"></p-dropdown>
+							optionLabel="corp_email" (onChange)="changeUserId(rowData)" 
+							[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+							[filter]="true" filterBy="value.corp_email"></p-dropdown>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.attendance" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.attendance" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.beard" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.beard" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.uniform" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.uniform" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.shoes" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.shoes" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.socks" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.socks" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.accessories" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.accessories" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td>
-						<p-checkbox binary="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user"></p-checkbox>
+						<p-checkbox binary="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user || disableReportGrid"></p-checkbox>
 					</td>
 					<td pEditableColumn>
 						<p-cellEditor>
 							<ng-template pTemplate="input">
-								<input pInputText type="text" [(ngModel)]="rowData.comments" [disabled]="!rowData.user">
+								<input pInputText type="text" [(ngModel)]="rowData.comments" [disabled]="!rowData.user || disableReportGrid">
 							</ng-template>
 							<ng-template pTemplate="output">
 								{{rowData.comments}}
@@ -82,8 +82,8 @@
 				</tr>
 			</ng-template>
 		</p-table>
-		<p-footer>
-			<button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
+		<p-footer *ngIf="!disableReportGrid">
+			<button pButton type="button" (click)="submitReport()" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
 		</p-footer>
 	</p-card>
 	</div>

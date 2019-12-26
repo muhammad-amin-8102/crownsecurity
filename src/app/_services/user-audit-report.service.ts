@@ -8,5 +8,9 @@ export class UserAuditReportService {
 
     getByParams(params: any) {
         return this.http.post(`${environment.apiUrl}/reports/find-report`, params);
+		}
+		
+		createReport(params: any) {
+        return this.http.post(`${environment.apiUrl}/reports`, params);
     }
 }

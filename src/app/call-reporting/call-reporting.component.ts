@@ -3,8 +3,7 @@ import { AppComponent } from '@app/app.component';
 import { Site, SiteStrength } from '@app/_models/site';
 import { SiteService } from '@app/_services/site.service';
 import { UserAuditReportService } from '@app/_services/user-audit-report.service';
-import { User } from '@app/_models/user';
-import { head, range } from 'lodash';
+import { head, range, pick } from 'lodash';
 import { UserRole } from '@app/_models';
 import { RoleService } from '@app/_services/role.service';
 import { UserService } from '@app/_services/user.service';
@@ -35,6 +34,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	maxDate: Date;
 	reportSearchForm: FormGroup;
 	reportSearchFormSubscriber: any;
+	currentReport: any;
+	disableReportGrid: boolean;
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
@@ -48,7 +49,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		this.getSites();
 		this.getRoles();
 		this.cols = [
-			{ field: 'role', header: 'Role', width: '200px'},
+			{ field: 'role', header: 'Role', width: '200px' },
 			{ field: 'name', header: 'Name', width: '200px' },
 			{ field: 'user_id', header: 'User ID', width: '200px' },
 			{ field: 'attendance', header: 'Attendance', width: '100px' },
@@ -60,7 +61,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			{ field: 'hair_cut', header: 'Haircut', width: '100px' },
 			{ field: 'idf', header: 'ID Failure', width: '100px' },
 			{ field: 'comments', header: 'Comments', width: '200px' }
-	];
+		];
 		this.frozenCols = [
 			{ field: 'name', header: 'Name' }
 		];
@@ -70,7 +71,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	initFormGroup() {
 		this.reportSearchForm = this.fb.group({
-			reportingDate:  new FormControl(this.reportingDate || '', Validators.required),
+			reportingDate: new FormControl(this.reportingDate || '', Validators.required),
 			selectedSite: new FormControl(this.selectedSite || '', Validators.required),
 			selectedShift: new FormControl(this.selectedShift || '', Validators.required)
 		});
@@ -83,10 +84,13 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 					reportingDate: this.reportingDate,
 					siteId: this.selectedSite.id,
 					shift: this.selectedShift.value
-				}).subscribe((data: Array<any>) => {
-					if (data.length) {
-						
+				}).subscribe((data: any) => {
+					if (data.userAuditReport.length) {
+						this.currentReport = head(data.userAuditReport);
+						this.disableReportGrid = data.disableForm;
+						this.populateReportingGrid(true);
 					} else {
+						this.disableReportGrid = data.disableForm;
 						this.populateReportingGrid();
 					}
 				});
@@ -124,35 +128,49 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	changeShift() {
-		
+
 	}
 
-	populateReportingGrid() {
+	populateReportingGrid(dataPresent: boolean = false) {
 		this.usersReporting = [];
-		const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
-		if (latestSiteStrength && latestSiteStrength.strength_count) {
-			range(1, latestSiteStrength.strength_count + 1).forEach(e => {
-				const callReportingGridObject: CallReportingGrid = {
-					role: 0,
-					name: '',
-					user_id: 0,
-					ot: false,
-					cross_ot: false,
-					grooming_failure: false,
-					attendance: false,
-					beard: false,
-					uniform: false,
-					shoes: false,
-					socks: false,
-					accessories: false,
-					hair_cut: false,
-					idf: false,
-					comments: '',
-					adhoc: false
-				}; 
+		if (dataPresent) {
+			this.currentReport.user_audits.forEach(report => {
+				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
 				this.usersReporting.push(callReportingGridObject);
 			});
+			console.log(this.usersReporting);
+		} else {
+			const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
+			if (latestSiteStrength && latestSiteStrength.strength_count) {
+				range(1, latestSiteStrength.strength_count + 1).forEach(e => {
+					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+					this.usersReporting.push(callReportingGridObject);
+				});
+			}
 		}
+	}
+
+	getCallReportingRowObject(report = null): CallReportingGrid {
+		return {
+			role: report ? head(this.roles.filter(x => x.id === report.user.role_id)) : null,
+			name: report ? report.user : '',
+			user_id: report ? report.user.id : 0,
+			ot: report ? report.ot : false,
+			cross_ot: report ? report.cross_ot : false,
+			grooming_failure: report ? report.grooming_failure : false,
+			attendance: report ? report.attendance : false,
+			beard: report ? report.beard : false,
+			uniform: report ? report.uniform : false,
+			shoes: report ? report.shoes : false,
+			socks: report ? report.socks : false,
+			accessories: report ? report.accessories : false,
+			hair_cut: report ? report.hair_cut : false,
+			idf: report ? report.idf : false,
+			comments: report ? report.comments : '',
+			adhoc: report ? report.adhoc : false,
+			user: report ? report.user : null,
+			users: report ? [report.user] : []
+		};
 	}
 
 	changeRole(rowData: any) {
@@ -163,6 +181,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	changeName(rowData: any) {
 		this.setUserData(rowData);
+		console.log(rowData);
 	}
 
 	changeUserId(rowData: any) {
@@ -173,8 +192,36 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		rowData.name = rowData.user.name;
 		rowData.user_id = rowData.user.id;
 	}
-	
+
 	ngOnDestroy() {
 		this.reportSearchFormSubscriber.unsubscribe();
+	}
+	
+	submitReport() {
+		const auditRequestProps = [
+			'user_id',
+			'attendance',
+			'ot',
+			'cross_ot',
+			'grooming_failure',
+			'beard',
+			'uniform',
+			'shoes',
+			'socks',
+			'accessories',
+			'hair_cut',
+			'idf',
+			'comments',
+			'adhoc'
+		]
+		const auditReportObject = {
+			reportingDate: this.reportingDate,
+			siteId: this.selectedSite.id,
+			shift: this.selectedShift.value,
+			user_audits: this.usersReporting.map(x => pick(x, auditRequestProps)).filter(x => x.user_id)
+		};
+		this.userAuditReportService.createReport(auditReportObject).subscribe(data => {
+			console.log(data);
+		});
 	}
 }
