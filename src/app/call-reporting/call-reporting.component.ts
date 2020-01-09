@@ -133,14 +133,20 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	populateReportingGrid(dataPresent: boolean = false) {
 		this.usersReporting = [];
+		const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
 		if (dataPresent) {
 			this.currentReport.user_audits.forEach(report => {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
 				this.usersReporting.push(callReportingGridObject);
 			});
-			console.log(this.usersReporting);
+			if (latestSiteStrength && latestSiteStrength.strength_count
+				&& this.usersReporting.length < latestSiteStrength.strength_count) {
+				range(1, latestSiteStrength.strength_count - this.usersReporting.length + 1).forEach(e => {
+					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+					this.usersReporting.push(callReportingGridObject);
+				});
+			}
 		} else {
-			const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
 			if (latestSiteStrength && latestSiteStrength.strength_count) {
 				range(1, latestSiteStrength.strength_count + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
@@ -196,7 +202,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	ngOnDestroy() {
 		this.reportSearchFormSubscriber.unsubscribe();
 	}
-	
+
 	submitReport() {
 		const auditRequestProps = [
 			'user_id',
