@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://immense-chamber-71335.herokuapp.com/api',
-  // apiUrl: 'http://localhost:4000/api'
+  apiUrl: 'http://enigmatic-mesa-10751.herokuapp.com/api',
+  // apiUrl: 'http://localhost:4300/api'
 };
 
 /*
