@@ -85,8 +85,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 					siteId: this.selectedSite.id,
 					shift: this.selectedShift.value
 				}).subscribe((data: any) => {
-					if (data.userAuditReport.length) {
-						this.currentReport = head(data.userAuditReport);
+					if (data.userAuditReport.id) {
+						this.currentReport = data.userAuditReport;
 						this.disableReportGrid = data.disableForm;
 						this.populateReportingGrid(true);
 					} else {
