@@ -158,7 +158,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	getCallReportingRowObject(report = null): CallReportingGrid {
 		return {
-			role: report ? head(this.roles.filter(x => x.id === report.user.role_id)) : null,
+			role: report ? head(this.roles.filter(x => x.id === +report.user.role_id)) : null,
 			name: report ? report.user : '',
 			user_id: report ? report.user.id : 0,
 			ot: report ? report.ot : false,

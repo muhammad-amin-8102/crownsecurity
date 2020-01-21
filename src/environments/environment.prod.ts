@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://immense-chamber-71335.herokuapp.com/api'
+	production: true,
+	apiUrl: 'http://enigmatic-mesa-10751.herokuapp.com/api',
+	noChance: 'Crown security Secret'
 };

@@ -19,38 +19,42 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { SiteComponent } from './site/site.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
-    DashboardComponent,
-    LoginComponent,
-    CallReportingComponent,
-    SiteComponent
-  ],
-  imports: [
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		FooterComponent,
+		SidebarComponent,
+		DashboardComponent,
+		LoginComponent,
+		CallReportingComponent,
+		SiteComponent
+	],
+	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
 		HttpClientModule,
 		DropdownModule,
 		TableModule,
 		CheckboxModule,
 		CalendarModule,
-		CardModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		CardModule,
+		NgxSpinnerModule
+	],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 
-    // provider used to create fake backend
-    // fakeBackendProvider
-  ],
-  bootstrap: [AppComponent]
+		// provider used to create fake backend
+		// fakeBackendProvider
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://enigmatic-mesa-10751.herokuapp.com/api',
-  // apiUrl: 'http://localhost:4300/api'
+	production: false,
+	apiUrl: 'http://enigmatic-mesa-10751.herokuapp.com/api',
+	// apiUrl: 'http://localhost:4300/api',
+	noChance: 'Crown security Secret'
 };
 
 /*
