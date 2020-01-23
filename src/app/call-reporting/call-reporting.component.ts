@@ -1,9 +1,9 @@
-import { Component, OnInit, Host, OnDestroy } from '@angular/core';
+import { Component, OnInit, Host, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { AppComponent } from '@app/app.component';
 import { Site, SiteStrength } from '@app/_models/site';
 import { SiteService } from '@app/_services/site.service';
 import { UserAuditReportService } from '@app/_services/user-audit-report.service';
-import { head, range, pick } from 'lodash';
+import { head, range, pick, cloneDeep } from 'lodash';
 import { UserRole } from '@app/_models';
 import { RoleService } from '@app/_services/role.service';
 import { UserService } from '@app/_services/user.service';
@@ -19,6 +19,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	sites: Array<Site>;
 	selectedSite: Site;
 	usersReporting: Array<CallReportingGrid> = [];
+	adhocReporting: Array<CallReportingGrid> = [];
 	shifts: Array<{
 		name: number;
 		value: number;
@@ -36,13 +37,15 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	reportSearchFormSubscriber: any;
 	currentReport: any;
 	disableReportGrid: boolean;
+	adhocCols: any;
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
 		private roleService: RoleService,
 		private userAuditReportService: UserAuditReportService,
 		private userService: UserService,
-		private fb: FormBuilder) { }
+		private fb: FormBuilder,
+		private cdr: ChangeDetectorRef) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
@@ -50,6 +53,21 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		this.getRoles();
 		this.cols = [
 			{ field: 'role', header: 'Role', width: '200px' },
+			{ field: 'name', header: 'Name', width: '200px' },
+			{ field: 'user_id', header: 'User ID', width: '200px' },
+			{ field: 'attendance', header: 'Attendance', width: '100px' },
+			{ field: 'beard', header: 'Beard', width: '100px' },
+			{ field: 'uniform', header: 'Uniform', width: '100px' },
+			{ field: 'shoes', header: 'Shoes', width: '100px' },
+			{ field: 'socks', header: 'Socks', width: '100px' },
+			{ field: 'accessories', header: 'Accessories', width: '100px' },
+			{ field: 'hair_cut', header: 'Haircut', width: '100px' },
+			{ field: 'idf', header: 'ID Failure', width: '100px' },
+			{ field: 'comments', header: 'Comments', width: '200px' }
+		];
+		this.adhocCols = [
+			{ field: 'role', header: 'Role', width: '200px' },
+			{ field: 'assigned_role', header: 'Assigned Role', width: '200px' },
 			{ field: 'name', header: 'Name', width: '200px' },
 			{ field: 'user_id', header: 'User ID', width: '200px' },
 			{ field: 'attendance', header: 'Attendance', width: '100px' },
@@ -81,11 +99,12 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			this.selectedShift = data.selectedShift;
 			if (this.reportSearchForm.valid) {
 				this.userAuditReportService.getByParams({
+					userTodayDate: new Date(),
 					reportingDate: this.reportingDate,
 					siteId: this.selectedSite.id,
 					shift: this.selectedShift.value
 				}).subscribe((data: any) => {
-					if (data.userAuditReport.id) {
+					if (data.userAuditReport) {
 						this.currentReport = data.userAuditReport;
 						this.disableReportGrid = data.disableForm;
 						this.populateReportingGrid(true);
@@ -139,7 +158,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
 				this.usersReporting.push(callReportingGridObject);
 			});
-			if (latestSiteStrength && latestSiteStrength.strength_count
+			if (this.currentReport.reporting_date === (new Date()).toISOString() && latestSiteStrength && latestSiteStrength.strength_count
 				&& this.usersReporting.length < latestSiteStrength.strength_count) {
 				range(1, latestSiteStrength.strength_count - this.usersReporting.length + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
@@ -159,6 +178,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	getCallReportingRowObject(report = null): CallReportingGrid {
 		return {
 			role: report ? head(this.roles.filter(x => x.id === +report.user.role_id)) : null,
+			assigned_role: report ? head(this.roles.filter(x => x.id === +report.assigned_role_id)) : null,
 			name: report ? report.user : '',
 			user_id: report ? report.user.id : 0,
 			ot: report ? report.ot : false,
@@ -183,6 +203,10 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		this.userService.getByRole(rowData.role.id).subscribe((data: Array<any>) => {
 			rowData.users = data;
 		});
+	}
+
+	changeAssignedRole (rowData: any) {
+
 	}
 
 	changeName(rowData: any) {
@@ -227,7 +251,11 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			user_audits: this.usersReporting.map(x => pick(x, auditRequestProps)).filter(x => x.user_id)
 		};
 		this.userAuditReportService.createReport(auditReportObject).subscribe(data => {
-			console.log(data);
 		});
+	}
+
+	addAdhoc() {
+		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+		this.adhocReporting.push(callReportingGridObject);
 	}
 }

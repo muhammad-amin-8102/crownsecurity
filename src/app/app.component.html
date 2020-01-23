@@ -2,7 +2,7 @@
 	<app-header *ngIf="isLoggedin"></app-header>
 	<app-sidebar *ngIf="isLoggedin"></app-sidebar>
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper" style="min-height: 594px;">
+	<div [ngClass]="{'content-wrapper' : isLoggedin}" style="min-height: 594px;">
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<div class="container-fluid">
