@@ -1,4 +1,4 @@
-import { Component, OnInit, Host, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Host, OnDestroy } from '@angular/core';
 import { AppComponent } from '@app/app.component';
 import { Site, SiteStrength } from '@app/_models/site';
 import { SiteService } from '@app/_services/site.service';
@@ -9,6 +9,8 @@ import { RoleService } from '@app/_services/role.service';
 import { UserService } from '@app/_services/user.service';
 import { CallReportingGrid } from '@app/_models/call-reporting';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { CONSTANTS } from '@app/constants';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -45,41 +47,14 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		private userAuditReportService: UserAuditReportService,
 		private userService: UserService,
 		private fb: FormBuilder,
-		private cdr: ChangeDetectorRef) { }
+		private messageService: MessageService) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
 		this.getSites();
 		this.getRoles();
-		this.cols = [
-			{ field: 'role', header: 'Role', width: '200px' },
-			{ field: 'name', header: 'Name', width: '200px' },
-			{ field: 'user_id', header: 'User ID', width: '200px' },
-			{ field: 'attendance', header: 'Attendance', width: '100px' },
-			{ field: 'beard', header: 'Beard', width: '100px' },
-			{ field: 'uniform', header: 'Uniform', width: '100px' },
-			{ field: 'shoes', header: 'Shoes', width: '100px' },
-			{ field: 'socks', header: 'Socks', width: '100px' },
-			{ field: 'accessories', header: 'Accessories', width: '100px' },
-			{ field: 'hair_cut', header: 'Haircut', width: '100px' },
-			{ field: 'idf', header: 'ID Failure', width: '100px' },
-			{ field: 'comments', header: 'Comments', width: '200px' }
-		];
-		this.adhocCols = [
-			{ field: 'role', header: 'Role', width: '200px' },
-			{ field: 'assigned_role', header: 'Assigned Role', width: '200px' },
-			{ field: 'name', header: 'Name', width: '200px' },
-			{ field: 'user_id', header: 'User ID', width: '200px' },
-			{ field: 'attendance', header: 'Attendance', width: '100px' },
-			{ field: 'beard', header: 'Beard', width: '100px' },
-			{ field: 'uniform', header: 'Uniform', width: '100px' },
-			{ field: 'shoes', header: 'Shoes', width: '100px' },
-			{ field: 'socks', header: 'Socks', width: '100px' },
-			{ field: 'accessories', header: 'Accessories', width: '100px' },
-			{ field: 'hair_cut', header: 'Haircut', width: '100px' },
-			{ field: 'idf', header: 'ID Failure', width: '100px' },
-			{ field: 'comments', header: 'Comments', width: '200px' }
-		];
+		this.cols = CONSTANTS.callReportingColumns;
+		this.adhocCols = CONSTANTS.callReportingAdhocColumns;
 		this.frozenCols = [
 			{ field: 'name', header: 'Name' }
 		];
@@ -158,7 +133,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
 				this.usersReporting.push(callReportingGridObject);
 			});
-			if (this.currentReport.reporting_date === (new Date()).toISOString() && latestSiteStrength && latestSiteStrength.strength_count
+			if (!this.disableReportGrid && latestSiteStrength && latestSiteStrength.strength_count
 				&& this.usersReporting.length < latestSiteStrength.strength_count) {
 				range(1, latestSiteStrength.strength_count - this.usersReporting.length + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
@@ -199,6 +174,11 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		};
 	}
 
+	setGroomingFailure(rowData: any) {
+		rowData.grooming_failure = !(rowData.attendance && rowData.beard && rowData.uniform && rowData.shoes
+		&& rowData.socks && rowData.accessories && rowData.hair_cut);
+	}
+
 	changeRole(rowData: any) {
 		this.userService.getByRole(rowData.role.id).subscribe((data: Array<any>) => {
 			rowData.users = data;
@@ -211,7 +191,6 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	changeName(rowData: any) {
 		this.setUserData(rowData);
-		console.log(rowData);
 	}
 
 	changeUserId(rowData: any) {
@@ -219,8 +198,30 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	setUserData(rowData: any) {
-		rowData.name = rowData.user.name;
-		rowData.user_id = rowData.user.id;
+		this.userService.getCrossOtByUserId({
+			reportingDate: this.reportingDate,
+			siteId: this.selectedSite.id,
+			shift: this.selectedShift.value,
+			user_id: rowData.user.id
+		}).subscribe((data: any) => {
+			if (data.cross_ot_not_possible === 0) {
+				rowData.name = rowData.user.name;
+				rowData.user_id = rowData.user.id;
+			} else {
+				this.messageService.add(CONSTANTS.invalidCrossSiteSameShiftError);
+				/** below lines to be used to restrict user to input users which are doing cross ot in same shift*/
+				// this.onRowReset(rowData);
+			}
+			rowData.ot = data.ot > 0;
+			rowData.cross_ot = data.cross_ot > 0;
+		});
+	}
+
+	onRowReset(rowData: any) {
+		const removeSelectionIndex = this.usersReporting.findIndex(x => x.user_id === rowData.user_id);
+		this.usersReporting.splice(removeSelectionIndex, 1);
+		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+		this.usersReporting.splice(removeSelectionIndex, 0, callReportingGridObject);
 	}
 
 	ngOnDestroy() {
@@ -228,28 +229,15 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	submitReport() {
-		const auditRequestProps = [
-			'user_id',
-			'attendance',
-			'ot',
-			'cross_ot',
-			'grooming_failure',
-			'beard',
-			'uniform',
-			'shoes',
-			'socks',
-			'accessories',
-			'hair_cut',
-			'idf',
-			'comments',
-			'adhoc'
-		]
 		const auditReportObject = {
 			reportingDate: this.reportingDate,
 			siteId: this.selectedSite.id,
 			shift: this.selectedShift.value,
-			user_audits: this.usersReporting.map(x => pick(x, auditRequestProps)).filter(x => x.user_id)
+			user_audits: this.usersReporting.map(x => pick(x, CONSTANTS.auditRequestProps)).filter(x => x.user_id)
 		};
+		if (this.currentReport && this.currentReport.id) {
+			auditReportObject['userAuditReportId'] = this.currentReport.id;
+		}
 		this.userAuditReportService.createReport(auditReportObject).subscribe(data => {
 		});
 	}
@@ -257,5 +245,12 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	addAdhoc() {
 		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
 		this.adhocReporting.push(callReportingGridObject);
+	}
+
+	disableSave() {
+		let filledUsers = [];
+		filledUsers = [...this.usersReporting.filter(x => x.user_id), ...filledUsers];
+		filledUsers = [...this.adhocReporting.filter(x => x.user_id), ...filledUsers];
+		return !filledUsers.length;
 	}
 }

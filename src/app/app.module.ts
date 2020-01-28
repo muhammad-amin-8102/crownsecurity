@@ -21,6 +21,8 @@ import { CardModule } from 'primeng/card';
 import { SiteComponent } from './site/site.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderInterceptor } from './_interceptors/loader.interceptor';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
 	declarations: [
@@ -45,13 +47,14 @@ import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 		CheckboxModule,
 		CalendarModule,
 		CardModule,
-		NgxSpinnerModule
+		NgxSpinnerModule,
+		ToastModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-
+		MessageService
 		// provider used to create fake backend
 		// fakeBackendProvider
 	],

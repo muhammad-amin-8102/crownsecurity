@@ -19,4 +19,8 @@ export class UserService {
 		getByRole(roleId: number) {
 			return this.http.get(`${environment.apiUrl}/users/role/${roleId}`);
 		}
+
+		getCrossOtByUserId(params: any) {
+			return this.http.post(`${environment.apiUrl}/users/check-cross-ot`, params);
+		}
 }
