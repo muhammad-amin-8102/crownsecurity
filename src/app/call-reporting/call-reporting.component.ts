@@ -87,6 +87,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 						this.disableReportGrid = data.disableForm;
 						this.populateReportingGrid();
 					}
+					this.cols[0].show = !this.disableReportGrid;
+					this.adhocCols[0].show = !this.disableReportGrid;
 				});
 			} else {
 				this.usersReporting = [];
@@ -127,11 +129,16 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	populateReportingGrid(dataPresent: boolean = false) {
 		this.usersReporting = [];
+		this.adhocReporting = [];
 		const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
 		if (dataPresent) {
 			this.currentReport.user_audits.forEach(report => {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
-				this.usersReporting.push(callReportingGridObject);
+				if (report.adhoc) {
+					this.adhocReporting.push(callReportingGridObject);
+				} else {
+					this.usersReporting.push(callReportingGridObject);
+				}
 			});
 			if (!this.disableReportGrid && latestSiteStrength && latestSiteStrength.strength_count
 				&& this.usersReporting.length < latestSiteStrength.strength_count) {
@@ -154,8 +161,9 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		return {
 			role: report ? head(this.roles.filter(x => x.id === +report.user.role_id)) : null,
 			assigned_role: report ? head(this.roles.filter(x => x.id === +report.assigned_role_id)) : null,
+			assigned_role_id: report ? +report.assigned_role_id : null,
 			name: report ? report.user : '',
-			user_id: report ? report.user.id : 0,
+			user_id: report ? +report.user.id : 0,
 			ot: report ? report.ot : false,
 			cross_ot: report ? report.cross_ot : false,
 			grooming_failure: report ? report.grooming_failure : false,
@@ -186,7 +194,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	changeAssignedRole (rowData: any) {
-
+		rowData.assigned_role_id = rowData.assigned_role.id;
 	}
 
 	changeName(rowData: any) {
@@ -217,11 +225,18 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	onRowReset(rowData: any) {
-		const removeSelectionIndex = this.usersReporting.findIndex(x => x.user_id === rowData.user_id);
-		this.usersReporting.splice(removeSelectionIndex, 1);
+	onRowReset(rowData: any, adhoc = false) {
+		const reportReference = adhoc ? this.adhocReporting : this.usersReporting;
+		const removeSelectionIndex = reportReference.findIndex(x => x.user_id === rowData.user_id);
+		reportReference.splice(removeSelectionIndex, 1);
 		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
-		this.usersReporting.splice(removeSelectionIndex, 0, callReportingGridObject);
+		reportReference.splice(removeSelectionIndex, 0, callReportingGridObject);
+	}
+
+	onRowDelete(rowData: any, adhoc = false) {
+		const reportReference = adhoc ? this.adhocReporting : this.usersReporting;
+		const removeSelectionIndex = reportReference.findIndex(x => x.user_id === rowData.user_id);
+		reportReference.splice(removeSelectionIndex, 1);
 	}
 
 	ngOnDestroy() {
@@ -233,7 +248,10 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			reportingDate: this.reportingDate,
 			siteId: this.selectedSite.id,
 			shift: this.selectedShift.value,
-			user_audits: this.usersReporting.map(x => pick(x, CONSTANTS.auditRequestProps)).filter(x => x.user_id)
+			user_audits: [
+				...this.usersReporting.map(x => pick(x, CONSTANTS.auditRequestProps)).filter(x => x.user_id),
+				...this.adhocReporting.map(x => pick(x, CONSTANTS.auditAdhocRequestProps)).filter(x => x.user_id)
+			]
 		};
 		if (this.currentReport && this.currentReport.id) {
 			auditReportObject['userAuditReportId'] = this.currentReport.id;
@@ -244,6 +262,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	addAdhoc() {
 		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+		callReportingGridObject.adhoc = true;
 		this.adhocReporting.push(callReportingGridObject);
 	}
 

@@ -123,7 +123,8 @@
 					<ng-template pTemplate="body" let-rowData>
 						<tr>
 							<td style="text-align:center" [hidden]="!cols[0].show">
-                <button pButton type="button" icon="pi pi-refresh" class="ui-button-info" (click)="onRowReset(rowData)"></button>
+								<button pButton type="button" icon="pi pi-refresh" class="ui-button-info" (click)="onRowReset(rowData, true)"></button>
+								<button pButton type="button" icon="pi pi-times" class="ui-button-danger" (click)="onRowDelete(rowData, true)"></button>
             	</td>
 							<td>
 								<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role" optionLabel="name"

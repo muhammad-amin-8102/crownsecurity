@@ -3,6 +3,7 @@ import { UserRole } from './role';
 export interface CallReportingGrid {
 	role: UserRole;
 	assigned_role: UserRole;
+	assigned_role_id: number;
 	name: string;
 	user_id: number;
 	ot: boolean;
