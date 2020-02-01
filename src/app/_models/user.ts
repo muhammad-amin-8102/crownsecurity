@@ -5,6 +5,7 @@ export class User {
 	role_id: number;
 	code: string;
 	firstname: string;
+	middlename: string;
 	lastname: string;
 	email: string;
 	corp_email: string;

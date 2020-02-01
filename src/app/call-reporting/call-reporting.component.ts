@@ -11,6 +11,7 @@ import { CallReportingGrid } from '@app/_models/call-reporting';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { CONSTANTS } from '@app/constants';
+import { startOfToday } from 'date-fns';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -74,7 +75,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			this.selectedShift = data.selectedShift;
 			if (this.reportSearchForm.valid) {
 				this.userAuditReportService.getByParams({
-					userTodayDate: new Date(),
+					userTodayDate: startOfToday().toISOString(),
 					reportingDate: this.reportingDate,
 					siteId: this.selectedSite.id,
 					shift: this.selectedShift.value
