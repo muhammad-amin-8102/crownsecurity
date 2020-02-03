@@ -41,9 +41,9 @@
 							</td>
 							<td>
 								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
-									optionLabel="firstname" (onChange)="changeName(rowData)"
+									optionLabel="displayname" (onChange)="changeName(rowData)"
 									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
-									[filter]="true" filterBy="value.firstname"></p-dropdown>
+									[filter]="true" filterBy="value.firstname,value.lastname"></p-dropdown>
 							</td>
 							<td>
 								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a code"

@@ -191,6 +191,11 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	changeRole(rowData: any) {
 		this.userService.getByRole(rowData.role.id).subscribe((data: Array<any>) => {
 			rowData.users = data;
+			if (rowData.users) {
+				rowData.users.forEach(x => {
+					x.displayname = x.firstname + ' ' + x.lastname;
+				});
+			}
 		});
 	}
 
