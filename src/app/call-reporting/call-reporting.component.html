@@ -136,19 +136,19 @@
 							</td>
 							<td>
 								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
-									optionLabel="firstname" (onChange)="changeName(rowData)"
+									optionLabel="displayname" (onChange)="changeName(rowData)"
 									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
-									[filter]="true" filterBy="value.firstname"></p-dropdown>
+									[filter]="true" filterBy="value.firstname,value.lastname"></p-dropdown>
 							</td>
 							<td>
-								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a user id"
-									optionLabel="corp_email" (onChange)="changeUserId(rowData)"
+								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a code"
+									optionLabel="code" (onChange)="changeUserId(rowData)"
 									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
-									[filter]="true" filterBy="value.corp_email"></p-dropdown>
+									[filter]="true" filterBy="value.code"></p-dropdown>
 							</td>
 							<td>
 								<p-checkbox binary="true" [(ngModel)]="rowData.attendance"
-									[disabled]="!rowData.user || disableReportGrid"></p-checkbox>
+									[disabled]="!rowData.user || disableReportGrid || !rowData.assigned_role"></p-checkbox>
 							</td>
 							<td>
 								<p-checkbox binary="true" [(ngModel)]="rowData.beard" 

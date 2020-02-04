@@ -7,6 +7,7 @@ export class User {
 	firstname: string;
 	middlename: string;
 	lastname: string;
+	displayname: string;
 	email: string;
 	corp_email: string;
 	dob: Date;

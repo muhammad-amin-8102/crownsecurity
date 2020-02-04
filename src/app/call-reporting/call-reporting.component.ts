@@ -1,9 +1,9 @@
-import { Component, OnInit, Host, OnDestroy } from '@angular/core';
+import { Component, OnInit, Host, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { AppComponent } from '@app/app.component';
 import { Site, SiteStrength } from '@app/_models/site';
 import { SiteService } from '@app/_services/site.service';
 import { UserAuditReportService } from '@app/_services/user-audit-report.service';
-import { head, range, pick, cloneDeep } from 'lodash';
+import { head, range, pick, cloneDeep, differenceBy } from 'lodash';
 import { UserRole } from '@app/_models';
 import { RoleService } from '@app/_services/role.service';
 import { UserService } from '@app/_services/user.service';
@@ -12,6 +12,7 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { MessageService } from 'primeng/api';
 import { CONSTANTS } from '@app/constants';
 import { startOfToday } from 'date-fns';
+import { User } from '@app/_models/user';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -41,6 +42,9 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	currentReport: any;
 	disableReportGrid: boolean;
 	adhocCols: any;
+	users: Array<User> = [];
+	selectedUsers: Array<any> = [];
+	unselectedUsers: Array<any> = [];
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
@@ -48,7 +52,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		private userAuditReportService: UserAuditReportService,
 		private userService: UserService,
 		private fb: FormBuilder,
-		private messageService: MessageService) { }
+		private messageService: MessageService,
+		private cdr: ChangeDetectorRef) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
@@ -61,6 +66,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		];
 		this.maxDate = new Date();
 		this.initFormGroup();
+		this.getAllUsers();
 	}
 
 	initFormGroup() {
@@ -109,6 +115,17 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		});
 	}
 
+	getAllUsers() {
+		this.userService.getAll().subscribe(data => {
+			this.users = data;
+			if (this.users && this.users.length) {
+				this.users.forEach(x => {
+					x.displayname = x.firstname + ' ' + x.lastname;
+				});
+			}
+		});
+	}
+
 	changeSite() {
 		if (this.selectedSite) {
 			const shiftCount = this.selectedSite.shift;
@@ -135,16 +152,18 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		if (dataPresent) {
 			this.currentReport.user_audits.forEach(report => {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
+				this.addDisplayNameToUser(callReportingGridObject);
 				if (report.adhoc) {
 					this.adhocReporting.push(callReportingGridObject);
 				} else {
 					this.usersReporting.push(callReportingGridObject);
 				}
 			});
-			if (!this.disableReportGrid && latestSiteStrength && latestSiteStrength.strength_count
+			if (latestSiteStrength && latestSiteStrength.strength_count
 				&& this.usersReporting.length < latestSiteStrength.strength_count) {
 				range(1, latestSiteStrength.strength_count - this.usersReporting.length + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+					this.addDisplayNameToUser(callReportingGridObject);
 					this.usersReporting.push(callReportingGridObject);
 				});
 			}
@@ -152,9 +171,16 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			if (latestSiteStrength && latestSiteStrength.strength_count) {
 				range(1, latestSiteStrength.strength_count + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+					this.addDisplayNameToUser(callReportingGridObject);
 					this.usersReporting.push(callReportingGridObject);
 				});
 			}
+		}
+	}
+
+	addDisplayNameToUser(callReportingGridObject) {
+		if (callReportingGridObject.user) {
+			callReportingGridObject.user.displayname = callReportingGridObject.user.firstname + ' ' + callReportingGridObject.user.lastname;
 		}
 	}
 
@@ -179,7 +205,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			comments: report ? report.comments : '',
 			adhoc: report ? report.adhoc : false,
 			user: report ? report.user : null,
-			users: report ? [report.user] : []
+			users: report ? report.users : []
 		};
 	}
 
@@ -189,14 +215,12 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	changeRole(rowData: any) {
-		this.userService.getByRole(rowData.role.id).subscribe((data: Array<any>) => {
-			rowData.users = data;
-			if (rowData.users) {
-				rowData.users.forEach(x => {
-					x.displayname = x.firstname + ' ' + x.lastname;
-				});
-			}
-		});
+		if (this.users.length) {
+			rowData.users = differenceBy(this.users.filter(x => +x.role_id === +rowData.role.id), this.selectedUsers, 'id');
+		}
+		if (rowData.adhoc) {
+			
+		}
 	}
 
 	changeAssignedRole (rowData: any) {
@@ -218,16 +242,16 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			shift: this.selectedShift.value,
 			user_id: rowData.user.id
 		}).subscribe((data: any) => {
-			if (data.cross_ot_not_possible === 0) {
-				rowData.name = rowData.user.name;
-				rowData.user_id = rowData.user.id;
-			} else {
+			rowData.name = rowData.user.name;
+			rowData.user_id = rowData.user.id;
+			rowData.ot = data.ot > 0;
+			rowData.cross_ot = data.cross_ot > 0;
+			this.updateSelectedUsers();
+			if (data.cross_ot_not_possible !== 0) {
 				this.messageService.add(CONSTANTS.invalidCrossSiteSameShiftError);
 				/** below lines to be used to restrict user to input users which are doing cross ot in same shift*/
 				// this.onRowReset(rowData);
 			}
-			rowData.ot = data.ot > 0;
-			rowData.cross_ot = data.cross_ot > 0;
 		});
 	}
 
@@ -236,13 +260,35 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		const removeSelectionIndex = reportReference.findIndex(x => x.user_id === rowData.user_id);
 		reportReference.splice(removeSelectionIndex, 1);
 		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
+		this.addDisplayNameToUser(callReportingGridObject);
 		reportReference.splice(removeSelectionIndex, 0, callReportingGridObject);
+		this.updateSelectedUsers();
 	}
 
 	onRowDelete(rowData: any, adhoc = false) {
 		const reportReference = adhoc ? this.adhocReporting : this.usersReporting;
 		const removeSelectionIndex = reportReference.findIndex(x => x.user_id === rowData.user_id);
 		reportReference.splice(removeSelectionIndex, 1);
+		this.updateSelectedUsers();
+	}
+
+	updateSelectedUsers() {
+		this.selectedUsers = [...this.usersReporting.filter(x => x.user_id).map(x => x.user),
+			...this.adhocReporting.filter(x => x.user_id).map(x => x.user)];
+		this.updateGridUsersList();
+	}
+
+	updateGridUsersList() {
+		this.usersReporting.forEach(x => {
+			if (x.user) {
+				x.users = [x.user, ...differenceBy(this.users.filter(y => +y.role_id === +x.role.id), this.selectedUsers, 'id')];
+			}
+		});
+		this.adhocReporting.forEach(x => {
+			if (x.user) {
+				x.users = [x.user, ...differenceBy(this.users.filter(y => +y.role_id === +x.role.id), this.selectedUsers, 'id')];
+			}
+		});
 	}
 
 	ngOnDestroy() {
@@ -269,6 +315,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	addAdhoc() {
 		const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
 		callReportingGridObject.adhoc = true;
+		this.addDisplayNameToUser(callReportingGridObject);
 		this.adhocReporting.push(callReportingGridObject);
 	}
 
