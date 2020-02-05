@@ -1,8 +1,32 @@
 <div class="wrapper">
-	<app-header></app-header>
-	<app-sidebar></app-sidebar>
+	<app-header *ngIf="isLoggedin"></app-header>
+	<app-sidebar *ngIf="isLoggedin"></app-sidebar>
 	<!-- Content Wrapper. Contains page content -->
-	<router-outlet></router-outlet>
+	<div [ngClass]="{'content-wrapper' : isLoggedin}" style="min-height: 594px;">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0 text-dark">{{pageTitle}}</h1>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+	
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<router-outlet></router-outlet>
+			</div><!-- /.container-fluid -->
+		</section>
+		<!-- /.content -->
+	</div>
 	<!-- /.content-wrapper -->
-	<app-footer></app-footer>
+	<app-footer *ngIf="isLoggedin"></app-footer>
+	<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-beat">  
+    <p style="color: white">Please Wait. </p>  
+		</ngx-spinner>
 </div>
+

@@ -5,12 +5,14 @@
 		<li class="nav-item">
 			<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<a href="index3.html" class="nav-link">Home</a>
-		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<a href="#" class="nav-link">Contact</a>
+	</ul>
+
+	<!-- Right navbar links -->
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item d-none d-sm-inline-block" >
+			<a class="nav-item nav-link" (click)="logout()">Logout</a>
 		</li>
 	</ul>
+	<p-toast position="top-center"></p-toast>
 </nav>
 <!-- /.navbar -->

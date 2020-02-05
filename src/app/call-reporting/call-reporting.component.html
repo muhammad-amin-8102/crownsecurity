@@ -1,0 +1,213 @@
+<form [formGroup]="reportSearchForm" class="row">
+	<div class="col-md-2">
+		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="name" placeholder="Select a site"
+			(onChange)="changeSite()"></p-dropdown>
+	</div>
+	<div class="col-md-2">
+		<p-dropdown [options]="shifts" formControlName="selectedShift" optionLabel="name" placeholder="Select a shift"
+			(onChange)="changeShift()"></p-dropdown>
+	</div>
+	<div class="col-md-3">
+		<p-calendar formControlName="reportingDate" [maxDate]="maxDate" [readonlyInput]="true" [showIcon]="true">
+		</p-calendar>
+	</div>
+</form>
+<div class="row" *ngIf="usersReporting.length">
+	<div class="col-md-12 mt-3">
+		<p-card>
+			<p-card header="Planned Reporting">
+				<p-table [value]="usersReporting" [columns]="cols" [scrollable]="true" scrollHeight="25vw"
+					[style.width]="'100%'">
+					<ng-template pTemplate="colgroup" let-columns>
+						<colgroup>
+							<col *ngFor="let col of columns" [style.width]="col.width" [hidden]="!col.show">
+						</colgroup>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th *ngFor="let col of columns" [hidden]="!col.show">
+								{{col.header}}
+							</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData>
+						<tr>
+							<td style="text-align:center" [hidden]="!cols[0].show">
+                <button pButton type="button" icon="pi pi-refresh" class="ui-button-info" (click)="onRowReset(rowData)"></button>
+            	</td>
+							<td>
+								<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role" optionLabel="name"
+									(onChange)="changeRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
+									optionLabel="displayname" (onChange)="changeName(rowData)"
+									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+									[filter]="true" filterBy="value.firstname,value.lastname"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a code"
+									optionLabel="code" (onChange)="changeUserId(rowData)"
+									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+									[filter]="true" filterBy="value.code"></p-dropdown>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.attendance"
+									[disabled]="!rowData.user || disableReportGrid"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.beard" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.uniform" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.shoes" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.socks" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.accessories" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.idf" 
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td pEditableColumn>
+								<p-cellEditor>
+									<ng-template pTemplate="input">
+										<input pInputText type="text" [(ngModel)]="rowData.comments"
+											[disabled]="!rowData.user || disableReportGrid">
+									</ng-template>
+									<ng-template pTemplate="output">
+										{{rowData.comments}}
+									</ng-template>
+								</p-cellEditor>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+				</p-card> 
+				<hr>
+				<p-card header="Adhoc Reporting" [hidden]="!adhocReporting.length">
+				<p-table [value]="adhocReporting" [columns]="adhocCols" [scrollable]="true" scrollHeight="25vw"
+					[style.width]="'100%'">
+					<ng-template pTemplate="colgroup" let-columns>
+						<colgroup>
+							<col *ngFor="let col of columns" [style.width]="col.width" [hidden]="!col.show">
+						</colgroup>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th *ngFor="let col of columns" [hidden]="!col.show">
+								{{col.header}}
+							</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData>
+						<tr>
+							<td style="text-align:center" [hidden]="!cols[0].show">
+								<button pButton type="button" icon="pi pi-refresh" class="ui-button-info mr-2" (click)="onRowReset(rowData, true)"></button>
+								<button pButton type="button" icon="pi pi-times" class="ui-button-danger" (click)="onRowDelete(rowData, true)"></button>
+            	</td>
+							<td>
+								<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role" optionLabel="name"
+									(onChange)="changeRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="roles" [(ngModel)]="rowData.assigned_role" placeholder="Assign a role" optionLabel="name"
+									(onChange)="changeAssignedRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
+									optionLabel="displayname" (onChange)="changeName(rowData)"
+									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+									[filter]="true" filterBy="value.firstname,value.lastname"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a code"
+									optionLabel="code" (onChange)="changeUserId(rowData)"
+									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
+									[filter]="true" filterBy="value.code"></p-dropdown>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.attendance"
+									[disabled]="!rowData.user || disableReportGrid || !rowData.assigned_role"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.beard" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.uniform" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.shoes" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.socks" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.accessories" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" 
+								(onChange)="setGroomingFailure(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
+							</td>
+							<td>
+								<p-checkbox binary="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user || disableReportGrid">
+								</p-checkbox>
+							</td>
+							<td pEditableColumn>
+								<p-cellEditor>
+									<ng-template pTemplate="input">
+										<input pInputText type="text" [(ngModel)]="rowData.comments"
+											[disabled]="!rowData.user || disableReportGrid">
+									</ng-template>
+									<ng-template pTemplate="output">
+										{{rowData.comments}}
+									</ng-template>
+								</p-cellEditor>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+			</p-card>
+
+			<p-footer *ngIf="!disableReportGrid">
+				<button pButton type="button" [disabled]="disableSave()" (click)="submitReport()" label="Save" icon="pi pi-check"
+					style="margin-right: .25em"></button>
+				<button pButton type="button" (click)="addAdhoc()" label="Add Adhoc" icon="pi pi-user-plus"
+				style="margin-right: .25em"></button>
+			</p-footer>
+		</p-card>
+
+
+	</div>
+</div>

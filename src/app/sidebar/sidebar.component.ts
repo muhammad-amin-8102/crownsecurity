@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Host } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppComponent } from '@app/app.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  router: Router;
+  appComponent: AppComponent;
+  constructor(
+    private _router: Router,
+    @Host() private _appComponent: AppComponent) { 
+      this.router = this._router;
+      this.appComponent = this._appComponent;
+    }
 
   ngOnInit() {
   }

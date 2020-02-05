@@ -27,7 +27,7 @@
 							<img src="assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 						</div>
 						<div class="info">
-							<a href="#" class="d-block">Alexander Pierce</a>
+							<a href="#" class="d-block">{{appComponent.currentUser.firstname}}</a>
 						</div>
 					</div>
 
@@ -39,10 +39,18 @@
 						 with font-awesome or any other icon font library -->
 							
 							<li class="nav-item">
-								<a href="pages/widgets.html" class="nav-link">
+								<a [routerLink]="['/call-reporting']" class="nav-link" [ngClass]="{'active': router.url === '/call-reporting'}">
 									<i class="nav-icon fas fa-user-cog"></i>
 									<p>
-										Operations
+										Call Reporting
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a [routerLink]="['/sites']" class="nav-link" [ngClass]="{'active': router.url === '/sites'}">
+									<i class="nav-icon fas fa-user-cog"></i>
+									<p>
+										Sites
 									</p>
 								</a>
 							</li>
