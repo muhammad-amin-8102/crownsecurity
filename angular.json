@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/CrownSecurity",
+            "outputPath": "dist/crown-security",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -81,18 +81,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CrownSecurity:build"
+            "browserTarget": "crown-security:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "CrownSecurity:build:production"
+              "browserTarget": "crown-security:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CrownSecurity:build"
+            "browserTarget": "crown-security:build"
           }
         },
         "test": {
@@ -129,11 +129,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "CrownSecurity:serve"
+            "devServerTarget": "crown-security:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "CrownSecurity:serve:production"
+              "devServerTarget": "crown-security:serve:production"
             }
           }
         },
@@ -144,5 +144,5 @@
       }
     }
   },
-  "defaultProject": "CrownSecurity"
+  "defaultProject": "crown-security"
 }
