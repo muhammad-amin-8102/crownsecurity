@@ -23,6 +23,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ViewReportComponent } from './view-report/view-report.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,8 @@ import { MessageService } from 'primeng/api';
 		DashboardComponent,
 		LoginComponent,
 		CallReportingComponent,
-		SiteComponent
+		SiteComponent,
+		ViewReportComponent
 	],
 	imports: [
 		BrowserModule,
