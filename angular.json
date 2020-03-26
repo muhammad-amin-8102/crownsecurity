@@ -37,7 +37,7 @@
 							"node_modules/primeng/resources/themes/rhea/theme.css",
 							"node_modules/primeng/resources/primeng.min.css",
 							"node_modules/ag-grid-enterprise/dist/styles/ag-grid.scss",
-							"node_modules/ag-grid-enterprise/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss"
+							"node_modules/ag-grid-enterprise/dist/styles/ag-theme-balham/sass/_ag-theme-balham-mixin.scss"
             ],
             "scripts": [
               "src/assets/plugins/jquery/jquery.min.js",
@@ -69,7 +69,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
