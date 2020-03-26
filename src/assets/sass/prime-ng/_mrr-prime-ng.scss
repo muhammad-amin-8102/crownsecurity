@@ -1,0 +1,1877 @@
+@import '../_mrr-variables';
+@import 'primeicons/primeicons.css';
+@import './prime-ng-table.scss';
+@import './p-calendar.scss';
+
+/************************** PrimNG datatable start **************/
+.ui-datatable, .ui-datatable-scrollable-header {
+	.ui-datatable-tablewrapper, .ui-datatable-scrollable-header-box {
+    table {
+			font-family: "Segoe UI" !important;
+      table-layout: auto;
+      thead {
+        tr {
+          th {
+            background: $standard-subfooter-background;
+            font-size: 11px;
+            color: $almost-dark-gray-color !important;
+            text-align: left;
+            text-transform: uppercase;
+            max-width: 500px;
+						border: none;
+						height: 45px!important;
+						max-height: 45px!important;
+						white-space: nowrap;
+						border-right: 1px solid $white-color;
+            @media (max-width: 1024px) {
+              white-space: nowrap;
+              font-size: 9px;
+            }
+            @media (max-width: 1280px) {
+              white-space: nowrap;
+            }
+            p-dtcheckbox {
+              .ui-chkbox {
+                .ui-chkbox-box {
+                  height: 12px;
+                  width: 12px;
+                  border: solid 1px $medium-dark-gray-color !important;
+                  background-color: $daisy-white;
+                  span {
+                    color: $sky-blue;
+                    font-size: 9px;
+                    margin-top: -1px;
+                  }
+                }
+              }
+						}
+						.ui-column-title {
+							.subheader {
+								font-size: 10px;
+							}
+						}
+          }
+        }
+      }
+      tbody {
+        border: none;
+        tr {
+          border: none !important;
+          background: $white-color;
+          td {
+            border: none !important;
+						border-bottom: solid 1px $standard-subfooter-background !important;
+						padding-right: 10px;
+						font-size: 13px;
+            color: $dialog-header-font-color;
+						max-width: 143px;
+						height: 45px;
+						max-height: 45px;
+            word-break: break-all;
+            @media (max-width: 1024px) {
+              max-width: 100px;
+              font-size: 13px;
+            }
+            span {
+              a {
+                color: $light-sky-blue;
+                // white-space: pre-wrap;
+              }
+              span {
+                font-size: 12px;
+              }
+            }
+            p-dtcheckbox {
+              .ui-chkbox {
+                .ui-chkbox-box {
+                  height: 12px;
+                  width: 12px;
+                  border: 1px solid $medium-dark-gray-color !important;
+                  background-color: $white-color;
+                  span {
+                    color: $light-blue-color;
+                    transform: scale(0.7);
+                    margin-top: -1px;
+                    margin-left: -1px;
+                    -moz-margin-start: -1.5px;
+                  }
+                }
+                .ui-state-active {
+                  height: 12px;
+                  width: 12px;
+                  border: 1px solid $light-blue-color !important;
+                  background-color: $white-color;
+                  span {
+                    color: $light-blue-color;
+                    transform: scale(0.7);
+                    margin-top: -1px;
+                    margin-left: -1px;
+                    -moz-margin-start: -1.5px;
+                  }
+                }
+                .ui-state-active:hover {
+                  border: 1px solid $sky-blue !important;
+                  span {
+                    color: $sky-blue;
+                  }
+                }
+                .ui-state-active:active {
+                  border: 1px solid $light-blue-color !important;
+                  background: $light-blue-color;
+                  span {
+                    color: $white-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .ui-datatable-odd {
+          background: none;
+        }
+        .ui-state-highlight {
+          background: none;
+        }
+      }
+		}
+	}
+	.ui-widget-header {
+		text-transform: uppercase;
+	}
+}
+
+.ui-datatable-scrollable-header-box{
+	table {
+		table-layout: fixed!important;
+	}
+}
+
+
+
+/************************** PrimNG datatable end **************/
+
+.nested-table {
+	.ui-datatable {
+		.ui-datatable-tablewrapper {
+			table {
+				font-family: "Segoe UI" !important;
+				table-layout: auto;
+				thead {
+					tr {
+						th {
+							background: $standard-subfooter-background;
+							font-size: 11px;
+							color: $almost-dark-gray-color !important;
+							text-align: left;
+							text-transform: uppercase;
+							max-width: 500px;
+							border: none;
+							height: 45px;
+							max-height: 45px;
+							white-space: nowrap;
+							border-right: 1px solid $white-color;
+							@media (max-width: 1024px) {
+								white-space: nowrap;
+								font-size: 9px;
+							}
+							@media (max-width: 1280px) {
+								white-space: nowrap;
+							}
+							p-dtcheckbox {
+								.ui-chkbox {
+									.ui-chkbox-box {
+										height: 12px;
+										width: 12px;
+										border: solid 1px $medium-dark-gray-color !important;
+										background-color: $daisy-white;
+										span {
+											color: $sky-blue;
+											font-size: 9px;
+											margin-top: -1px;
+										}
+									}
+								}
+							}
+							.ui-column-title {
+								.subheader {
+									font-size: 10px;
+								}
+							}
+						}
+					}
+				}
+				tbody {
+					border: none;
+					tr {
+						border: none !important;
+						background: $white-color;
+						td {
+							border: none !important;
+							border-bottom: solid 1px $standard-subfooter-background !important;
+							padding-left: 0 ;
+							font-size: 13px;
+							color: $dialog-header-font-color;
+							max-width: 143px;
+							height: 45px;
+							max-height: 45px;
+							word-break: break-all;
+							@media (max-width: 1024px) {
+								max-width: 100px;
+								font-size: 13px;
+							}
+							span {
+								a {
+									color: $light-sky-blue;
+									// white-space: pre-wrap;
+								}
+								span {
+									font-size: 12px;
+								}
+							}
+							p-dtcheckbox {
+								.ui-chkbox {
+									.ui-chkbox-box {
+										height: 12px;
+										width: 12px;
+										border: 1px solid $medium-dark-gray-color !important;
+										background-color: $white-color;
+										span {
+											color: $light-blue-color;
+											transform: scale(0.7);
+											margin-top: -1px;
+											margin-left: -1px;
+											-moz-margin-start: -1.5px;
+										}
+									}
+									.ui-state-active {
+										height: 12px;
+										width: 12px;
+										border: 1px solid $light-blue-color !important;
+										background-color: $white-color;
+										span {
+											color: $light-blue-color;
+											transform: scale(0.7);
+											margin-top: -1px;
+											margin-left: -1px;
+											-moz-margin-start: -1.5px;
+										}
+									}
+									.ui-state-active:hover {
+										border: 1px solid $sky-blue !important;
+										span {
+											color: $sky-blue;
+										}
+									}
+									.ui-state-active:active {
+										border: 1px solid $light-blue-color !important;
+										background: $light-blue-color;
+										span {
+											color: $white-color;
+										}
+									}
+								}
+							}
+						}
+					}
+					.ui-datatable-odd {
+						background: none;
+					}
+					.ui-state-highlight {
+						background: none;
+					}
+				}
+			}
+		}
+		.ui-widget-header {
+			text-transform: uppercase;
+		}
+	}
+}
+
+p-checkbox {
+  .ui-chkbox-box {
+    height: 20px;
+    width: 20px;
+    border: 1px solid $medium-dark-gray-color;
+    background-color: $white-color;
+    border-radius: 2px;
+    &:hover {
+      border: 1px solid $blue-color;
+      background: $white-color;
+      border-radius: 2px;
+    }
+    &.ui-state-active {
+      &:hover {
+        border: 1px solid $blue-color;
+        background: $checkbox-blue-color;
+        color: $white-color;
+      }
+    }
+	}
+	.ui-chkbox {
+		.ui-chkbox-icon {
+			background: #3788E5 !important;
+    border: none !important;
+		//	color: $sky-blue;;
+		}
+	} 
+}
+
+.form-control {
+	font-size: 13px;
+	line-height: unset;
+	border-radius: 0px !important;
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		line-height: normal;
+		height: 32px;
+	}
+}
+.form-control[readonly], .form-control:disabled {
+	background-color: $text-box-bg-disabled;
+	color: $text-box-color;
+}
+
+/************************Date Picker start******************************/
+
+// datepicker icon
+// .ui-calendar {
+// 	width: 100%;
+// 	padding: 0px;
+// 	input {
+// 		border: none;
+// 		border-bottom: 1px solid $standard-subheader-background;
+// 		border-radius: 0px;
+// 		width: 100%;
+// 	}
+// 	input:focus {
+// 		box-shadow: none;
+// 	}
+// 	.ui-widget.ui-button, .ui-button,
+// 	.ui-widget.ui-button:enabled:hover,
+// 	.ui-button:enabled:hover {
+// 		background-color: white;
+// 		color: $light-gray-color;
+// 		border: none;
+// 		border-radius: 0px;
+// 		top: -3px;
+// 		right: 0px;
+// 	}
+	
+// 	.ui-datepicker-buttonbar .ui-g {
+// 		div:first-of-type span {
+// 			display: none;
+// 		}
+// 		div:nth-child(2) {
+// 			button, button:hover {
+// 				top: 0px;
+// 			}
+// 		}
+// 	}
+	
+// 	.ui-datepicker {
+// 		width: 16em;
+// 		line-height: 10px;
+// 		margin-bottom: 2px;
+// 		.ui-datepicker-title {
+// 			margin: 9px;
+// 			select {
+// 				font-family: Segoe UI;
+// 				color: $black-color;
+// 				border: none;
+// 				background-color: transparent;
+// 			}
+// 			.ui-datepicker-month {
+// 				width: auto;
+// 				display: inline-block;
+// 				&:focus {
+// 					outline: none;
+// 				}
+// 			}
+// 			.ui-datepicker-year {
+// 				width: auto;
+// 				display: inline-block;
+// 				&:focus {
+// 					outline: none;
+// 				}
+// 			}
+// 		}
+// 		.ui-widget-content {
+// 			border:1px solid $splashed-white;
+// 		}
+// 		table {
+// 			font-size: 9px;
+// 		}
+// 		.ui-datepicker-prev {
+// 			font-size: 14px;
+// 			color: $black-color;
+// 			left: 0;
+// 			margin-top:10px;
+// 		}
+
+// 		.ui-datepicker-next {
+// 			font-size: 14px;
+// 			color: $black-color;
+// 			right: 0;
+// 			margin-top:10px;
+// 		}
+// 		.ui-datepicker-calendar {
+// 			td:not(.ui-state-disabled) a:hover {
+// 				background-color: $light-blue-color;
+// 				color: $white-color;
+// 			}
+// 		}
+// 	}
+
+// 	.ui-datepicker.ui-widget {
+// 		.ui-datepicker-calendar {
+// 			font-family: Segoe UI;
+// 			td {
+// 				border-bottom: none;
+// 				a {
+// 					border: 0 none;
+// 					text-align: center;
+// 					padding: 8px;
+// 					color: $medium-gray-color;
+// 					background-color: $white-color;
+// 				}
+// 				a.ui-state-active {
+// 					background-color: $light-blue-color;
+// 					color: $white-color;
+// 				}
+// 				a.ui-state-highlight {
+// 					background-color: transparent;
+// 					color: $dark-blue-color;
+// 					font-weight: bold;
+// 				}
+// 			}
+// 			thead th {
+// 				background-color: $white-color;
+// 				padding: 8px;
+// 				color: $light-gray-color;
+// 			}
+// 		}
+// 	}
+// }
+
+// p-calendar.ng-dirty.ng-invalid {
+// 	.ui-calendar {
+// 		.ui-inputtext {
+// 			border-bottom-color: $standard-error !important;
+// 		}
+// 	}
+// }
+
+/************************Date Picker end******************************/
+
+
+/*8****************** radio button ************************/
+
+.ui-radiobutton-box.ui-state-active {
+	color: $light-gray-color;
+	background-color: $white-color;
+	border: 1px solid $light-gray-color;
+}
+
+.ui-radiobutton-box.ui-state-active:hover {
+color: $sky-blue;
+background-color: $white-color;
+border: 1px solid $sky-blue;
+}
+
+.ui-radiobutton-box.ui-state-disabled {
+color: $silver-color;
+background-color: $splashed-white;
+border: 1px solid $silver-color;
+}
+
+
+.ui-radiobutton-icon { 
+	margin-top: 0px;
+ }
+ /****************** radio button ********************/
+
+/*Pagination*/
+.ui-paginator {
+	.paginator-data-footer {
+    margin: 5px 7px;
+    font-size: 12px;
+    color: $light-gray-color;
+  }
+	text-align: right;
+	a {
+		color: $light-blue-color;
+	}
+	.ui-paginator-right-content {
+		float: left;
+	}
+	.ui-state-default {
+		border: none;
+		background: none;
+		color: $light-blue-color;
+		
+	}
+	.fa-backward:before {
+		content: "Previous";
+		font-size: $primary-pagination-font-size;
+		font-family: "Segoe UI";
+	}
+	.fa-step-backward:before {
+		display: none;
+	}
+	
+	.fa-forward:before {
+		content: "Next";
+		font-size: $primary-pagination-font-size;
+		font-family: "Segoe UI";
+	}
+	
+	.fa-step-forward:before {
+		display: none;
+	}
+	.ui-paginator-page.ui-state-active {
+		background: transparent;
+		color: $black-color !important ;
+		border-color: none !important;
+	}
+}
+
+/* PrimeNG progressbar */
+.ui-progressbar {
+	height: 0.4em;
+	background-color: $accordion-border-bottom;
+	&.ui-progressbar-determinate .ui-progressbar-value {
+		background: $light-cyan-blue;
+	}
+}
+
+
+/**
+ * PrimeNg paginater current page link not able to cliclable
+*/
+p-paginator {
+	a {
+		&.ui-paginator-page {
+			&.ui-paginator-element {
+				&.ui-state-active {
+					pointer-events: none; // Diable the current page click event
+				}
+			}
+		}
+		&.ui-paginator-first,
+		&.ui-paginator-last {
+			display: none !important;
+		}
+	}
+	
+	.ui-widget-header {
+	  border: none;
+	  color: $black-pearl !important;
+	  background: transparent;
+	}
+}
+
+.ui-multiselect {
+	color: $ui-dropdown-item-list;
+	 &:not(.ui-state-disabled):hover {
+				background: none;
+	 }
+	 &.ui-state-disabled {
+			border: 1px solid $text-box-border-disabled;
+			opacity: 1 !important;
+			background-color: $disabled-bg-gray;
+			label	{
+				color: $light-gray-color;
+				font-style: italic;
+			}
+			.ui-multiselect-label{
+				color: $pure-black-color;
+				font-size: 13px;
+				background-color: $text-box-bg-disabled;
+				padding-bottom: .35em;
+			}
+			.ui-multiselect-trigger{
+				background-color: $disabled-bg-gray;
+			}
+	 }
+	.ui-multiselect-label {
+		color: $light-gray-color;
+		font-weight: normal;
+	}
+	.ui-multiselect-panel {
+		min-width: 100%;
+		max-width: 500px;
+		.ui-multiselect-item {
+			font-size: 12px;
+			color: $ui-dropdown-item-list;
+			font-weight: 600;
+			font-family: 'Segoe UI', Arial, sans-serif !important;
+			&:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+				background-color: $ui-dropdown-hover-bg;
+				color: $ui-dropdown-item-list-selected;
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+		
+	// .ui-widget-header {
+	// 	display: none;
+	// 	}
+	}
+	.ui-state-highlight {
+		color: $ui-dropdown-item-list-selected;
+		font-weight: 600;
+		background: $ui-dropdown-hover-bg;
+		border: none;
+		&:focus {
+			outline: none;
+		}
+	}
+}
+.ui-multiselect .ui-multiselect-label-container {
+	height: 31px;
+}
+.ui-multiselect .ui-multiselect-panel {
+	z-index: 1;
+}
+.multiselect-large-width {
+		.ui-multiselect {
+			.ui-multiselect-label-container {
+				/* min-width: 175px;*/
+				white-space: nowrap;
+			}
+		} 
+	}
+
+	.ui-multiselect .ui-dropdown-label,.ui-dropdown .ui-dropdown-label {
+		border-bottom: 1px solid $standard-subheader-background;
+	}
+
+.ui-multiselect.ui-state-focus,
+.ui-dropdown.ui-state-focus {
+	border-bottom: 1px solid $light-blue-color;
+	box-shadow: none;
+}
+
+.ui-tree .ui-chkbox .ui-chkbox-icon {
+	background: #3788E5 !important;
+	border: none !important;
+	color: white;
+	margin: 0px !important;
+}
+
+.ui-tree .ui-state-highlight {
+	font-family: 'Segoe UI';
+	font-size: 13px !important;
+	color: #4B5A6E !important;
+	font-weight: 600 !important;
+	background-color: #FFFFFF;
+}
+
+.ui-multiselect-focus {
+	border-color: $silver-color;
+	background: $white-grey-black;
+	color: $medium-gray-color;
+}
+.ui-tree .ui-treenode-label, .filter-multiselect-panel {
+	display: inline-block;
+	padding: 0 .25em;
+	vertical-align: middle;
+	font-family: 'Segoe UI';
+	font-size: 13px !important;
+	color: $pure-black-color !important;
+	font-weight: 600 !important;
+	background-color: #FFFFFF;
+	.ui-multiselect-panel {
+		min-width: 100%;
+		max-width: 500px;
+		.ui-multiselect-item {
+			font-size: 12px;
+			color: $ui-dropdown-item-list;
+			font-weight: 600;
+			font-family: 'Segoe UI', Arial, sans-serif !important;
+			&:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+				background-color: $ui-dropdown-hover-bg;
+				color: $ui-dropdown-item-list-selected;
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+	}
+}
+.memProvLeftFilterLabel  {
+	.ui-tree{
+		.ui-tree-container{
+			overflow: hidden;
+		}
+		.ui-treenode-label {
+			vertical-align: top;
+			white-space: normal;
+			width: 130px;
+		}
+	}
+}
+
+.ui-multiselect,
+.ui-inputtext.ui-state-focus,
+.ui-inputtext:focus {
+	box-shadow: none;
+}
+
+.ui-state-default {
+	color: initial;
+	border:none;
+}
+
+.ui-multiselect .ui-inputtext,
+.ui-dropdown .ui-inputtext {
+	margin-left: 0;
+}
+
+.prefix-input {
+	width: 85%;
+}
+
+.prefix-text {
+	margin-top: 4px;
+	font-size: 14px;
+}
+.ui-inputtext {
+	padding: 1px .25em;
+}
+.primeng-inputmasking {
+	// background: #E1E5EB;
+	padding: 0px !important;
+	width:177px !important;
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		width:160px !important;
+	}
+	&.tin-input {
+		width:193px !important;
+	}
+	.ui-inputtext {
+		width: 100%;
+		border-right: none;
+		border-left: none;
+		border-top: none;
+		box-shadow: none;
+		padding: 0px 4px 0px 6px;
+		color: $text-box-color;
+		text-overflow: ellipsis;
+		z-index: 0 !important;
+		height: 31px !important;
+		background-color: $text-box-bg;
+		&:focus {
+			box-shadow: none;
+			// background: white;
+		}
+	}
+	:focus {
+		background-color: white;
+	}
+	&.validationError {
+		.ui-inputtext {
+			border-bottom-color: $standard-error !important;
+		}
+	}
+}
+
+
+.emailValidationError,
+.emailValidationError:focus {
+	border-bottom-color: $standard-error !important;
+}
+
+.error-dropdown > .ui-dropdown > .ui-dropdown-label {
+	border: 1px solid $standard-error !important;
+}
+
+.error-datepickup > .ui-calendar > input {
+	border-bottom: 1px solid $standard-error !important;
+}
+
+ .ui-state-disabled {
+	border: 2.0px solid $silver-color;
+	background-color: $splashed-white;
+	cursor: default !important;
+ }
+
+.choices__input--cloned {
+	width: 194px !important;
+}
+
+.row-bottom {
+	border-bottom: 1px solid $silver-color;
+	padding: 4px 45px 4px 4px;
+}
+
+.ui-dropdown.ui-state-focus {
+	border-bottom: none !important;
+}
+
+/**
+ *	Multi Select wiget
+ */
+//  p-dropdown 
+ .ui-multiselect-items-wrapper {
+	// width: max-content !important;
+	overflow: scroll;
+	max-height: 200px;
+	.ui-chkbox {
+		&.ui-widget {
+			float: left;
+		}
+	}
+}
+.filter{
+	.filter-block{
+		.ui-multiselect-items-wrapper {
+			max-height: 170px !important;
+		}
+	}
+}
+.reassignpopup {
+	.ui-dropdown-items-wrapper{
+		max-height: 202px !important;
+ }
+}
+
+.ui-autocomplete {
+	.ui-autocomplete-panel {
+		.ui-autocomplete-items {
+			.ui-autocomplete-list-item {
+				&.ui-state-highlight {
+					background-color: $ui-dropdown-hover-bg;
+					color:$black-color;
+				}
+			}
+		}
+	}
+}
+.ui-autocomplete-input {
+	border-bottom: 1px solid $standard-subheader-background;
+	width: 87%;
+}
+.ui-autocomplete-dropdown.ui-button, .ui-autocomplete-dropdown.ui-button:enabled:hover {
+	border: none;
+	color: $black-color;
+	background: none;
+	top: 4px;
+	border-bottom: 1px solid $standard-subheader-background;
+	width: 13%;
+}
+.ui-dropdown-link {
+  text-decoration: none;
+	border-bottom: 1px solid $light-gray-color;
+	&.ui-state-disabled {
+	  border: none;
+	}
+	&.ui-dropdown:not(.ui-state-disabled):hover {
+		background: none;
+	}
+}
+
+
+
+.ui-dropdown {
+	.ui-dropdown-trigger {
+		padding: 3px .25em;
+		margin: 3px 4px 0px 0px;
+		background-color: #f7f9fa;
+	}
+}
+
+.pi-chevron-down:before{
+	content: "\e913"; // \e913
+}
+
+.ui-dropdown .ui-dropdown-trigger .ui-dropdown-trigger-icon {
+	top: 36%;
+}
+
+.ui-dropdown-label {
+	&.ui-inputtext  {
+	 margin-bottom: -4px;
+	 color: $light-gray-color;
+	}
+}
+
+.open-dropdown-up {
+  tr:last-child {
+    .ui-dropdown-panel {
+      top: -60px !important;
+    }
+  }
+}
+
+label.ui-dropdown-label.ui-inputtext {
+	color: $ui-single-dropdown-item-label;
+ 	margin-top: 0px;
+	 border: 1px solid $ui-dropdown-box-border;
+	 background-color: $dropdown-search-bg;
+}
+
+.ui-dropdown-open {
+	label.ui-dropdown-label.ui-inputtext {
+		margin-top: 0px;
+		border: 1px solid $ui-dropdown-focus;
+		box-shadow: 0 0 4px 0 $text-box-shadow;
+	}
+}
+
+label.ui-dropdown-label.ui-inputtext+.ui-dropdown-panel {
+	border: 1px solid rgb(226, 60, 18);
+}
+
+.ui-dropdown-label {
+	height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border-bottom: 1px solid $standard-subheader-background;
+	border-radius: 0;
+}
+
+.ui-dropdown-item{
+white-space: nowrap;
+overflow-y: auto;
+overflow-x: hidden;
+padding-right: 18px;
+}
+
+.ui-multiselect, .ui-dropdown {
+	width: 100% !important;
+//	border-radius: 0px;
+	border: 1px solid #a6a6a6;
+
+	&.ui-state-disabled {
+		border: 1px solid $text-box-border-disabled;
+		background-color: $disabled-bg-gray;
+		opacity: 1 !important;
+		label {
+			color: $pure-black-color;
+			font-style: normal;
+		}
+		
+		.ui-multiselect-label{
+			color: $pure-black-color;
+			font-size: 13px;
+			background-color: $text-box-bg-disabled;
+			padding-bottom: .35em;
+		}
+		.ui-multiselect-trigger{
+			background-color: $disabled-bg-gray;
+		}
+	}
+	&.ui-multiselect-open{
+		border-color: #3788E5 !important
+	}
+}
+
+.disabledLabel{
+	color:$label-disable;
+	font-family: "Segoe UI";
+}
+
+.ui-multiselect:hover {
+	background: none;
+}
+
+.cell-item {
+	.ui-multiselect {
+		background: none;
+	}
+}
+
+.ui-multiselect:not(.ui-state-disabled):hover{
+	background: none!important;
+}
+
+.ui-multiselect .ui-chkbox .ui-chkbox-box, .ui-dropdown .ui-chkbox .ui-chkbox-box {
+	border: 1px solid $dialog-header-font-color;
+  background: $white-color;
+  color: $sky-blue;
+}
+
+.ui-dropdown-item.ui-corner-all.ui-state-highlight {
+	background: $white-grey-black !important;
+	color: $black-color !important;
+	margin-left: -5px;
+	margin-right: -5px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+
+.ui-dropdown-panel .ui-dropdown-item:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+	background-color: $ui-dropdown-hover-bg;
+	margin-left: -5px;
+	margin-right: -5px;
+	padding-left: 8px;
+}
+.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-active {
+//	background: none;
+//	border: 1px solid $sky-blue;
+
+	background: #3788E5 !important;
+	border: none !important;
+	color: white;
+}
+
+/*******Time Picker******/
+.ui-timepicker{
+	.ui-hour-picker,.ui-minute-picker,.ui-ampm-picker {
+	a:first-child{ margin-bottom: 4px};
+	a:last-child{ margin-top: 4px;}
+	}
+}
+/********End*********/
+
+/*******Number Masking*******/
+.form-edit-provider {
+	.ui-widget:disabled {
+		opacity: 1;
+		color: $text-box-color !important;
+		background-color: $text-box-bg-disabled;
+	}
+}
+/***********End************/
+
+/**********Accordion Filter Start*************/
+.ui-state-disabled a {
+	text-decoration: none !important;
+}
+.ui-accordion .ui-accordion-header a {
+	color: $black-pearl;
+}
+.ui-accordion .ui-accordion-header {
+	border-top: 0px;
+	border-bottom: 1px solid $accordion-new-border-bottom;
+	background-color: $white-color;
+	height:32px;
+	border-radius: inherit;
+		p-checkbox {
+			.ui-chkbox .ui-chkbox-box {
+					width: .90em;
+					height: .90em;
+					line-height: 1.125em;
+					border-radius: 2px;
+					text-align: center;
+					background-color: $light-gray-color;
+					margin-left: -15px;
+			}
+		}
+}
+
+.ui-accordion .ui-accordion-header :hover {
+	background: #EFF2F5;
+	text-decoration: none !important;
+}
+
+.ui-accordion .ui-accordion-header .fa-caret-right:before {
+	content: "\F078";
+	font-size: 1em;
+}
+.ui-accordion .ui-accordion-header .fa-caret-down:before {
+	content: "\F077";
+	font-size: 1em;
+}
+.ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
+	background: none;
+}
+.ui-accordion .ui-accordion-header.ui-state-disabled {
+	border-left: 0px;
+	border-right: 0px;
+}
+.ui-accordion .ui-accordion-header>.fa {
+	position: absolute;
+	width: 0.75rem;
+	height: 0.75rem;
+	color: $light-blue-color;
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 0em;
+	border-top: 0;
+	max-height: 350px;
+	max-width: 350px;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	zoom: 1;
+	p-checkbox {
+		.ui-chkbox {
+			display: inline-block;
+			cursor: pointer;
+			vertical-align: middle;
+			margin-right: .25em;
+			margin-top: -0.10em;
+		}
+		.ui-chkbox .ui-chkbox-box {
+			width: 1.0rem;
+			height: none !important;
+			color: $light-gray-color;
+			&:hover {
+				width: 1.0rem;
+				background: #EFF2F5;
+    		border: 1px solid #999999;
+			}
+		}
+		.ui-chkbox-label {
+			vertical-align: top;
+			font-weight: normal !important;
+		}
+		.ui-chkbox-box.ui-state-active {
+			border: 1px solid $blue-color;
+			background: $sky-blue;
+			width: 1.0rem;
+			color: $white-color;
+		}
+	}
+	.ui-g {
+		width:250px;
+		margin-bottom:10px;
+		&.cc-filter{
+			width:300px;
+			font-size:12px;
+			.ui-chkbox-label {
+					vertical-align: 1px;
+			}
+		}
+			.ui-chkbox-label {
+				vertical-align: -1px;
+		}
+	}
+}
+
+
+/**********Accordion Filter End*************/
+
+.filter-type {
+	.ui-dropdown-label.ui-inputtext {
+		margin-bottom: -4px;
+		color: $black-color;
+	}
+}
+
+
+.ui-dropdown-open{
+	.ui-dropdown-trigger {
+		.ui-clickable {
+			&.fa-caret-down{
+				transform: rotate(180deg);
+			}
+			
+		}	
+	}
+}
+.file-mapping{
+	.top-multiselect{
+		.ui-multiselect:not(.ui-state-disabled):hover {
+				background :none;
+		}
+	
+	}
+}
+
+/********************** Overlay start *******************/
+
+.ui-overlaypanel {
+	box-shadow: none;
+	border: $standard-subheader-background 1px solid;
+	top: 24px !important;
+	.ui-overlaypanel-content {
+		padding: 0;
+	}
+	.ui-overlaypanel-close {
+		color: #bbbbbb;
+		font-size: 16px;
+		top: 7px;
+		right: 5px;
+	}
+	.ui-overlaypanel-close:hover {
+		border-color: none;
+		background: none;
+		color: #bbbbbb;
+	}
+}
+
+/********************** Overlay end *******************/
+
+/********************** file upload dashboard *******************/
+.chart-upload-grid {
+	 .nested-table .ui-datatable .ui-datatable-tablewrapper table tbody tr td {
+		line-height: 1
+		}
+}
+
+/********************** file upload dashboard end*******************/
+
+/********************** MRR Modal Dialog *************************/
+
+.mrr-modal-dialog {
+	z-index: 99999999!important;
+	padding: 16px !important;
+ 		.ui-widget-header {
+			padding: 0 !important;
+			background: $white-color;
+		.ui-dialog-titlebar-icon {
+			color: $input-addon-icon;
+			size: 16px 16px;
+		}
+	}
+	.ui-dialog-content {
+		padding	: 16px 0 !important;
+		color: $textarea-placeholder-color;
+		// border-bottom: 1px solid $textarea-box-border;
+		
+	}
+	.ui-dialog-footer {
+		padding: 16px 0 0 0 ;
+	}
+	input[type=radio] {
+		float: left;
+		margin-top: 3px;
+	}
+	label{
+		margin-left: 21px;
+		display: block;
+	}
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.mrr-modal-dialog {
+		&.provider-info {
+		width: 50%;
+		}
+	}
+}
+
+
+
+/********************** MRR Modal Dialog *************************/
+
+
+/*********************Reschedule Popup Calendar Start**********************/
+.mrr-modal-dialog {
+	font-family: Segoe UI;
+	min-width: 320px;
+	border-radius: 4px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 3px 6px 0 rgba(128, 139, 154, 0.3);
+	-moz-box-shadow: 0 3px 6px 0 rgba(128, 139, 154, 0.3);
+	box-shadow: 0 3px 6px 0 rgba(128, 139, 154, 0.3);
+	padding: 16px;
+
+	&.update-provider-dailog {
+		width: 65% !important;
+		 .ui-dialog-content {
+			 &.ui-widget-content {
+				max-height: 400px;
+			 }
+			}
+	}
+	&.sampling-rate {
+		width: 75% !important;
+	}
+
+	.ui-widget-header {
+		height: auto;
+		background: none;
+
+		.ui-dialog-title {
+			font-weight: $xlbold;
+			font-style: normal;
+			color: $black-color;
+			font-size: 16px !important;
+			line-height: 0;
+		}
+		.fa-close {
+			color: $medium-gray-color;
+		}
+
+		.ui-dialog-titlebar-icon {
+			width: $secondary-font-size;
+			height: $secondary-font-size;
+			border-radius: $primary-pagination-font-size;
+			background-color: rgba(255, 255, 255, 0);
+			color: #718FB6;
+			font-size: $secondary-font-size;
+			padding: 0px;
+
+			&:hover {
+				border-color: rgba(255, 255, 255, 0);
+				background-color: rgba(255, 255, 255, 0);
+			}
+		}
+	}
+
+
+	.ui-dialog.ui-widget .ui-dialog-content {
+		padding: 0.5em 1.5em !important;
+	}
+
+	.chaseClosePopup {
+				max-height: 450px!important;
+				 overflow-y:auto;
+				overflow-x:hidden;
+			
+		}
+	
+	&.chaseCloseDialog{
+		.ui-dialog-content {
+			&.ui-widget-content{
+				padding-right:0px!important;
+			}
+		}
+	}
+	
+	.ui-dialog-content {
+		// height: auto;
+		// overflow: auto;
+
+		.create_campaign_popup_body {
+			color: $pure-black-color;
+			div {
+				margin: 5px 0;
+			}
+		}
+	}
+	.ui-widget {
+		font-family: "Segoe UI" !important; 
+		font-size: 14px;
+	}
+
+	.ui-dialog-footer {
+		&.ui-widget-content {
+			padding: 1em 0 0 0;
+			border-top: 0px solid #E1E5EB;
+		}
+	}
+
+	/**state indicator states**/
+	.statusSuccess {
+		color: $message-success;
+	}
+
+	.statusFailure {
+		color: $message-failure;
+	}
+
+	.statusWarning {
+		color: $message-warning;
+	}
+	/*******End******/
+
+}
+/*********************Reschedule Popup Calendar End**********************/
+
+
+/***************** Reschedule popup p calendar member-grid start******************/ 
+.member-grid-reschedule-date {
+	.ui-widget {
+		width: 100%;
+	}
+	p-calendar {
+		width: 100%;
+
+	.ui-calendar {
+		width: 100%;
+	}
+	.ui-datepicker-next {
+		right: 19px;
+		margin-top:13px;
+	}
+	.ui-datepicker-prev {
+		left: 19px;
+		margin-top:13px;
+	}
+	.ui-datepicker-header::before {
+		position: absolute;
+		top: 16px;
+		left: 48px;
+		font-weight: 500;
+		line-height: 22px;
+	}
+	.ui-datepicker-calendar {
+		line-height: 16px;
+	}
+}
+}
+	
+.hightlight-row {
+background-color: #F0F0F0;
+width: 100%;
+text-align: middle;
+padding-top:15px;
+padding-bottom:15px;
+}
+
+
+/***************** Reschedule popup p calendar member-grid end******************/ 
+.customOverflowScroll {
+	.ui-accordion-content-wrapper {
+		overflow: scroll;
+	}
+}
+ 
+.popup-calender {
+	.ui-calendar .ui-datepicker {
+		width: 29.6em;
+		line-height: 10px;
+	}
+	p-calendar {
+		.ui-calendar {
+			padding: 0px;
+		}
+	}
+}
+
+/***************** Chart management related css start ******************/ 
+.ui-calendar.ui-calendar-w-btn {
+	width: 85%;
+	height: 32px;
+	input.ui-inputtext {
+		width: calc(100% - 2em) !important;
+		border: 1px solid #d6d6d6;
+		border-right: 0px;
+		padding: 3px 3px 3px 6px;
+		height: 32px;
+	}
+	.ui-widget.ui-button, .ui-button,
+	.ui-widget.ui-button:enabled:hover,
+	.ui-button:enabled:hover {	
+		border-radius: 0px;
+		top: 0px;
+		right: 0px;
+		border: 1px solid #d6d6d6;
+		border-left: 0px;		
+	}
+	.ui-button.ui-button-icon-only .ui-button-text {
+		padding: 5px;
+	}
+}
+.calendar{
+  .ui-calendar.ui-calendar-w-btn {
+		width: 100%;
+		input.ui-inputtext {
+			// font-size: 12px;
+    	// margin-left: 7px;
+			// width: calc(100% - 3em) !important;
+			width: 85% !important;
+			padding: 3px 0 3px 3px;
+		}
+	}
+	
+}
+.roi-calendar {
+	.ui-calendar.ui-calendar-w-btn {
+		width: 100%;
+		input.ui-inputtext {
+			font-size: 12px;
+			width: calc(100% - 2.3em) !important;
+			padding: 2px 0 3px 3px;
+		}
+	}
+	.ui-calendar.ui-calendar-w-btn .ui-widget.ui-button, .ui-calendar.ui-calendar-w-btn .ui-button, .ui-calendar.ui-calendar-w-btn .ui-widget.ui-button:enabled:hover, .ui-calendar.ui-calendar-w-btn .ui-button:enabled:hover{
+		top: 1px;
+	}
+}
+.ui-fileupload-content.ui-widget-content.ui-corner-bottom { 
+ 	border: 1px dashed #e1e5eb;
+ 	padding: 10px;
+	line-height: 35px;
+	background: #f7f9fa
+}
+span.ui-fileupload-choose.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left {
+ 	position: absolute;
+	right: 30%;
+	top: 18%;
+ 	z-index: 1;
+ 	border-radius: 0;
+	color: #3788E5;
+	background-color: transparent;
+	padding: 4px 6px;
+	margin: 6px;
+	line-height: 15px;
+	font-family: 'Segoe UI Semibold', 'Segoe UI';
+	border:0px;
+	font-weight: 700;
+  font-size: 12px;
+}
+.ui-fileupload-buttonbar:hover span.ui-fileupload-choose.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left{
+	background: rgba(239,242,245,1);
+}
+span.ui-fileupload-choose.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left.ui-state-focus{
+	background: rgba(225,229,235,1)
+}
+
+.ui-fileupload-files {
+	display: none;
+	position: absolute;
+	margin-top: 160px;
+	margin-left: -12px;
+}
+span.ui-button-icon-left.ui-clickable.pi.pi-plus {
+	display: none;
+}
+.ui-fileupload-choose span.ui-button-text.ui-clickable {
+	padding: 0;
+}
+.ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
+	background: none;
+	border: none;
+	padding: 0;
+}
+.ui-fileupload .ui-fileupload-content .ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+	background: none;
+	border: none;
+	padding: 0;	
+}
+/***************** Chart management related css end ******************/
+
+/***************** Create Campaign UI start ******************/ 
+
+.createCampaignMain, .ui-dropdown-wrapper  , .ng-dropdown{
+	.ui-dropdown 
+	{
+		border:none;
+		min-height: 32px;
+		height: 32px;
+		
+		.ui-dropdown-panel{
+			top: 34px !important;
+		}
+		.ui-dropdown-label{
+			border-color: #D4DDE4;
+			background-color: $ui-dropdown-label-bg;
+			padding: 0.375rem 0.4rem;
+			padding-right: 20px;
+		}
+		.ui-dropdown-trigger{
+			background: none;
+			width: 0.5em;
+			height: 50%;
+			right: 9px;
+			top: 5px;
+			.ui-dropdown-trigger-icon {
+				color: #718FB6;
+			}
+		}
+	}
+
+	.ui-state-disabled {
+		.ui-dropdown-label{
+			background-color: $disabled-bg-gray;
+		}
+	}
+	.error-dropdown > .ui-dropdown > .ui-dropdown-label {
+		border: 1px solid $standard-error !important;
+	}
+}
+
+/***************** Create Campaign UI end ******************/ 
+
+.ui-multiselect-header {
+ .ui-multiselect-filter-container {
+	float: right;
+	width: calc(100% - 20px);
+	 .ui-multiselect-filter-icon {
+		left: auto !important;
+		right: .125em !important;
+		top: .50em;
+	}
+ }
+ .ui-inputtext {
+	padding: .125em 1.50em .125em 0em;
+ }
+ .ui-multiselect-close {
+	 display: none;
+ }
+}  
+
+
+/***************** Multiselect Dopdown ******************/
+.ui-multiselect{
+	border-radius: 0;
+	border-color: #D4DDE4;
+	line-height: 1.8em;
+}
+.ui-multiselect .ui-multiselect-label{
+	color: $ui-dropdown-item-list;
+	border-bottom: 0px;
+	padding-right: 35px;
+}
+.global-search .ui-calendar.ui-calendar-w-btn{
+	width:100%
+}
+.ui-dropdown-panel .ui-dropdown-item
+{
+	color: $ui-dropdown-item-list;
+	font-size: 12px;
+	font-weight: 600;
+	font-family: 'Segoe UI', Arial, sans-serif !important;
+	&:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+		background-color: $ui-dropdown-hover-bg;
+		color: $ui-dropdown-item-list-selected;
+		font-weight: 600;
+		margin-left: -5px;
+		margin-right: -5px;
+		padding-left: 8px;
+	}
+}
+
+
+.ui-dropdown-panel .ui-dropdown-item
+{
+	color: $ui-dropdown-item-list;
+	font-size: 12px;
+	font-weight: 600;
+	font-family: 'Segoe UI', Arial, sans-serif !important;
+	&:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+		background-color: $ui-dropdown-hover-bg;
+		color: $ui-dropdown-item-list-selected;
+		font-weight: 600;
+		margin-left: -5px;
+		margin-right: -5px;
+		padding-left: 8px;
+	}
+}
+
+.ui-dropdown-panel{
+	.ui-dropdown-empty-message{
+		color: $ui-dropdown-item-list;
+	}
+
+	.ui-dropdown-filter{
+		color: $ui-dropdown-item-list;
+	}
+} 
+
+
+.ui-multiselect-label-container {
+	white-space: nowrap;
+}
+.ui-multiselect-panel .ui-multiselect-item{
+	white-space: normal;
+	span{
+		display: block;
+	}
+	& > span{
+		padding-left: 18px;
+		font-family: 'Segoe UI' !important;
+    font-size: 13px !important;
+    color: $ui-dropdown-item-list !important;
+    font-weight: 600 !important;
+	}
+}
+/***************** Multiselect Dopdown ******************/
+.ui-multiselected-item-token{
+	display:inline-block;
+
+	span {
+		display: inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+.ui-multiselect-item-count{
+  position: absolute;
+  top: 3px;
+  right: 25px;
+  color: #3788e5;
+  background: #e1e5eb;
+  border-radius: 3px; 
+  font-size: 11px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+  padding: 0 2px;
+  z-index: 5;
+}
+
+/************ rtp popup **********/
+.rtpClass{
+	
+	.rtpWarningSection{
+		border: 1px solid rgba(0,0,0,0.125) !important;
+		border-radius: 5px !important;
+		background: $turbotable-frozen-background-color !important;
+		padding: 5px;
+		.ui-table {
+			.ui-table-thead tr th {
+				background: $turbotable-frozen-background-color !important; 
+			}
+			.ui-table-tbody tr td {
+				background: $turbotable-frozen-background-color !important; 
+			}
+		}
+	}
+
+	 .rtpErrorSection {
+		border: 1px solid rgba(0,0,0,0.125) !important;
+		border-radius: 5px !important;
+		margin-bottom:8px;
+		background: $turbotable-frozen-background-color !important; 
+		padding: 5px;
+	 }
+
+.ui-table {
+		.ui-table-thead tr th {
+				font-weight: 700;
+				max-height: 25px !important;
+				height: 20px !important;
+				span {
+					text-transform: capitalize;
+					}
+				}
+
+		.ui-table-tbody tr td {
+			max-height: 25px !important;
+			height: 20px !important;
+		}
+		
+	}
+}
+
+.mrr-d1.ui-dialog.ui-widget .ui-dialog-titlebar{
+background: $white-color;
+}
+
+.mrr-d1 .ui-widget-header{
+	background: #F7F9FA;
+}
+
+// .mrr-d1 .ui-dialog.ui-widget .ui-dialog-titlebar {
+// 	padding: 1em 1.5em !important;
+// }
+
+.mrr-d1 .ui-dialog-content.ui-widget-content{
+	overflow: hidden;
+	padding: 16px !important;
+	padding-bottom: 0 !important;
+	.ui-table .ui-table-thead tr th {
+		border-top: none;
+	} 
+}
+.CheckBoxList .ui-chkbox-label{
+	vertical-align: text-top;
+}
+
+/************ ROI popup **********/
+.generateROI {
+.excludedCheckbox .ui-chkbox-label {
+	display: inline !important;
+	margin-left: auto !important;
+ }
+
+ tbody {
+	vertical-align: top;
+ }
+
+ .ui-table .ui-table-tbody tr td {
+	border-bottom: none;
+ }
+
+ .ui-table.ui-table-hoverable-rows .ui-table-tbody>tr:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover{
+		background-color: transparent !important;
+	}
+}
+
+.multiselect-large-width .ui-multiselect .ui-multiselect-trigger .ui-multiselect-trigger-icon{
+line-height: 0px;
+}
+.global-search .ui-calendar.ui-calendar-w-btn input.ui-inputtext{
+	width: calc(100% - 2em) !important;
+}
+.samplingRate-datatable{
+	.ui-table-scrollable-body{
+		overflow-x: hidden;
+	}
+}
+
+p-calendar .ui-calendar .ui-datepicker-header .ui-datepicker-title .ui-datepicker-month{
+	background-color: $dropdown-search-bg;
+}
+
+p-calendar .ui-calendar .ui-datepicker-header .ui-datepicker-title .ui-datepicker-year{
+	background-color: $dropdown-search-bg;
+}
+
+.mrr-modal-dialog {
+	padding: 0px !important;
+
+	.ui-dialog-footer {
+		&.ui-widget-content{
+			background-color: #fff !important;
+			box-shadow: 0px -2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+			-moz-box-shadow: 0px -2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+			-webkit-box-shadow: 0px -2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+			padding: 10px 17px 10px 17px !important;
+			float: right;
+			width: 100%;
+			border-top: 1px solid #e9ecef !important;
+			border-bottom-left-radius: 0.3rem !important;
+			border-bottom-right-radius: 0.3rem !important;
+		}
+	 }
+
+	 .ui-dialog-content {
+		padding: 16px 20px!important;
+	}
+
+	.ui-dialog-titlebar {
+		background-color: #fff !important;
+		-moz-box-shadow: 0px 2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+		-webkit-box-shadow: 0px 2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+		box-shadow: 0px 2px 10px rgba(239, 242, 245, 0.698039215686274) !important;
+		padding: 10px 17px 10px 17px !important;
+		margin: -25px 0 0px 0 !important;
+		border-bottom: 1px solid #e9ecef !important;
+		border-top-left-radius: 0.3rem !important;
+		border-top-right-radius: 0.3rem !important;
+	}
+}
+
+.reject-reason-dd {
+	.ui-dropdown {
+		width: 226px !important;
+	}
+}
+
+/********************** Focus Outline Start *************************/
+
+.ui-state-focus:not(.ng-invalid),
+.form-control:not(.ng-invalid):focus {
+	outline: -webkit-focus-ring-color auto 1px;
+}
+
+/********************** Focus Outline End *************************/
+
+
+/************************Manual Chase******************************/ 
+.dateRangeManualChaseClaimsTab{
+	.calendar .ui-calendar.ui-calendar-w-btn input.ui-inputtext{
+		width: 88% !important;
+	}
+}
+
+.assignChasesDropdown{
+	.ui-multiselect .ui-inputtext, .ui-dropdown .ui-inputtext{
+		border: 0.5px solid #e1e5eb;
+	}
+}
+
+/************************Manual Chase End*************************/ 
+.gfrSlider{
+	.ui-slider{
+		height: 2px;
+	}
+	.ui-slider .ui-slider-handle{
+		margin-top: -3px;
+		width: 12px !important;
+		height: 12px !important;
+		border-radius: 12px;
+		background:  #3788E5;
+	}
+}

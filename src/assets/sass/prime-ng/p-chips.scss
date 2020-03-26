@@ -1,0 +1,50 @@
+
+
+.primeChips{
+
+    .ui-chips-token{
+        width: 220px;
+    }
+    .ui-chips > ul.ui-inputtext {
+        clear: none;
+        cursor: default;
+        overflow: hidden;
+        padding: 0 0.5em;
+        
+    }
+    .ui-chips-token {
+        padding: 3px;
+        padding-left: 5px;
+    }
+
+
+.ui-chips > ul.ui-inputtext .ui-chips-input-token input  {
+    display: none !important;
+    cursor: pointer !important;
+
+    
+}
+
+.ui-state-highlight {
+   // border-color: #156090;
+    background-color:white;
+    color:black;
+    border:2px solid lightblue
+}
+
+
+
+ .error.ui-chips> ul.ui-inputtext > .ui-state-highlight {
+    // border-color: #156090;
+     background-color:white ;
+     color:black ;
+     border: 1px solid #FA3A3A;
+     
+     
+ }
+
+ .ui-chips-token .ui-chips-token-icon{
+    margin-right: 1px;
+    margin-top: -5px;
+ }
+}

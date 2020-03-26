@@ -1,0 +1,381 @@
+﻿@import '_mrr-variables';
+
+/* **************************************************************/
+/* Copyright (c) 1991-2018 LEAD Technologies, Inc.              */
+/* All Rights Reserved.                                         */
+/* **************************************************************/
+$namespace: ".lt-imageviewer";
+$prefix: ".lt-thumb-";
+$view: $prefix + "view";
+$item: $prefix + "item";
+$image: $prefix + "image";
+$backimage: $prefix + "backimage";
+$image-clipping: $prefix + "image-clipping";
+$image-flip: $prefix + "image-flip";
+$image-border: $prefix + "image-border";
+$item-text: $prefix + "item-text";
+
+$disable-transitions: $prefix + "disable-transitions";
+$item-hovered: $prefix + "item-hovered";
+$item-selected: $prefix + "item-selected";
+$item-active: $prefix + "item-active";
+
+// States - item's image is loading (if by item.url = ...), item's image is loaded
+// applied to the item, not the image, for better selector logic
+$image-loading: $prefix + "image-loading";
+$image-loaded: $prefix + "image-loaded";
+
+/* This file was created in SCSS (SASS). Please change the .scss file, not the .css file. */
+
+// View
+$view-margin: 0;
+$view-border-width: 0;
+$view-padding: 0;
+
+$view-border-color: transparent;
+$view-background-color: transparent;
+
+// Item
+$item-margin: 4px;
+$item-border-width: 0;
+$item-padding: 4px;
+
+$item-border-color: transparent;
+$item-background-color: transparent;
+
+$item-hovered-border-color: $medium-blue-color;
+$item-hovered-background-color: $fade-sky-blue-color;
+$item-selected-border-color: darken($item-hovered-border-color, 10%);
+$item-selected-background-color: darken($item-hovered-background-color, 10%);
+
+// Image, Border, Text
+$image-border-width: 2px;
+$image-border-color: $dark-gray-color;
+$image-background-color: $white-color;
+$text-color: $dark-gray-color;
+
+
+// For DocumentViewerDemo - hiding canvas
+#{$namespace}-viewdiv + #{$namespace}-forecanvas {
+   // make the canvas have transitions
+   -webkit-transition: opacity .4s ease;
+   -moz-transition: opacity .4s ease;
+   -o-transition: opacity .4s ease;
+   transition: opacity .4s ease;
+}
+
+canvas#{$namespace}-forecanvas.hide-for-transitions {
+   -webkit-transition: none;
+   -moz-transition: none;
+   -o-transition: none;
+   transition: none;
+   opacity: 0;
+}
+
+#{$namespace} {
+
+   #{$view} {
+      &, * /*:not(#{$image})*/ {
+         /* CSS Transitions (view, all elements inside) */
+         -webkit-transition: all .3s ease;
+         -moz-transition: all .3s ease;
+         -o-transition: all .3s ease;
+         transition: all .3s ease;
+         /*-moz-transition-property: color, border-color, background-color;
+         -o-transition-property: color, border-color, background-color;
+         -webkit-transition-property: color, border-color, background-color;
+         transition-property: color, border-color, background-color;*/
+         -moz-transition-property: color, border-color, background-color, box-shadow;
+         -o-transition-property: color, border-color, background-color, box-shadow;
+         -webkit-transition-property: color, border-color, background-color, box-shadow;
+         transition-property: color, border-color, background-color, box-shadow;
+      }
+   }
+
+   #{$view} {
+      /* View */
+      border: $view-border-width solid $view-border-color;
+      background-color: $view-background-color;
+      margin: $view-margin;
+      padding: $view-padding;
+   }
+
+   #{$item} {
+      /* Item */
+      border: $item-border-width solid $item-border-color;
+      background-color: $item-background-color;
+      margin: $item-margin;
+      padding: $item-padding;
+      padding-bottom: 22px;
+      border-radius: 1px;
+
+      box-shadow: 1px 1px 4px -1px transparent;
+
+      &#{$item-hovered} {
+         /* Hovered Item in selection mode */
+         border-color: $item-hovered-border-color;
+         background-color: $item-hovered-background-color;
+      }
+
+      &#{$item-selected} {
+         /* Selected Item in selection mode */
+         border-color: $item-selected-border-color;
+         background-color: $item-selected-background-color;
+      }
+   }
+      
+   #{$image-border} {
+      box-shadow: 0 1px 5px 0 $black-color;
+
+      &::after {
+         content: "";
+         display: block;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0, 0, 0, .05);
+      }
+   }
+
+   #{$item-text} {
+      /* Item Text */
+      color: $text-color;
+      font-size: 14px;
+      bottom: 0;
+      width: inherit;
+      text-align: center;
+   }
+}
+
+
+/* **************************************************************/
+/* Copyright (c) 1991-2018 LEAD Technologies, Inc.              */
+/* All Rights Reserved.                                         */
+/* **************************************************************/
+/* This file was created in SCSS (SASS). Please change the .scss file, not the .css file. */
+
+.lt-imageviewer-viewdiv + .lt-imageviewer-forecanvas.ready-for-transitions {
+  -webkit-transition: opacity .2s ease;
+  -moz-transition: opacity .2s ease;
+  -o-transition: opacity .2s ease;
+  transition: opacity .2s ease; }
+
+canvas.lt-imageviewer-forecanvas.ready-for-transitions.hide-for-transitions {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  opacity: 0; }
+
+.lt-imageviewer .lt-view, .lt-imageviewer .lt-item {
+  /* Box Shadow (view, item, image border) */
+  box-shadow: #333 2px 2px 5px 1px; }
+
+// .lt-imageviewer .lt-view.ready-for-transitions, .lt-imageviewer .lt-view.ready-for-transitions *, .lt-imageviewer .lt-imageviewer-passthrough.ready-for-transitions, .lt-imageviewer .lt-imageviewer-passthrough.ready-for-transitions * {
+//   /* CSS Transitions (view, all elements inside) */
+//   -webkit-transition: all .6s ease;
+//   -moz-transition: all .6s ease;
+//   -o-transition: all .6s ease;
+//   transition: all .6s ease;
+//   -moz-transition-property: color, border-color, background-color, width, height, transform, padding, margin, border-width;
+//   -o-transition-property: color, border-color, background-color, width, height, transform, padding, margin, border-width;
+//   -webkit-transition-property: color, border-color, background-color, width, height, -webkit-transform, padding, margin, border-width;
+//   transition-property: color, border-color, background-color, width, height, transform, padding, margin, border-width; }
+
+.lt-imageviewer .lt-view {
+  /* View */
+  border: 2px solid #62a2e4;
+  background-color: #c9e0f7;
+  margin: 15px;
+  padding: 10px; }
+
+.lt-imageviewer .lt-item {
+  /* Item */
+  border: 0 solid #e4a462;
+  background-color: transparent;
+  margin: 0px;
+  padding: 0px;
+  /* Image Loading */
+  /* Image Loaded */ }
+  .lt-imageviewer .lt-item.lt-item-hovered {
+    /* Hovered Item in selection mode */
+    border-color: #d57e25;
+    background-color: transparent; }
+  .lt-imageviewer .lt-item.lt-item-selected {
+    /* Selected Item in selection mode */
+    border-color: #62a2e4;
+    background-color: transparent; }
+  .lt-imageviewer .lt-item.lt-item-active {
+    /* Active Item */
+    border-color: #e462e3;
+    background-color: transparent; }
+  .lt-imageviewer .lt-item.lt-image-loading::after, .lt-imageviewer .lt-item.image_loading::after {
+    content: "Loading Image..."; }
+  .lt-imageviewer .lt-item.lt-image-loaded::after {
+    display: none; }
+  .lt-imageviewer .lt-item.lt-image-loaded .lt-image-border {
+    /* Image Border */
+    /* Only show border when an image is loaded. */
+    border: 2px solid #333; }
+
+.lt-imageviewer .lt-imageviewer-passthrough .lt-image-border {
+  /* Image Border */
+  border: 2px solid #333; }
+
+.lt-imageviewer .lt-image {
+  /* Image */
+  background-color: white; }
+
+.lt-imageviewer .lt-backimage + .lt-image {
+  /* Image */
+  background-color: transparent; }
+
+.lt-imageviewer .lt-backimage {
+  /* Image */
+  background-color: white; }
+
+@-webkit-keyframes transparency {
+  from {
+    opacity: 1; }
+  to {
+    opacity: .4; } }
+
+@keyframes transparency {
+  from {
+    opacity: 1; }
+  to {
+    opacity: .4; } }
+
+.lt-imageviewer .lt-item:not(.lt-image-loaded):not(.lt_no_display).image_error::after {
+  content: " ";
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  display: block;
+  // background: url(../Images/Icons/Close.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f5fafe;
+  opacity: .2; }
+
+.lt-imageviewer .lt-item:not(.lt-image-loaded):not(.lt_no_display):not(.image_error)::after {
+  position: relative;
+  color: #333;
+  display: block;
+  margin: 0 auto;
+  height: 25px;
+  line-height: 25px;
+  top: calc(30% - 12.5px);
+  font-size: 13px;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+  max-width: 200px;
+  min-width: 50px;
+  width: 50%;
+  -moz-animation-name: transparency;
+  -o-animation-name: transparency;
+  -webkit-animation-name: transparency;
+  animation-name: transparency;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+  -o-animation-direction: alternate;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate; }
+
+.lt-imageviewer .lt-item:not(.lt-image-loaded):not(.lt_no_display) .lt-image-border {
+  /* Image Border */
+  /* Only show full border when an image is loaded. */
+  border: 2px solid rgba(51, 51, 51, 0.5);
+  /* Make background white while loading, change if you like */
+  background-color: white; }
+
+	.lt-imageviewer .lt-item-text {
+  /* Item Text */
+  color: #333;
+  font-size: 16px;
+  bottom: 0;
+  width: inherit;
+	text-align: center;
+	}
+
+	#documentViewer {
+		box-shadow: 0 0 8px 1px $dark-gray-color inset;
+		background-color: $white-grey-black;
+		height: 700px;
+		position: relative;
+	}
+
+	#imageViewerContainer {
+		overflow: hidden;
+		//position: relative;
+		// top: 35px;
+		// right: 0px;
+    // left: 195px;
+    width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.hideThumbnail {
+    z-index: -9999999999999999 !important;
+    position: absolute !important;
+    left: 21px!important;
+	}
+	
+	.adjust-viewer-container {
+    width: calc(100% - 195px) !important;
+	}
+
+	#thumbnailsControl {
+		width: 195px;
+		background-color: #D4D6DB;
+		//z-index: 1;
+    height: 700px;
+    position: relative;
+    left: 0px;
+    float: left;
+		-webkit-box-shadow: 5px 4px 5px -5px #333;
+		box-shadow: 5px 4px 5px -5px #333;
+		border: 1px solid darkgray;
+ }
+
+
+ #thumbnails {
+		overflow: hidden;
+		top: 5px;
+		left: 5px;
+		right: 5px;
+		bottom: 5px;
+		position: absolute !important;
+		border: 1px solid darkgray;
+		background-color: #fafdff;
+ }
+
+.custom-card-grid-sticky {
+  position: fixed !important;
+  top: 67px;
+  width: 99%;
+  left: 15px;
+  .form-viewer {
+    .measure-viewer {
+      height: 77vh !important;
+    }
+  }
+}
+
+#thumbnailsControl {
+  height: 65vh;
+}
+#documentViewer {
+  height: 65vh;
+}

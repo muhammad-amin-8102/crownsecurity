@@ -1,0 +1,943 @@
+@import '_mrr-variables';
+@import "../../../node_modules/formiojs/dist/formio.form.min.css";
+.formio-form {
+	.formio-choices{
+		&.is-disabled {
+			.form-control {
+				background-color: $text-box-bg-disabled !important;
+				border: 1px solid $text-box-border-disabled;
+				color: $text-box-color !important;
+			}
+		}
+	}
+	.control-label {
+		font-size: 12px;
+		display: block;
+		position: relative;
+		font-size: 12px;
+		font-weight: 400;
+		color: $text-box-label-color;
+		margin-bottom: 5px; // display: inline-block;
+		border: none;
+		i.fa:before{		
+			font-size: 12px;		
+			content: "\F129" !important;		
+			margin-left: 10px;		
+			position: absolute;		
+			margin-top: -10px;		
+		}
+		&:disabled {
+			color: $text-box-color !important;
+		}
+	}
+	.choices.is-disabled .choices__item  {
+		color: $text-box-color !important;
+	}
+	.form-check-label {
+		display: inline-flex;
+	}
+	.table thead th {
+		border-bottom: 0px;
+	  border-bottom-width: 0px;
+	}
+	.form-control:disabled {
+		background-color: $text-box-bg-disabled !important;
+		border: 1px solid $text-box-border-disabled;
+		color: $text-box-color !important;
+	}
+
+	.field-required:after {
+		position: absolute;
+	}
+	.formio-component {
+		&.formio-component-container {
+			&.tertiary-buttons-container-wrapper {
+				float: right;
+				.control-label--hidden {
+					display: none;
+				}
+
+				.ter_button {
+					button {
+						border-radius: 50% !important;
+						width: 26px;
+						outline: none;
+						box-shadow: none;
+
+						&:hover, &:active {
+							cursor: pointer;
+							text-decoration: none !important;
+							background: #E1E5EB;
+							color: #3788E5;
+						}
+					}
+				}
+				
+			}
+			&.tertiary_Buttons_panel {
+				//transform: translate3d( 12px, -2px, 0px) !important;
+				position: absolute !important;
+				left: 0px;
+				bottom: 34px;			
+				background: #fff !important;
+				border-radius: 5px !important;
+				border: 1px solid $secondary-btn-border !important;
+				width:150px;
+				margin: 0px;
+				padding: 0px;
+				display: none;
+				&.showPanel {
+					opacity: 1;
+					z-index: 999;
+					display: block !important;
+				}
+
+				label {
+					display: inline;
+				}
+
+				.std-tertiary-btn {
+					width: 100%;
+					&.btn-default {
+						padding-left: 5px;
+					}
+				}
+
+				// &.hidePanel {
+				// 	display: none;
+				// 	transition: opacity 1s ease-out;
+				// 	opacity: 0;
+				// }
+				div:hover{
+					background:  $tertiary-btn-bg-hover;
+
+					.std-tertiary-btn {
+						background-color: $tertiary-btn-bg-hover;
+					}
+				}
+				
+			}
+		}
+
+		&.formio-component-datetime{
+			.input-group{
+				width: 180px;
+				border: 1px solid $text-box-border;
+				height: 26px;
+				.form-control{
+					background-color: $text-box-bg;
+					border: none;
+					color: $text-box-color;
+					min-height: 22px;
+					height: 22px;
+					// font-family: 'Segoe UI', Arial, sans-serif;
+					font-size: 13px !important;
+					font-weight: 400;
+					padding: 0 8px;
+					text-align: left;
+					border-radius: 0px;
+					z-index: 0 !important;
+				}
+
+				.input-group-addon{
+					border: none;
+					background-color: $text-box-bg;
+				}
+				input:disabled + .input-group-addon{
+					background-color: $text-box-bg-disabled !important;
+					border: none;
+					color: $disabled-text-color;
+					.glyphicon, .fa{
+						opacity: 0.5;
+					}
+				}
+			}
+
+
+			.input-group:focus-within{
+				border: 1px solid $text-box-border-highlighted;
+  				box-shadow: 0 0 4px 0 $text-box-shadow;
+	
+				.form-control:focus{
+					box-shadow: none;
+				}
+			}
+			
+			&.alert-danger{
+				.input-group.is-invalid{
+					border: 1px solid $error-font-color;
+				}
+				.input-group.is-invalid:focus-within{		
+					box-shadow: 0 0 4px 0 $error-font-color;		
+					.form-control:focus{		
+						box-shadow: none;		
+					}		
+				}
+			}
+
+			table{
+				td {
+					.formio-errors{
+						padding-top: 10px;
+    				margin-bottom: -20px;
+					}
+				}
+			}
+
+		}
+
+		&.formio-component-textfield{
+			.form-control {
+				width: 180px;
+				display: inline-flex;
+				height: 24px;
+			}
+		}
+		
+		&.formio-component-number {
+			.form-control {
+				width: 180px;
+				display: inline-flex;
+				height: 24px;
+			}
+
+			&.has-error{
+				.form-control:focus{
+					box-shadow: 0 0 4px 0 $error-font-color;
+				}
+			}
+
+
+
+		}
+
+		&.formio-component-button {
+			&.primary_button {
+				display: inline-block !important;
+				margin-bottom: 2rem !important;
+				margin-right: 5px;
+			}
+
+			&.std-white-btn, &.std-white-btn:hover {
+				border: 0px;
+				background: $white-color;
+				padding: 0px;
+				margin-right:5px; 	
+			}
+
+			&.ter_button { 
+				float: left !important;
+				margin: 0px;
+				border: none;
+				margin-right: 5px;
+				cursor: pointer;
+				span.fa.fa-ellipsis-v {
+					width: 0px;
+				}
+				button.btn {
+					color: $tertiary-btn-color;
+					background-color: $tertiary-btn-bg;
+					font-size: 12px;
+					text-align: center;		
+						border-radius: 0px;
+						padding: 3px 5px;		
+				}
+			}
+		}
+		
+		&.formio-component-select{
+			.choices {
+				display: inline-flex;
+				width: 85%;
+				margin-bottom: 0px;
+				word-break: break-word;
+			}
+			
+			.choices[data-type*=select-one]:after {		
+				border-color: $input-addon-icon transparent transparent transparent;		
+			}		
+			.choices[data-type*=select-one].is-open:after {		
+				margin-top: -7.5px;		
+				border-color: transparent transparent $input-addon-icon transparent;		
+			}
+
+			.choices__list {
+				&.choices__list--single{
+					.choices__item{
+						display: flex;
+						align-items: center; /* align vertical */
+						font-size: 12px;
+						font-weight: 400;
+						word-break: break-word;
+						min-height: 22px;
+					}
+				}
+				&.choices__list--dropdown{
+					width: max-content;
+					min-width: 180px;
+					max-width: 30vw;
+					margin-top: 3px;
+					margin-bottom: -20px !important;
+					color: $black-color;
+					padding: 0;
+					border: 1px solid rgb(170, 156, 156);
+					box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
+					max-height: 200px !important;
+					@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+						max-height: 20em !important;
+					}
+					overflow-y: auto;
+					z-index: 1000;
+					font-weight: 400;
+
+
+					input.choices__input{
+						height: 24px;
+						padding: 0 8px;
+						font-size: 13px;
+					}
+					.choices__list {
+						max-height: unset;
+						overflow-y: unset;
+					}
+					.choices__item{
+						display: flex;
+						align-items: center; /* align vertical */
+						background-color: $white-color;
+						color: $ui-dropdown-normal-color;
+						font-size: 12px;
+						font-weight: 400;
+						padding: 0 8px;
+						word-break: break-word;
+						min-height: 24px;
+						&.is-highlighted{
+							background-color: $ui-dropdown-hover-bg;
+							color: $text-box-color;
+						}
+					}
+				}
+
+				.choices__item--selectable {
+					&:after {
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		
+			.formio-choices{
+				width: fit-content;
+				max-width: 100%;
+
+				.form-control{
+					padding: 0 8px;
+					padding-right: 30px;
+					min-width: 180px;
+				}
+			}
+
+			.is-open.is-focused{
+				border: 1px solid $text-box-border-highlighted;
+				box-shadow: 0 0 4px 0 $text-box-shadow;
+			}
+			
+		}
+
+		&.formio-component-checkbox{
+			min-height: 24px;
+		}
+
+		&.formio-disabled-input{
+			.markAnnotationBtn {
+				pointer-events: none;
+			}
+			.markAnnotationBtn::after{
+				color: #b3bac3 !important;
+			}
+			.clearAnnotationBtn {
+				display: none;
+			}
+		}
+
+		.btn-group{
+			.clearAnnotationBtn:disabled {
+				// visibility: hidden;
+				display: none;
+			}
+		}
+	}
+
+
+	textarea.form-control {
+		font-weight: 400;
+		font-size: 13px;
+		background-color: $text-box-bg;
+		border-color: $textarea-box-border;
+		color: $textarea-color;
+		margin-top: 5px;
+		resize: none;
+		padding-left: 6px !important;
+		padding-right: 8px !important;
+		height: 54px;
+	}
+	.form-control {
+
+		background-color: $text-box-bg;
+		border: 1px solid $text-box-border;
+		color: $text-box-color;
+		// font-family: 'Segoe UI', Arial, sans-serif;
+		font-size: 13px !important;
+		font-weight: 400;
+		min-height: 24px;
+		padding-left: 6px;
+		padding-right: 8px;
+		text-align: left;
+		border-radius: 0px;
+		z-index: 0 !important;
+		&.is-invalid {
+			border: 1px solid $error-font-color !important;
+		}
+	}
+
+	.formio-button-add-row, .numeratorDelete{
+		i.fa{
+			color: #fff;
+		}
+	}
+
+	.form-control:focus {
+		border: 1px solid $text-box-border-highlighted;
+  		box-shadow: 0 0 4px 0 $text-box-shadow;
+		
+	}
+	span.input-group-addon {
+		border-top: none;
+		border-right: none;
+		border: 1px solid $standard-subheader-background;
+		background-color: transparent;
+		border-radius: 0px;
+		.glyphicon .fa{
+			min-width: 16px;
+			min-height: 16px;
+		}
+	}
+
+	.save-button, .reject-button , .accept-button, .validate-button, .req-chart-button {
+		// margin-left: 115px;
+    	margin-right: 5px;
+		display: inline-block;
+	}
+
+	.alert-danger .input-group.remove-validation {
+		border: 1px solid $white-color !important;
+	}
+	.help-block{		
+		margin-bottom: 0;		
+	}
+	
+	.submit-button {
+		display: inline-block;
+	}
+	a.btn-primary {
+		background-color: $cyan-blue-color;
+		color: $white-color;
+	}
+	a.btn-primary:hover {
+		background-color: $light-blue-color;
+		color: $white-color;
+	}
+	.input-group {
+		width: 60%;
+		display: inline-flex;
+		max-height: 24px;
+	}
+	.control-label.form-check-label {
+		padding-left: 0px !important;
+		display: contents;
+		font-size: 12px;
+		font-weight: 400;
+		color: $light-gray-color;
+		color: $text-box-label-color;
+		margin-bottom: 5px; // display: inline-block;
+		border: none;
+	}
+
+	/** checkbox css start **/
+	input[type="checkbox"] {
+		display: inline-block;
+		display: none;
+	}
+	span {
+		cursor: pointer;
+	}
+	input[type="checkbox"] + span:before {
+		border: 1px solid $light-gray-color;
+		content: "\00a0";
+		display: inline-block;
+		margin: 4px 10px 0 0;
+		padding: 0;
+		vertical-align: top;
+		width: 12px;
+		font-size: 10px;
+		height: 12px;
+	}
+	input[type="checkbox"]:checked + span:before {
+		background: $sky-blue;
+		color: $white-color;
+		border: 1px solid $sky-blue;
+		font-family: FontAwesome;
+		content: "\f00c";
+		display: inline;
+		font-size: 10px;
+		position: relative;
+		top: 3px;
+	}
+	
+	input[type="checkbox"]:disabled + span:before {
+		background: #F0EFEF;
+		color: #BBBBBB;
+		border: 1px solid #BBBBBB;
+	}
+	/** checkbox css start **/
+
+	.tooltip-inner {
+		background-color: $medium-dark-gray-color;
+		color: $black-color;
+	}
+	.alert-danger {
+		color: $standard-error;
+		background-color: transparent !important;
+		border-color: transparent !important;
+		.input-group {
+			border: 1px solid $error-font-color;
+			//box-shadow: 0 0 4px 0 rgba(250,58,58,0.50)
+		}
+	}	
+	.alert {
+		padding: 0px;
+	}
+
+	.table {
+		border-collapse: unset;
+	}
+	
+	.table-bordered th, td {
+		border: none;
+	}
+
+	
+
+	.glyphicon, .fa
+	{
+		display: inline-block;
+		font-size: inherit;
+		font: normal normal normal 16px/1 FontAwesome;
+		color: $input-addon-icon;
+		
+	}
+	.glyphicon-remove-circle:before {
+		content: "\f068";
+	}
+	.glyphicon-question-sign::after
+	{
+		content : "\f129";
+		margin-left: 10px;
+		position: absolute;
+		margin-top: -12px;
+	}
+	.glyphicon-calendar:before {
+		content: "\f073";
+	}
+	.glyphicon-plus:before {
+		content: "\f067";
+	}
+}
+
+formio{
+	.formio-loader{
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		border: none !important;
+		border-top: none !important;
+		border-radius: 0 !important;
+		transform-origin: top left;
+		transform: translate(-50%,-50%);
+		border-radius: 50%;
+		animation: fa-spin 1.2s linear infinite;
+	}
+
+	.formio-loader:before{
+		content: "\f110";  /* this is your text. You can also use UTF-8 character codes as I do here */
+		font-family: FontAwesome;
+		font-size: 2em;
+		left:-5px;
+		position:absolute;
+		top:0;
+		transform: translate(-25%,-50%);
+	}
+
+	.loader{
+		margin-left: 0;
+		margin-top: 0;
+		border: none;
+		border-top: none;
+		border-radius: 0;
+		transform-origin: top left;
+		transform: translate(-50%,-50%);
+		border-radius: 50%;
+		animation: fa-spin 1.2s linear infinite;
+	}
+	.loader:before{
+		content: "\f110";  /* this is your text. You can also use UTF-8 character codes as I do here */
+		font-family: FontAwesome;
+		font-size: 2em;
+		left:-5px;
+		position:absolute;
+		top:0;
+		transform: translate(-25%,-50%);
+	}
+}
+
+.invalid-feedback {
+	display: block;
+	margin-top: 0;
+	color: $error-font-color;
+	font-size: 12px;
+}
+
+//Flatpickr Start
+.flatpickr-calendar{
+	max-width: 184px;
+	min-width: 184px;
+	border-radius: 5px;			
+	.flatpickr-months{		
+		margin-bottom: 10px;		
+	}
+	.flatpickr-innerContainer {
+		font-size: 12px;
+		.flatpickr-days{
+			.dayContainer{
+				padding: 0 8px 8px 8px;
+				max-width: 184px;
+				min-width: 184px;
+				.flatpickr-day{
+					border: none;
+					max-width: 39px;
+					line-height: 24px;
+					margin: 0;
+					height: 24px;
+					width: 24px;
+				}
+			}
+		}
+		
+		.flatpickr-weekdaycontainer{
+			width: 100%;
+  			display: -webkit-box;
+			padding: 0 8px;
+			max-width: 184px;
+			min-width: 184px;
+			.flatpickr-weekday {
+				font-size: 12px !important;
+				font-weight: 700;
+				color: $weekday-font-color !important;
+				height: 24px;
+				width: 24px;
+				align-items: center;
+				display: inline-flex;
+				justify-content: center;
+			}
+		}
+		
+	}
+}
+
+.flatpickr-day.soft-range{
+	color: #3788E5;
+}
+
+.flatpickr-day.today {
+	border-color: $white-color !important;
+	color: $dark-blue-color !important;
+	font-weight: bold;
+}
+
+.flatpickr-day.today:hover {
+	border-color: $white-color !important;
+	color: $dark-blue-color !important;
+	font-weight: bold;
+}
+
+.flatpickr-day:hover {
+	background: $hover-date-bg-color !important;
+	color: $hover-date-font-color !important;
+	border-radius: 0;
+}
+
+.flatpickr-day.selected {
+	background: $selected-date-bg-color !important;
+	color:  $selected-date-font-color !important;
+	border-radius: 0;
+}
+
+.prevMonthDay, .nextMonthDay, .flatpickr-day.disabled{
+	background: $disabled-date-bg-color !important;
+	color:  $disabled-date-font-color !important;
+	border-radius: 0;
+}
+
+.flatpickr-current-month {
+	font-size: 14px !important;
+		span.cur-month {
+			padding: 6px !important;
+			font-weight: 400 !important;
+			color: $black-color !important;
+		}
+}
+
+.flatpickr-prev-month {
+	svg {
+		width: 9px !important;
+		path {
+			fill: $black-color !important;
+		}
+	}
+}
+
+.flatpickr-next-month {
+	svg {
+		width: 9px !important;
+		path {
+			fill: $black-color !important;
+		}
+	}
+}
+//Flatpickr End
+
+
+.choices__button {
+	background-image: url(/assets/fonts/cross.svg) !important;
+	display: none;
+}
+
+.tooltip-inner
+{
+  background-color: $light-gray-color;
+  color: inherit;
+	text-align: left;
+}
+
+div[role=alert]
+{
+  display: none;
+}
+
+.btn-annotationGoTo {
+	background-color:$dodger-blue-color;
+	width:30px;
+}
+.btn-annotationMark {
+	background-color:$dim-gray;
+	width:30px;
+}
+
+.floatleft {
+	float: left;
+}
+
+.gotoAnnotationBtn {
+	display: inline-block;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-left: 4px;
+	margin-bottom: 4px;
+	height: 16px;
+	width: 16px;
+	font: normal normal normal 12px/1 FontAwesome;
+	background-color: $white-color;
+	border: 0px;
+	color: white;
+	border-radius: 15%;
+	content: "\f06e";
+	color: $primary-btn-bg;
+	margin-left: -3px;
+	cursor: pointer;
+	&:after{
+		content: "\f06e";
+		color: $primary-btn-bg;
+		margin-left: -3px;
+	}
+	&:hover {
+		background: $form-backgrd-color;
+	}
+}
+.markAnnotationBtn {
+	display: inline-block;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-left: 4px;
+	margin-bottom: 4px;
+	height: 16px;
+	width: 16px;
+	font: normal normal normal 12px/1 FontAwesome;
+	//background: url(/assets/images/start-annotation.png) no-repeat;
+	background-color: $white-color;
+	border: 0px;
+	color: white;
+	border-radius: 15%;
+	cursor: pointer;
+	&:after {
+		content: "\f040";
+		color: $primary-btn-bg;
+		margin-left: -3px;
+	}
+	&:hover {
+		background: $form-backgrd-color;
+	}
+	&:disabled:after{
+		color: $disabled-text-color !important;
+	}
+}
+
+
+.clearAnnotationBtn {
+	display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-left: 4px;
+	margin-bottom: 4px;
+	height: 16px;
+	width: 16px;
+	font: normal normal normal 12px/1 FontAwesome;
+	background-color: $white-color;
+	border: 0px;
+	color: white;
+	border-radius: 15%;
+	cursor: pointer;
+	&:after{
+		content: "\f1f8";
+		color:  $primary-btn-bg;
+		margin-left: -3px;
+	}
+	
+	&:hover {
+		background: $form-backgrd-color;
+	}
+	&:disabled:after{
+		color: $disabled-text-color !important;
+	}
+}
+
+.displayInlineFlex {
+display: inline-flex;
+}
+
+.admin-disabled {
+	color:  $silver-color;
+	border-bottom-color: $splashed-white;
+	.input-group {
+		opacity: 0.50;
+	}
+}
+
+.mandatory-exc {
+	color: $standard-error;
+}
+
+.mandatoryError {
+	border: 2px solid black;
+	border-color: #f44336;
+}
+
+.removeContent-after-mandatory:after {
+    content: "" !important;
+}
+
+.lt-imageviewer .lt-thumb-item.lt-thumb-item-hovered {
+	border-color: white !important;
+	background-color: white !important;
+  }
+  
+// .lt-imageviewer .lt-thumb-item.lt-thumb-item-selected {
+// 	border-color:white !important;
+// 	background-color:white !important;
+// }
+
+.calculate-Btn {
+	width: 80px;
+	height: 25px;
+	background: none!important;
+	color: inherit;
+	border: none;
+	padding: 0!important;
+	font: inherit;
+	/* border-bottom: 1px solid #444; */
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.save-note-btn {
+	font: normal normal normal 16px/1 FontAwesome;
+	background-color: $white-color;
+	border: 0px;
+	position: absolute;
+	top: 78px;
+	right: 0px;
+	content: "\f00c";
+	color: $primary-btn-bg;
+	margin-left: -3px;
+	cursor: pointer;
+	border-radius: 15%;
+	&:after{
+		content: "\f00c";
+		color: $primary-btn-bg;
+		margin-left: -3px;
+	}
+	&:hover {
+		background: $form-backgrd-color;
+	}
+}
+.unsaved-notes {
+	background-color: $standard-error;
+	position: absolute;
+	top: 0px;
+	left: 35px;
+	color: $white-color;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.formio-component-NOTE{
+	position: relative;
+	padding-bottom: 10px;
+}
+.formio-component-tertiaryButtons , .formio-component-ACCEPT , .formio-component-DISCARD ,  .formio-component-REJECT , .formio-component-EDIT , .formio-component-SAVE , .formio-component-VALIDATE {
+	float: right !important;
+}
+
+.adminField {
+	margin-left: 5px;
+	font-family:Segoe UI !important;
+	font-size:0.6875rem;
+	font-weight:400;
+	color:#BBBBBB;
+	letter-spacing:0;
+	line-height:1.5em
+}
+
+.adminField_dateSuffix {
+	margin-top:10px;
+	margin-right:-20px;
+	font-family:Segoe UI !important;
+	font-size:0.6875rem;
+	font-weight:400;
+	color:#BBBBBB;
+	letter-spacing:0;
+	line-height:1.5em;
+	padding-left:5px;
+}

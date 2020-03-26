@@ -1,0 +1,186 @@
+@font-face {
+  font-family: 'ct-webfonts';
+  src:  url('../fonts/ct-webfonts.eot?xyz2mz');
+  src:  url('../fonts/ct-webfonts.eot?xyz2mz#iefix') format('embedded-opentype'),
+    url('../fonts/ct-webfonts.ttf?xyz2mz') format('truetype'),
+    url('../fonts/ct-webfonts.woff?xyz2mz') format('woff'),
+    url('../fonts/ct-webfonts.svg?xyz2mz#ct-webfonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.ico {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ct-webfonts' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+	line-height: 1;
+	font-size: 20px;
+	cursor: pointer;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+}
+
+.icon-medal-solid:before {
+  content: "\e932";
+}
+.ico_compress:before {
+  content: "\e92c";
+}
+.ico_draw-line:before {
+  content: "\e92d";
+}
+.ico_draw-rectangle:before {
+  content: "\e92e";
+}
+.ico_expand:before {
+  content: "\e92f";
+}
+.ico_font:before {
+  content: "\e930";
+}
+.ico_highlight:before {
+  content: "\e931";
+}
+.ico_line_add:before {
+  content: "\e900";
+}
+.ico_line_calendar:before {
+  content: "\e901";
+}
+.ico_line_clock:before {
+  content: "\e902";
+}
+.ico_line_close:before {
+  content: "\e903";
+}
+.ico_line_delete:before {
+  content: "\e904";
+}
+.ico_line_document:before {
+  content: "\e905";
+}
+.ico_line_download:before {
+  content: "\e906";
+}
+.ico_line_edit:before {
+  content: "\e907";
+}
+.ico_line_help:before {
+  content: "\e908";
+}
+.ico_line_icd10code:before {
+  content: "\e909";
+}
+.ico_line_info:before {
+  content: "\e90a";
+}
+.ico_line_leftarrow:before {
+  content: "\e90b";
+}
+.ico_line_link:before {
+  content: "\e90c";
+}
+.ico_line_message:before {
+  content: "\e90d";
+}
+.ico_line_notification:before {
+  content: "\e90e";
+}
+.ico_line_remove:before {
+  content: "\e90f";
+}
+.ico_line_rightarrow:before {
+  content: "\e910";
+}
+.ico_line_search:before {
+  content: "\e911";
+}
+.ico_line_success:before {
+  content: "\e912";
+}
+.ico_line_unlink:before {
+  content: "\e913";
+}
+.ico_line_upload:before {
+  content: "\e914";
+}
+.ico_line_user:before {
+  content: "\e915";
+}
+.ico_line_view:before {
+  content: "\e916";
+}
+.ico_line_warning:before {
+  content: "\e917";
+}
+.ico_glyph_add:before {
+  content: "\e918";
+}
+.ico_glyph_calendar:before {
+  content: "\e919";
+}
+.ico_glyph_clock:before {
+  content: "\e91a";
+}
+.ico_glyph_close:before {
+  content: "\e91b";
+}
+.ico_glyph_delete:before {
+  content: "\e91c";
+}
+.ico_glyph_document:before {
+  content: "\e91d";
+}
+.ico_glyph_edit:before {
+  content: "\e91e";
+}
+.ico_glyph_help:before {
+  content: "\e91f";
+}
+.ico_glyph_info:before {
+  content: "\e920";
+}
+.ico_glyph_leftarrow:before {
+  content: "\e921";
+}
+.ico_glyph_message:before {
+  content: "\e922";
+}
+.ico_glyph_notification:before {
+  content: "\e923";
+}
+.ico_glyph_remove:before {
+  content: "\e924";
+}
+.ico_glyph_rightarrow:before {
+  content: "\e925";
+}
+.ico_glyph_search:before {
+  content: "\e926";
+}
+.ico_glyph_success:before {
+  content: "\e927";
+}
+.ico_glyph_upload:before {
+  content: "\e928";
+}
+.ico_glyph_user:before {
+  content: "\e929";
+}
+.ico_glyph_view:before {
+  content: "\e92a";
+}
+.ico_glyph_warning:before {
+  content: "\e92b";
+}
+.ico_compress1:before {
+  content: "\e932";
+}

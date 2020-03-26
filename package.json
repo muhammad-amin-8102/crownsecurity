@@ -33,7 +33,10 @@
     "primeng": "^8.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+		"zone.js": "~0.9.1",
+		"ag-grid-community": "^23.0.2",
+		"ag-grid-enterprise": "^23.0.2",
+		"ag-grid-angular": "^23.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.19",
@@ -56,8 +59,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-	},
-	"engines": {
+  },
+  "engines": {
     "node": "10.15.0",
     "npm": "6.4.1"
   }

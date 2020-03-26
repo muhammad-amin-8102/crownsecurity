@@ -1,0 +1,410 @@
+
+@import '../_mrr-variables';
+
+/* ******************** member grid prime ng turbo tabel css *****************/
+
+/******************* it only for now abstarction grid make it genric after one grid done min max *****************/
+// .member-grid-main {
+// 	.ui-table {
+// 		table {
+// 			table-layout: auto;
+// 		}
+// 	}
+// }
+.member-grid-main, .chase-grid-main, .provider-grid-main  {
+	white-space: nowrap;
+		}
+		
+		.select-provider-grid{
+			.ui-table  .ui-table-tbody tr td {
+		
+				border-bottom : none;
+				height: auto;
+				max-height: max-content;
+				white-space: word-wrap;
+	}
+	.ui-table  .ui-table-tbody tr {
+		border-bottom: 1px solid  #E1E5EB ;
+}
+.ui-table .ui-table-tbody tr.ui-state-highlight td {
+	border-bottom: none; 
+}
+.ui-table .ui-table-tbody tr.ui-state-highlight tr {
+ border-bottom: 1px solid #f7F9fA;
+}
+}
+
+
+.ui-table {
+	table {
+		table-layout: auto;
+	}
+	font-family: Segoe UI!important;
+	color: $turbotable-font-color;
+	.ui-table-scrollable-wrapper {
+		overflow-x: auto;
+    	overflow-y: hidden;
+	}
+	.checkbox-container {
+		border-right: 0px;
+		width: 28px;
+	}
+	.ui-table-scrollable-view {
+		&.ui-table-frozen-view {
+			tr, th {
+				background: $turbotable-frozen-background-color;
+				font-size: $turbotable-frozen-font-size;
+				color: $turbotable-font-color!important;
+				font-weight: $turbotable-header-font-weight;
+
+				&.ui-state-highlight {
+					background: $turbotable-selected-background-color;
+				}
+				&:nth-child(even) {
+					background: $turbotable-frozen-background-color;
+				}
+			}
+			.is-empty-hide-second-message {
+				td {
+					&:not(:first-child) {
+						display: none;
+					}
+				}
+			}
+			.hide-fixed-col-expandedRow{
+				visibility: hidden
+			}
+			.ui-table-scrollable-body {
+				margin-bottom: 17px;
+				tr {
+					td {
+						white-space: normal;
+						overflow: initial;
+					}
+				}
+			}
+		}
+	}
+	.ui-table-unfrozen-view {
+		.is-empty-hide-second-message {
+			div, span {
+				display: none;
+			}
+		}
+	} 
+	.ui-table-tbody {
+		tr {
+			outline: none !important;
+			&.ui-state-highlight {
+				background: $turbotable-selected-background-color;
+
+				td {
+					border-bottom: 1px solid $action-link-background-color;
+				}
+			}
+			&:nth-child(even) {
+				background: $white-color;
+
+				&.ui-state-highlight {
+					background: $turbotable-selected-background-color;
+				}
+			}
+			&.on-hold {
+				td {
+					.row-action-container {
+						.ellipsis-icon {
+							color: $on-hold-text-color;
+		}
+	}
+	.on-hold-cell {
+		color: $on-hold-text-color;
+	}
+}
+}
+}
+		tr {
+			td {
+				padding:  3px 4px;
+				height: 28px;
+				max-height: 45px;
+				border: none;
+				font-size: 13px;
+				color: $turbotable-font-color;
+				border-bottom: 1px solid $link-active-color;
+				white-space: normal;
+				word-wrap: break-word;
+				// change all grid aligned top
+				vertical-align: top;
+			}
+		}
+	} 
+	.ui-table-thead, .ui-table-tfoot {
+		tr {
+		 th, td {
+			padding: 3px 4px;
+			background: $white-color;
+			font-size: 13px;
+			color: $turbotable-font-color!important;
+			text-align: left;
+			text-transform: none;
+			max-width: 500px;
+			border: none;
+			height: 28px;
+			max-height: 45px;
+			font-weight: 600;
+			white-space: normal;
+		 }
+		 th {
+			 /* please do not change it will affect all grid it should be capitalize all header of table*/
+			text-transform: none;
+			border-bottom: 1px solid  $link-active-color;
+			border-top: 1px solid $link-active-color;
+			vertical-align: top;
+			@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+				border-bottom: 2px solid  $link-active-color;
+			}
+
+			div {
+				span {
+					vertical-align: middle;
+				}
+			}
+		 }
+		}
+
+		.ui-sortable-column-icon {
+			vertical-align: middle;
+		}
+		.pi-sort:before{
+			content:none;
+		}
+
+		.pi-sort-up:before {
+			content: "\f062";
+			font-family:'FontAwesome';
+			color: $active-sort-icon;
+			padding-left:5px;
+			vertical-align: 0.25em;
+		}
+		  
+		.pi-sort-down:before {
+			content:"\f063";
+			font-family:'FontAwesome';
+			color: $active-sort-icon ;
+			padding-left:5px;
+			vertical-align: 0.25em;
+		}
+
+		/**
+		 * down sort icon for columns which are not sortable
+		 */
+		.pi-unsortabeicon-down:before {
+			content:"\f063";
+			font-family:'FontAwesome';
+			color: $turbotable-font-color;
+			padding-left:5px;
+			vertical-align: 0.25em;
+		}
+
+		/**
+		 * up sort icon for columns which are not sortable
+		 */
+		.pi-unsortabeicon-up:before {
+			content: "\f062";
+			font-family:'FontAwesome';
+			color: $turbotable-font-color;
+			padding-left:5px;
+			vertical-align: 0.25em;
+		}
+	}
+	&.ui-table-hoverable-rows {
+		.ui-table-tbody {
+			& > tr {
+				&:not(.ui-state-highlight) {
+					&:not(.ui-contextmenu-selected) {
+						&:hover {
+							background-color: $turbotable-hover-background-color;
+							cursor: default;
+						}
+						&.row-disabled {
+							&:hover {
+								background-color: $white-color;
+							}
+
+							td {
+								border-bottom: 1px solid $link-active-color;
+								font-weight: $normal;
+								font-size: 13px;
+								color: $disabled-text-color;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.ui-chkbox {
+		.ui-chkbox-box {
+			border: 1px solid #718FB6;
+			font-size: 11px;
+		}
+	}
+
+	.ui-sortable-column {
+		&:not(.ui-state-highlight) {
+			.pi-sort {
+				&:before {
+					content: "\f062";
+					font-family: 'FontAwesome';
+					padding-left: 5px;
+					vertical-align: 0.25em;
+					color: $non-active-sort-icon; 
+				}
+			}
+			&:hover {
+				background-color: $white-color;
+			}
+			&:focus {
+				outline: none;
+			}
+		}
+
+		&.ui-state-highlight {
+			background-color: $white-color;
+	
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+	&.ui-state-disabled {
+		pointer-events: none;
+	}
+}
+
+ /* --- letest pagignation for turbo tabel -------*/
+ .ui-paginator-bottom {
+	padding: 8px 0px;
+	span {
+		float: left;
+	}
+	a {
+		float: left;
+		font-family: Segoe UI;
+		border-radius: 2px;
+		background: rgba(255, 255, 255, 0);
+		color: $link-color;
+		font-size: 12px;
+		font-weight: 600;
+		padding: 13px;
+    	display: flex!important;
+		align-items: center;
+		
+		&.ui-state-disabled {
+			font: $disabled-text-font;
+			color: $disabled-text-color;
+		}
+		&.ui-paginator-first {
+			display: flex!important;
+			&:before {
+				content: "First";
+			}
+			.pi-step-backward {
+				&:before {
+					display: none;
+				}
+			}
+		}
+		&.ui-paginator-last {
+			display: flex!important;
+			&:before {
+				content: "Last";
+			}
+			.pi-step-forward {
+				&:before {
+					display: none;
+				}
+			}
+		} 
+		&:hover {
+			background-color: $turbotable-hover-background-color!important;
+			color: $link-color!important;
+		}
+		&.ui-state-active {
+			background: $turbotable-selected-background-color!important;
+			color: $turbotable-font-color!important;
+			outline: none;
+		}
+		&.disabled {
+			font: $disabled-text-font;
+			color: $disabled-text-color;
+			pointer-events: none;
+		}
+	}
+
+	.ui-paginator-prev, .ui-paginator-next {
+		border-radius: 50%;
+		outline: none;
+
+		&.ui-state-active {
+			background: $turbotable-selected-background-color!important;
+			color: $turbotable-font-color!important;
+			border-radius: 50%;
+			outline: none;
+		}
+
+		.pi {
+			display: inline-block;
+			font-family: FontAwesome;
+			font-size: inherit;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			font-weight: bold;
+			font-size: $primary-pagination-font-size;
+
+			&.pi-caret-left {
+				&:before{
+					content: "\f104"
+				}
+			}
+			&.pi-caret-right {
+				&:before {
+					content: "\f105"
+				}
+			}
+		}
+	}
+}
+
+.close-gap-detail-grid {
+	// @include dataGridCSS(220px);
+
+	& #dataGrid{	
+		max-height:150px;
+		min-height:80px;
+		tr{
+			th {
+				border-bottom: 1px solid $text-box-border;
+				border-top: none;
+				margin-bottom: 20px;
+			}
+			td {
+				border-bottom: none;
+			}
+			
+		} 
+		.ui-table-scrollable-view {
+			.ui-table-scrollable-body {
+				max-height: calc(150px - 32px) !important;
+			//min-height: calc(200 - 10px) !important;
+				td {
+					.field-name {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}

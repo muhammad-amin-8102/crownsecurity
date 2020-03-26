@@ -24,6 +24,8 @@ import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ViewReportComponent } from './view-report/view-report.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { ReportVerificationComponent } from './report-verification/report-verification.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +37,8 @@ import { ViewReportComponent } from './view-report/view-report.component';
 		LoginComponent,
 		CallReportingComponent,
 		SiteComponent,
-		ViewReportComponent
+		ViewReportComponent,
+		ReportVerificationComponent
 	],
 	imports: [
 		BrowserModule,
@@ -50,7 +53,8 @@ import { ViewReportComponent } from './view-report/view-report.component';
 		CalendarModule,
 		CardModule,
 		NgxSpinnerModule,
-		ToastModule
+		ToastModule,
+		AgGridModule.withComponents([])
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { CallReportingComponent } from './call-reporting/call-reporting.component';
 import { SiteComponent } from './site/site.component';
 import { ViewReportComponent } from './view-report/view-report.component';
+import { ReportVerificationComponent } from './report-verification/report-verification.component';
 
 
 const routes: Routes = [
@@ -24,13 +25,13 @@ const routes: Routes = [
 		canActivate: [AuthGuard]
 	},
 	{
-		path: 'sites',
-		component: SiteComponent,
+		path: 'view-report',
+		component: ViewReportComponent,
 		canActivate: [AuthGuard]
 	},
 	{
-		path: 'view-report',
-		component: ViewReportComponent,
+		path: 'report-verification',
+		component: ReportVerificationComponent,
 		canActivate: [AuthGuard]
 	},
 	// otherwise redirect to home

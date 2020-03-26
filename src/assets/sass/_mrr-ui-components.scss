@@ -1,0 +1,446 @@
+@import '_mrr-variables';
+@import '_mrr-mixin';
+
+
+
+/*
+ * Stantard Buttons
+ * Blue Button
+ * White Button
+**/
+
+.btn-primary, .std-blue-btn{
+	@include ct-btn;
+	background-color: $primary-btn-bg;
+	border: none;
+	color: $white-color !important;
+}
+
+.std-blue-btn:hover {
+	background-color: $primary-btn-bg-hover;
+}
+
+.std-blue-btn:focus
+.std-blue-btn:active {
+	background-color: $primary-btn-bg-pressed;
+	border-radius: 2px;
+	box-shadow: 0 0 4px 0 $primary-btn-box-shadow;
+	-moz-box-shadow: 0 0 4px 0 $primary-btn-box-shadow;
+	-webkit-box-shadow: 0 0 4px 0 $primary-btn-box-shadow;
+	outline: none;
+}
+
+.std-white-btn {
+	@include ct-btn;
+	background-color: $secondary-btn-bg;
+	border: 1px solid $secondary-btn-border;
+	color: $secondary-btn-color;
+}
+
+.std-white-btn:hover {
+	background-color: $white-color;
+	border: 1px solid $secondary-btn-border-hover;
+}
+
+.std-tertiary-btn:focus,
+.std-tertiary-btn:active,
+.std-white-btn:focus,
+.std-white-btn:active {
+	background-color: $secondary-btn-bg-focus;
+	box-shadow: 0 0 4px 0 $secondory-btn-box-shadow;
+	-moz-box-shadow: 0 0 4px 0 $secondory-btn-box-shadow;
+	-webkit-box-shadow: 0 0 4px 0 $secondory-btn-box-shadow;
+	outline: 1px solid $secondary-btn-border-hover;
+}
+
+.std-tertiary-btn:hover{
+	border: none !important;
+	outline: none !important;
+}
+
+.std-tertiary-btn {
+	@include ct-btn;
+	background-color: $tertiary-btn-bg;
+	border: none;
+	color: $tertiary-btn-color;
+	font-size: 12px;
+}
+.std-tertiary-btn:hover {
+	background-color: $tertiary-btn-bg-hover;
+}
+
+// CSS for Tertiary Actions on 
+.std-tertiary-btn {
+	text-align: left;
+	margin: 0px;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled,
+.std-blue-btn.disabled,
+.std-blue-btn:disabled,
+.std-white-btn.disabled,
+.std-tertiary-btn.disabled,
+.std-blue-disabled-btn,
+.std-blue-disabled-btn:hover,
+.std-blue-disabled-btn:focus,
+.std-blue-disabled-btn:active,
+.std-white-disabled-btn,
+.std-white-disabled-btn:hover,
+.std-white-disabled-btn:focus,
+.std-white-disabled-btn:active,
+.std-tertiary-disabled-btn,
+.std-tertiary-disabled-btn:hover,
+.std-tertiary-disabled-btn:focus,
+.std-tertiary-disabled-btn:active {
+	@include ct-btn;
+	background-color: #e1e5eb;
+	border: none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	color: #b3bac3 !important;
+	cursor: not-allowed;
+	outline: none;
+}
+
+/********CheckBox Start***************/
+
+/*
+ * Custom checkbox
+**/
+.control {
+	font-size: 13px;
+	position: relative;
+	display: inline-block;
+	/* margin-bottom: 10px; */
+	/* padding: 10px; */
+	cursor: pointer;
+	padding-right: 5px;
+}
+
+.control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.control__indicator {
+	position: absolute;
+	// top: 8px;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	background: none;
+	border: 1px solid $medium-dark-gray-color;
+	border-radius: 2px;
+}
+
+ /* Hover and focus states */
+ .control:hover input ~ .control__indicator,
+ .control input:focus ~ .control__indicator {
+	 background: $checkbox-bg-hover;
+	 border: 1px solid $light-gray-color;
+ }
+ 
+ /* Checked state */
+ .control input:checked ~ .control__indicator {
+	 background: $checkbox-checked-bg;
+	 border: 1px solid $light-blue-color;
+ }
+ 
+ /* Hover state whilst checked */
+ .control:hover input:not([disabled]):checked ~ .control__indicator {
+	 border: 1px solid $sky-blue;
+ }
+ 
+ .control input:checked:focus ~ .control__indicator {
+	 border: 1px solid $light-blue-color;
+ }
+ 
+ /* Disabled state */
+ .control input:disabled ~ .control__indicator {
+	 pointer-events: none;
+	 opacity: .6;
+	 background: $standard-subfooter-background;
+	 border: 1px solid $silver-color;
+ }
+ 
+ /* Check mark */
+ .control__indicator:after {
+	 position: absolute;
+	 display: none;
+	 content: '';
+ }
+ 
+ /* Show check mark */
+ .control input:checked ~ .control__indicator:after {
+	 display: block;
+ }
+ 
+ .control:hover input:checked ~ .control__indicator:after {
+	 border-color: $checkbox-bg-hover;
+ }
+ 
+ /* Checkbox tick */
+ .control--checkbox .control__indicator:after {
+	top: 1px;
+	left: 5px;
+	width: 5px;
+	height: 9px;
+	transform: rotate(45deg);
+	border: 1px solid $checkbox-tick-border;
+	border-width: 0 2px 2px 0;
+ }
+ 
+ /* Disabled tick colour */
+ .control--checkbox input:disabled ~ .control__indicator:after {
+	 border-color: $silver-color;
+ }
+ 
+/*********End*********/
+
+/* MOC -breadCrumb */
+
+.hide-wizard-title .wizard {
+	display: none !important;
+}
+
+.container-without-wizard-title {
+	top: 128px;
+	position: absolute;
+	overflow-y: auto;
+	height: calc(100% - 194px);
+	overflow-x: hidden;
+	width: 100%;
+}
+
+.border-right {
+	border-right: 1px solid $standard-subheader-background;
+}
+
+.border-top-custom {
+	border-top: 1px solid $standard-subheader-background;
+	margin-right: 0;
+	margin-left: 0;
+	margin-top: 20px;
+}
+
+.custom-well {
+	background-color: $light-cream-color;
+	padding: 10px;
+	height: auto;
+	margin: 10px 0 10px 0;
+	color: $light-gray-color;
+	.inner-div {
+		padding: 5px 15px;
+	}
+	span {
+		color: $medium-gray-color;
+	}
+}
+
+.breadcrumb-link {
+	color: $medium-gray-color;
+	font-size: 13px;
+	background-color: $light-cream-color;
+	ul {
+		margin: 0;
+		padding: 10px 10px 10px 14px;
+		a {
+			color: $light-blue-color;
+			text-decoration: none;
+		}
+	}
+}
+/*********End*********/
+
+/*****Left vertical tab panel css start*****/
+.vertical-tab-panel {
+	padding: 0px;
+	background-color: $standard-subheader-background;
+	width: 100%;
+	color: $medium-gray-color;
+	.tab-header {
+		padding: 10px 15px;
+		border-bottom: 1px solid  $silver-color;
+		font-weight: 600;
+    font-size: 15px;
+	}
+	.tab-list {
+		ul {
+			width: 100%;
+			float: left;
+			li {
+				border-bottom: 1px solid $white-color;
+				width: 100%;
+				.nav-link {
+					padding: 10px 15px;
+					width: 100%;
+					float: left;
+				}
+				a {
+					color: $medium-gray-color;
+					span:first-child {
+						width: 80%;
+						padding-right: 10px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: inline-block;
+					}
+				}
+				a.active {
+					background-color: $white-color;
+					font-size: 15px;
+					color: $medium-gray-color;
+					border: 1px solid $accordion-border-bottom;
+				}
+			}
+		}
+	}
+}
+/*****Left vertical tab panel css End*****/
+
+
+/************ Search Bar ***************/
+.search-item{
+	margin-left: auto;
+	margin-right: 20px;
+  font-size: $primary-font-size;
+	position: relative;
+	color: $light-gray-color;
+
+	.search-input
+	{
+			border-top: none;
+			border-left : none;
+			border-right: none;
+			width: 320px;
+			height: 35px;
+	}
+
+	.search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $light-gray-color;
+    opacity: 1; /* Firefox */
+	}
+
+	.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			color: $light-gray-color;
+	}
+
+	i{
+		position: absolute;
+		right: 0px;
+		bottom: 12px;
+	}
+}
+
+/************ Search Bar end ****************/
+
+/************ Grid Scroll Fit Start**************/
+.scrollFit{
+	padding-right:0px;
+}
+
+/************ Grid Scroll Fit End **************/
+
+
+/*********** Custom Radio Buttons Begin ************/
+
+	.control {
+		font-size: 13px;
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		padding-right: 5px;
+	}
+
+	.control input {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+	}
+
+	.control__indicator-radio {
+		position: absolute;
+		top: 0;
+		left: -15px;
+		width: 13px;
+		height: 13px;
+		background: none;
+		border: 1px solid $ui-radio-unchecked;
+		border-radius: 50%;
+	}
+
+	/* Hover and focus states */
+	.control:hover input:not([disabled]) ~ .control__indicator-radio {
+		border: 1px solid $ui-radio-checked;
+		box-shadow: 0px 0px 0px 7px $ui-radio-hover;
+	}
+	
+	/* Checked state */
+	.control input:checked ~ .control__indicator-radio {
+		background: $ui-radio-checked;
+		border: 1px solid $light-blue-color;
+	}
+	
+	/* Hover state whilst checked */
+	.control:hover input:not([disabled]):checked ~ .control__indicator-radio {
+		border: 1px solid $ui-radio-checked;
+	}
+	
+	.control input:checked:focus ~ .control__indicator-radio {
+		border: 1px solid $ui-radio-checked;
+	}
+	
+	/* Disabled state */
+	.control input:disabled ~ .control__indicator-radio {
+		pointer-events: none;
+		opacity: .6;
+		background: $standard-subfooter-background;
+		border: 1px solid $ui-radio-disabled;
+	}
+	
+	/* radio checked mark */
+	.control__indicator-radio:after {
+		position: absolute;
+		display: none;
+		content: '';
+	}
+	
+	/* Show radio selected */
+	.control input:checked ~ .control__indicator-radio:after {
+		display: block;
+	}
+	
+	.control:hover input:checked ~ .control__indicator-radio:after {
+		border-color: $checkbox-bg-hover;
+	}
+	/* Label Spacing */
+	.control--radio{
+		margin: 0 15px;
+		vertical-align: middle;
+		span{
+			margin-left: 5px;
+		}
+		.radioLabel{
+			margin: -3px 0 0px 5px !important;
+		}
+	}
+	/* Radio tick */
+	.control--radio .control__indicator-radio:after {
+		top: 3px;
+		left: 3px;
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background-color: #ffffff;
+	}
+	
+	/* Disabled tick colour */
+	.control--radio input:disabled ~ .control__indicator-radio:after {
+		border-color: $ui-radio-disabled;
+	}
+
+/*************** Custom Radio Button End ****************/

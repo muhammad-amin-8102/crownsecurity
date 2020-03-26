@@ -34,8 +34,10 @@
               "src/assets/dist/css/adminlte.min.css",
 							"src/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
 							"node_modules/primeicons/primeicons.css",
-							"node_modules/primeng/resources/themes/nova-light/theme.css",
-							"node_modules/primeng/resources/primeng.min.css"
+							"node_modules/primeng/resources/themes/rhea/theme.css",
+							"node_modules/primeng/resources/primeng.min.css",
+							"node_modules/ag-grid-enterprise/dist/styles/ag-grid.scss",
+							"node_modules/ag-grid-enterprise/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss"
             ],
             "scripts": [
               "src/assets/plugins/jquery/jquery.min.js",

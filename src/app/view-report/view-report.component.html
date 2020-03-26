@@ -1,3 +1,21 @@
-<p-table #dt [columns]="cols" [value]="cars" [paginator]="true" [rows]="10">
-
-</p-table>
+<form [formGroup]="reportSearchForm" class="row">
+	<div class="col-md-3">
+		<h6>From</h6>
+		<p-calendar formControlName="startDate" [maxDate]="maxDate" [readonlyInput]="true" [showIcon]="true">
+		</p-calendar>
+	</div>
+	<div class="col-md-3">
+		<h6>To</h6>
+		<p-calendar formControlName="endDate" [maxDate]="maxDate" [readonlyInput]="true" [showIcon]="true">
+		</p-calendar>
+	</div>
+</form>
+<hr>
+<ag-grid-angular
+    style="width: auto; height: 500px;"
+    class="ag-theme-balham"
+		[rowData]="reports"
+		(gridReady)="onGridReady($event)"
+		[floatingFilter]="true"
+    [columnDefs]="cols">
+</ag-grid-angular>

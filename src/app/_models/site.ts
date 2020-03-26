@@ -1,6 +1,10 @@
 export class Site {
 	id: number;
 	name: string;
+	code: string;
+	branch_name: string;
+	location: string;
+	zone: string;
 	address: string;
 	contact: string;
 	contact_person: string;

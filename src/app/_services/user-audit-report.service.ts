@@ -12,5 +12,9 @@ export class UserAuditReportService {
 		
 		createReport(params: any) {
         return this.http.post(`${environment.apiUrl}/reports`, params);
-    }
+		}
+		
+		viewReport(params: any) {
+			return this.http.post(`${environment.apiUrl}/reports/view-report`, params);
+		}
 }

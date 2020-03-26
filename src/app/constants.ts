@@ -69,22 +69,9 @@ export const CONSTANTS = {
 		{ field: 'comments', header: 'Comments', width: '200px', show: true }
 	],
 	viewReportColumns: [
-		{ field: 'reporting_date', header: 'Date', width: '100px', show: true },
-		{ field: 'name', header: 'Name', width: '200px', show: true },
-		{ field: 'role', header: 'Designation', width: '200px', show: true },
-		{ field: 'site_name', header: 'Site', width: '200px', show: true },
-		{ field: 'shift', header: 'Shift', width: '200px', show: true },
-		{ field: 'ot', header: 'OT', width: '200px', show: true },
-		{ field: 'cross_ot', header: 'Cross OT', width: '200px', show: true },
-		{ field: 'grooming_failure', header: 'GF', width: '200px', show: true },
-		{ field: 'attendance', header: 'Attendance', width: '100px', show: true },
-		{ field: 'beard', header: 'Unshaved', width: '100px', show: true },
-		{ field: 'uniform', header: 'Uniform', width: '100px', show: true },
-		{ field: 'shoes', header: 'Shoes', width: '100px', show: true },
-		{ field: 'socks', header: 'Socks', width: '100px', show: true },
-		{ field: 'accessories', header: 'Accessories', width: '100px', show: true },
-		{ field: 'hair_cut', header: 'Haircut', width: '100px', show: true },
-		{ field: 'idf', header: 'ID Failure', width: '100px', show: true },
-		{ field: 'comments', header: 'Comments', width: '200px', show: true }
+		{ field: 'reporting_date', headerName: 'Date', filter: 'agSetColumnFilter'},
+		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter'},
+		{ field: 'branch_name', headerName: 'Branch Name', filter: 'agTextColumnFilter'},
+		{ field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
 	],
 };

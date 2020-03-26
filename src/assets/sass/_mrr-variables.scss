@@ -1,0 +1,298 @@
+// colors
+
+$white-color: #FFFFFF;
+$dark-blue-color: #23328E;
+$light-blue-color: #1F81D3;
+$whites-light-blue-color: #F6F7F9;
+$medium-blue-color: #4885BC;
+$sky-color: #e7f1fb;
+$sky-blue: #2998F5;
+$light-sky-blue: #0099CC;
+$standard-error: #D72222;
+$error-font-color: #FA3A3A;
+$accordian-border-bottom: #d6d6d6;
+$overcast-color: #97a1b6;
+$dodger-blue-color: #007bff;
+$help-text: #868686;
+$fiord-color: #4b5a6e;
+
+$pale-blue-color: #A0ABEB;
+$cyan-blue-color: #2998F5;
+
+$standard-subheader-background: white;
+$standard-subfooter-background: #F0F0F0;
+
+$whites-light-blue-gray-color: #DFE1E5;
+$white-color: #FFFFFF;
+$gray-white-color: #FAFAFA;
+$daisy-white: #f3f0f0;
+$splashed-white: #F0EFEF;
+$white-grey-black: #eeeeee;
+$gainsboro-color: #DDDDDD;
+
+
+$medium-gray-color: #808B9A;
+$medium-dark-gray-color: #A9A9A9;
+$dark-gray-color: #333333;
+$almost-dark-gray-color: #5E5E5E;
+$light-gray-color: #999999;
+$dim-gray: #696969;
+$dialog-header-gray-color: #F6F6F6;
+$dialog-header-font-color: #797979;
+$light-gray-background-color: #c9c9c9;
+$silver-color: #E0E4EA;
+$accordion-border-bottom: #d6d6d6;
+$accordion-new-border-bottom:#D0D5DC;
+
+$black-pearl: #1b1d1f;
+$black-color: #222222;
+$pure-black-color: #000000;
+$disabled-bg-gray: #EFF2F5;
+
+$very-dark-blue-color: #DFE1E5;
+$dark-blue-color: #2B4FA6;
+$light-blue-color: #1F81D3;
+$medium-blue-color: #4885BC;
+$sky-blue: #2998F5;
+$light-sky-blue: #0099CC;
+$pale-blue-color: #A0ABEB;
+$cyan-blue-color: #2998F5;
+$blue-color: #156090;
+$checkbox-blue-color: #186ba0;
+$light-cyan-blue: #54ABE9;
+$fade-sky-blue-color: #c9e0f7;
+
+$light-cream-color: #f2f2f2;
+$light-brown-color: #8F7F85;
+$form-backgrd-color: #f2f2f2;
+$pigeons-color: #4D5F82;
+
+$orange-color: #7B490F;
+$warning-background-color: #F3ECE0;
+$warning-border-color: #EBD8B9;
+$alert-error-color: #8f1919;
+$alert-background-color: #F3E0E0;
+$alert-border-color: #EBB9B9;
+$input-text-comment: #ffffff;
+$input-textcomment-border: #e4e4e4;
+$dark-green-color: #45532C;
+$creamiest-green-color: #45532C;
+$message-success: #90B158;
+$message-success-background-color: #718FB6;
+$message-success-border-color: #D6EAB9;
+$message-failure: #BE3838;
+$message-warning: #D0791D;
+
+$breadcrum-color:  #556479;
+
+$link-color: #3788E5;
+$link-active-color: #E1E5EB;
+$action-link-background-color: #f7F9fA;
+$turbotable-font-color: #2F3E53;
+$turbotable-header-border-color: #D0D5DC;
+$turbotable-frozen-background-color: #F7F9FA;
+$turbotable-selected-background-color: #D6EAF8;
+$turbotable-hover-background-color: #EFF2F5;
+$turbotable-header-font-weight: 600;
+$turbotable-frozen-font-size: 12px;
+$turbotable-font-size: 13px;
+$turbotable-font-weight: 400;
+$disabled-text-font: bold 12px Segoe UI;
+$disabled-text-color: #B3BAC3;
+$on-hold-text-color: #FF0000;
+$disabled-text-color-formio-input: #000000;
+
+// input-box
+$text-box-border: #E1E5EB;
+$text-box-border-highlighted: #3788E5;
+$text-box-border-disabled: #D0D5DC;
+$text-box-label-color: #6A7688;
+$text-box-shadow: rgba(55, 136, 229, 0.50);
+$text-box-bg: #FFFFFF;
+$text-box-color: #000000;
+$text-box-bg-disabled: #EFF2F5;
+
+// buttons
+$primary-btn-bg: #3788E5;
+$primary-btn-bg-hover: #2B4FA6;
+$primary-btn-bg-pressed: #2F3E53;
+$primary-btn-box-shadow: rgba(55, 136, 229, 0.80);
+
+$disabled-btn-bg: #E1E5EB;
+
+$secondary-btn-bg: #EFF2F5;
+$secondary-btn-bg-hover: #2B4FA6;
+$secondary-btn-bg-pressed: #2F3E53;
+$secondary-btn-border: #E1E5EB;
+$secondary-btn-color: #2B4FA6;
+$secondary-btn-border-hover: #D0D5DC;
+$secondary-btn-bg-focus: #E1E5EB;
+$secondary-btn-outline: #3788E5;
+
+$tertiary-btn-bg: rgba(255, 255, 255, 0);
+$tertiary-btn-color: #3788E5;
+$tertiary-btn-bg-hover: #EFF2F5;
+$secondory-btn-box-shadow: rgba(55, 136, 229, 0.50);
+
+// textarea
+$textarea-border-focus: #3788E5;
+$textarea-box-border: #E1E5EB;
+$textarea-placeholder-color: #808B9A;
+$textarea-color: #000000;
+
+// checkbox
+$checkbox-bg: #EFF2F5;
+$checkbox-bg-hover: #EFF2F5;
+$checkbox-checked-bg: #3788E5;
+$checkbox-tick-border: #E1E5EB;
+
+// dropdown
+$ui-dropdown-focus: #3788E5;
+$ui-dropdown-hover-bg: #D6EAF8;
+$ui-dropdown-box-border: #E1E5EB;
+$ui-dropdown-normal-color:#000000;
+$ui-dropdown-item-list: #000000;
+$ui-dropdown-item-list-selected: #2F3E53;
+$ui-single-dropdown-item-label:#000000;
+$ui-dropdown-label-bg: #FFFFFF;
+
+// radio
+$ui-radio-checked: #3788E5;
+$ui-radio-unchecked: #718FB6;
+$ui-radio-hover: #EFF2F5;
+$ui-radio-pressed: #E1E5EB;
+$ui-radio-disabled: #B3BAC3;
+
+// labels
+$label-disable:#808B9A;
+$label-enabled: #6A7688;
+
+
+//calender
+$ui-calender-widget-border: #D0D5DC;
+$ui-calender-background: #ffffff;
+$ui-calender-icon-color: #718FB6;
+$ui-calender-date-header-color: #718FB6;
+$ui-calender-date-color: #808B9A;
+$ui-calender-date-background: #ffffff;
+$ui-calender-date-hover-color: #556479;
+$ui-calender-date-hover-background: #EFF2F5;
+$ui-calender-date-selected-color: #3788E5;
+$ui-calender-date-selected-background: #D6EAF8;
+$ui-calender-date-disabled-color: #B3BAC3;
+$ui-calender-date-disabled-background: #FFFFFF;
+$ui-calender-date-today-color:  #3788E5;
+$ui-calender-date-today-background: #FFFFFF;
+$ui-calender-date-text-color: #000000;
+
+// default variables
+$primary-text-color: #8F7F85;
+$primary-font-size: 13px;
+$primary-pagination-font-size: 12px;
+$secondary-font-size: 16px;
+$primary-font-style: normal;
+$disabled-btn-color: #BBBBBB;
+$admin-element-color: brown;
+
+// Abstration Header
+$abs-header-heading-color: rgb(128, 139, 154);
+$abs-header-content-color: rgb(47, 62, 83);
+
+
+// font weight
+$light: 300;
+$normal: 400;
+$lbold: 500;
+$xlbold: 600;
+$bold: 700;
+
+//icons
+$input-addon-icon: #718FB6;
+$accordion-cheveron-icon-color: #718FB6;
+
+//Flatpickr
+$weekday-font-color:#718FB6;
+$normal-day-font-color:#6A7688;
+$selected-date-font-color:#2F3E53;
+$hover-date-font-color:#6A7688;
+$disabled-date-font-color:#000000;
+
+$normal-day-bg-color:#FFFFFF;
+$selected-date-bg-color:#D6EAF8;
+$hover-date-bg-color:#EFF2F5;
+$disabled-date-bg-color:#FFFFFF;
+
+//MRR Dialog box
+$modal-header-title-font:  #D96262;
+
+
+// chart nav button width
+$common-width: 78px;
+
+// heights for respective sections
+$header-height: 44px;
+$navigation-menu-height: 36px;
+
+$workspace-inner-tab: 40px;
+$assign-div-height: 30px;
+
+$pagination-height: 51px; // 66px; // 51px;
+$extra-pagination-height: 23px;
+
+$footer-height: 54px; // 1.5rem
+
+$extra-left-filter-margin: 15px;
+
+$breadcrumb: 40px;
+$custom-wizard: 47px;
+
+$leadtools-document-height: 700px;
+$notification-header-size: 52px;
+$notification-padding-size: 24px;
+
+$sum-all-height-main-container : $header-height + $navigation-menu-height;
+
+// For WS-Mem/Prov tab
+$sum-all-height-WS: $header-height + $navigation-menu-height + $workspace-inner-tab + $assign-div-height + $pagination-height + $footer-height + $extra-pagination-height;
+// For WS-Mem/Prov tab without pagination
+$sum-all-height-WS-WO-paging: $header-height + $navigation-menu-height + $workspace-inner-tab + $assign-div-height + $footer-height + $extra-pagination-height;
+// For Mem/Prov tab
+$sum-all-height: $header-height + $navigation-menu-height + $assign-div-height + $pagination-height + $footer-height + $extra-pagination-height;
+// For Mem/Prov tab without pagination
+$sum-all-height-WO-paging: $header-height + $navigation-menu-height + $assign-div-height + $footer-height + $extra-pagination-height;
+// For left filter
+$sum-all-height-filter: $header-height + $navigation-menu-height + $footer-height + $extra-left-filter-margin;
+
+// For Member360
+$sum-all-height-mem360: $header-height + $breadcrumb + $custom-wizard + $footer-height + $extra-pagination-height - 13px;
+
+// For Member360-charts only
+$sum-all-height-mem360-charts: $header-height + $breadcrumb + $custom-wizard + $extra-pagination-height + $leadtools-document-height;
+
+// For requestList
+$sum-all-height-requestList: $header-height + $navigation-menu-height + $breadcrumb + $footer-height;
+
+// For left filter
+$sum-all-height-notification: $header-height + $navigation-menu-height + $footer-height + $notification-padding-size;
+
+//common header
+$header-icon-color: #3788E5;
+$header-login-fon-family: 'ArialMT', 'Arial';
+
+//card view
+$filter-separator-border:rgb(223, 227, 234);
+$filter-separator-bg: #F7F9FA;
+$card-bg: white;
+$box-shadow-color: #ccc;
+$dropdown-search-bg: #F7F9FA;
+
+
+//tabs
+$active-tab-color: #718FB6;
+$active-text-color:#F7F9FA;
+$inactive-tab-color: #808B9A;
+$tab-border-color: #718FB6;
+
+//sort icon 
+$non-active-sort-icon: #C9C9C9;
+$active-sort-icon: #2B83E3;

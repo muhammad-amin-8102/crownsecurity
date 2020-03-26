@@ -15,11 +15,12 @@ import { startOfToday } from 'date-fns';
 import { User } from '@app/_models/user';
 
 @Component({
-	selector: 'app-call-reporting',
-	templateUrl: './call-reporting.component.html',
-	styleUrls: ['./call-reporting.component.scss']
+  selector: 'app-report-verification',
+  templateUrl: './report-verification.component.html',
+  styleUrls: ['./report-verification.component.scss']
 })
-export class CallReportingComponent implements OnInit, OnDestroy {
+export class ReportVerificationComponent implements OnInit {
+
 	sites: Array<Site>;
 	selectedSite: Site;
 	usersReporting: Array<CallReportingGrid> = [];
@@ -56,7 +57,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		private cdr: ChangeDetectorRef) { }
 
 	ngOnInit() {
-		this.appComponent.pageTitle = 'Call Reporting';
+		this.appComponent.pageTitle = 'Report Verification';
 		this.getSites();
 		this.getRoles();
 		this.cols = CONSTANTS.callReportingColumns;
