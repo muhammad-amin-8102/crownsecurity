@@ -2,7 +2,7 @@ import { Component, OnInit, Host } from '@angular/core';
 import { CONSTANTS } from '@app/constants';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserAuditReportService } from '@app/_services/user-audit-report.service';
-import { range } from 'lodash';
+import { range, cloneDeep } from 'lodash';
 import { format } from 'date-fns';
 import { AppComponent } from '@app/app.component';
 
@@ -30,7 +30,7 @@ export class ViewReportComponent implements OnInit {
 
   ngOnInit() {
 		this.appComponent.pageTitle = 'Report Viewer';
-		this.cols = CONSTANTS.viewReportColumns;
+		this.cols = cloneDeep(CONSTANTS.viewReportColumns);
 		this.cols[0].valueFormatter = this.dateFormatter;
 		this.maxDate = new Date();
 		this.initFormGroup();
@@ -50,6 +50,8 @@ export class ViewReportComponent implements OnInit {
 					endDate: this.endDate
 				}).subscribe((data: any) => {
 					this.maxShifts = [];
+					this.cols = cloneDeep(CONSTANTS.viewReportColumns);
+					this.cols[0].valueFormatter = this.dateFormatter;
 					if (data.maxShift) {
 						range(1, data.maxShift + 1).forEach(x => {
 							this.cols.push({
@@ -62,10 +64,14 @@ export class ViewReportComponent implements OnInit {
 										filter: 'agNumberColumnFilter',
 										cellStyle: function(params) {
 											if (params.value > 0) {
-												return { 'background-color': 'yellow',
-																'color': 'white' };
+												return { 'background-color': 'yellow'};
 											}
 										},
+										cellClassRules: {
+											otColor: function(params) {
+												return params.value > 0;
+											}
+										}
 									},
 									{
 										field: 'cross_ot_s' + x,
@@ -73,10 +79,14 @@ export class ViewReportComponent implements OnInit {
 										filter: 'agNumberColumnFilter',
 										cellStyle: function(params) {
 											if (params.value > 0) {
-												return { 'background-color': 'lightblue',
-																'color': 'white' };
+												return { 'background-color': 'lightblue'};
 											}
 										},
+										cellClassRules: {
+											crossColor: function(params) {
+												return params.value > 0;
+											}
+										}
 									},
 									{
 										field: 'grooming_failure_s' + x,
@@ -84,10 +94,14 @@ export class ViewReportComponent implements OnInit {
 										filter: 'agNumberColumnFilter',
 										cellStyle: function(params) {
 											if (params.value > 0) {
-												return { 'background-color': 'lightcoral',
-																'color': 'white' };
+												return { 'background-color': 'lightcoral' };
 											}
 										},
+										cellClassRules: {
+											gfColor: function(params) {
+												return params.value > 0;
+											}
+										}
 									},
 									{
 										field: 'idf_s' + x,
@@ -95,10 +109,14 @@ export class ViewReportComponent implements OnInit {
 										filter: 'agNumberColumnFilter',
 										cellStyle: function(params) {
 											if (params.value > 0) {
-												return { 'background-color': 'lightcyan',
-																'color': 'white' };
+												return { 'background-color': 'lightcyan' };
 											}
 										},
+										cellClassRules: {
+											idfColor: function(params) {
+												return params.value > 0;
+											}
+										}
 									}
 								]
 							});
@@ -106,7 +124,11 @@ export class ViewReportComponent implements OnInit {
 						});
 						this.reports = data.result;
 						this.gridApi.setColumnDefs(this.cols);
-						// this.gridApi.refreshCells({ force: true });
+						this.gridApi.refreshCells({ force: true });
+					} else {
+						this.reports = data.result;
+						this.gridApi.setColumnDefs(this.cols);
+						this.gridApi.refreshCells({ force: true });
 					}
 				});
 			} else {
@@ -122,6 +144,12 @@ export class ViewReportComponent implements OnInit {
     this.gridApi = params.api;
 		this.gridColumnApi = params.columnApi;
 		// this.gridApi.refreshCells({ force: true });
+	}
+
+	downloadReportAsExcel() {
+		this.gridApi.exportDataAsExcel({
+			columnGroups: true
+		});
 	}
 
 }

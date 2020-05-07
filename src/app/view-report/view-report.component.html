@@ -11,6 +11,8 @@
 	</div>
 </form>
 <hr>
+<button *ngIf="reports.length" (click)="downloadReportAsExcel()" class="btn btn-primary">Download as Excel</button>
+<hr>
 <ag-grid-angular
     style="width: auto; height: 500px;"
     class="ag-theme-balham"
