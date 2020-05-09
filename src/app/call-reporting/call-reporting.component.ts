@@ -197,18 +197,22 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			cross_ot: report ? report.cross_ot : false,
 			grooming_failure: report ? report.grooming_failure : false,
 			attendance: report ? report.attendance : false,
-			beard: report ? report.beard : false,
-			uniform: report ? report.uniform : false,
-			shoes: report ? report.shoes : false,
-			socks: report ? report.socks : false,
-			accessories: report ? report.accessories : false,
-			hair_cut: report ? report.hair_cut : false,
+			beard: report ? report.beard : true,
+			uniform: report ? report.uniform : true,
+			shoes: report ? report.shoes : true,
+			socks: report ? report.socks : true,
+			accessories: report ? report.accessories : true,
+			hair_cut: report ? report.hair_cut : true,
 			idf: report ? report.idf : false,
 			comments: report ? report.comments : '',
 			adhoc: report ? report.adhoc : false,
 			user: report ? report.user : null,
 			users: report ? report.users : []
 		};
+	}
+
+	setAttendance(rowData: any) {
+			this.setGroomingFailure(rowData);
 	}
 
 	setGroomingFailure(rowData: any) {

@@ -1,6 +1,6 @@
 <form [formGroup]="reportSearchForm" class="row">
 	<div class="col-md-2">
-		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="branch_name" placeholder="Select a site" [filter]="true"
+		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="name" placeholder="Select a site" [filter]="true"
 			(onChange)="changeSite()"></p-dropdown>
 	</div>
 	<div class="col-md-2">
@@ -148,41 +148,42 @@
 									[filter]="true" filterBy="value.code"></p-dropdown>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.attendance"
-									[disabled]="!rowData.user || disableReportGrid || !rowData.assigned_role"></p-checkbox>
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.attendance"
+								(onChange)="setAttendance(rowData)"
+								[disabled]="!rowData.user || disableReportGrid || !rowData.assigned_role"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.beard" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.beard" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.uniform" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.uniform" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.shoes" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.shoes" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.socks" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.socks" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.accessories" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.accessories" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.hair_cut" 
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.hair_cut" 
 								(onChange)="setGroomingFailure(rowData)"
 								[disabled]="!rowData.user || disableReportGrid || !rowData.attendance"></p-checkbox>
 							</td>
 							<td>
-								<p-checkbox binary="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user || disableReportGrid">
+								<p-checkbox [binary]="true" [(ngModel)]="rowData.idf" [disabled]="!rowData.user || disableReportGrid">
 								</p-checkbox>
 							</td>
 							<td pEditableColumn>

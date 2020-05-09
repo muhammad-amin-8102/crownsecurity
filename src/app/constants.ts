@@ -43,7 +43,7 @@ export const CONSTANTS = {
 		{ field: 'name', header: 'Name', width: '200px', show: true },
 		{ field: 'user_id', header: 'Code', width: '200px', show: true },
 		{ field: 'attendance', header: 'Attendance', width: '100px', show: true },
-		{ field: 'beard', header: 'Unshaved', width: '100px', show: true },
+		{ field: 'beard', header: 'Shaved', width: '100px', show: true },
 		{ field: 'uniform', header: 'Uniform', width: '100px', show: true },
 		{ field: 'shoes', header: 'Shoes', width: '100px', show: true },
 		{ field: 'socks', header: 'Socks', width: '100px', show: true },
@@ -59,7 +59,7 @@ export const CONSTANTS = {
 		{ field: 'name', header: 'Name', width: '200px', show: true },
 		{ field: 'user_id', header: 'Code', width: '200px', show: true },
 		{ field: 'attendance', header: 'Attendance', width: '100px', show: true },
-		{ field: 'beard', header: 'Unshaved', width: '100px', show: true },
+		{ field: 'beard', header: 'Shaved', width: '100px', show: true },
 		{ field: 'uniform', header: 'Uniform', width: '100px', show: true },
 		{ field: 'shoes', header: 'Shoes', width: '100px', show: true },
 		{ field: 'socks', header: 'Socks', width: '100px', show: true },
@@ -71,7 +71,6 @@ export const CONSTANTS = {
 	viewReportColumns: [
 		{ field: 'reporting_date', headerName: 'Date', filter: 'agSetColumnFilter'},
 		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter'},
-		{ field: 'branch_name', headerName: 'Branch Name', filter: 'agTextColumnFilter'},
 		{ field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
 	],
 };
