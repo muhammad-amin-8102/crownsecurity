@@ -11,7 +11,7 @@
 	</div>
 </form>
 <hr>
-<button pButton *ngIf="reports.length" (click)="downloadReportAsExcel()" icon="pi pi-cloud-download">Download as Excel</button>
+<button pButton *ngIf="reports.length" (click)="downloadReportAsExcel()" label="Download as Excel" icon="pi pi-cloud-download"></button>
 <hr>
 <ag-grid-angular
     style="width: auto; height: 500px;"
