@@ -71,6 +71,6 @@ export const CONSTANTS = {
 	viewReportColumns: [
 		{ field: 'reporting_date', headerName: 'Date', filter: 'agSetColumnFilter'},
 		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter'},
-		{ field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
+		// { field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
 	],
 };
