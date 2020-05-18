@@ -41,6 +41,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	reportSearchFormSubscriber: any;
 	currentReport: any;
 	disableReportGrid: boolean;
+	showEdit: boolean;
 	adhocCols: any;
 	users: Array<User> = [];
 	selectedUsers: Array<any> = [];
@@ -89,10 +90,14 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 					if (data.userAuditReport) {
 						this.currentReport = data.userAuditReport;
 						this.disableReportGrid = data.disableForm;
+						this.showEdit = data.showEdit;
 						this.populateReportingGrid(true);
+						this.updateSelectedUsers();
 					} else {
 						this.disableReportGrid = data.disableForm;
+						this.showEdit = data.showEdit;
 						this.populateReportingGrid();
+						this.updateSelectedUsers();
 					}
 					this.cols[0].show = !this.disableReportGrid;
 					this.adhocCols[0].show = !this.disableReportGrid;
@@ -317,6 +322,13 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		}
 		this.userAuditReportService.createReport(auditReportObject).subscribe(data => {
 		});
+	}
+
+	editReport() {
+		this.showEdit = false;
+		this.disableReportGrid = false;
+		this.cols[0].show = !this.disableReportGrid;
+		this.adhocCols[0].show = !this.disableReportGrid;
 	}
 
 	addAdhoc() {

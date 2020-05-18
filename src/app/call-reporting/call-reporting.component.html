@@ -208,6 +208,10 @@
 				<button pButton type="button" (click)="addAdhoc()" label="Add Adhoc" icon="pi pi-user-plus"
 				style="margin-right: .25em"></button>
 			</p-footer>
+			<p-footer *ngIf="showEdit">
+				<button pButton type="button" (click)="editReport()" label="Edit" icon="pi pi-check"
+					style="margin-right: .25em"></button>
+			</p-footer>
 		</p-card>
 
 
