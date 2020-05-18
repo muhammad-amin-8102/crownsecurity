@@ -148,7 +148,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	populateReportingGrid(dataPresent: boolean = false) {
 		this.usersReporting = [];
 		this.adhocReporting = [];
-		const latestSiteStrength: SiteStrength = head(this.selectedSite.site_strengths);
+		const latestSiteStrength: SiteStrength = this.selectedSite.site_strengths.find(e => +e.shift === +this.selectedShift.value)
 		if (dataPresent) {
 			this.currentReport.user_audits.forEach(report => {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
