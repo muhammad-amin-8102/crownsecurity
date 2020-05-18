@@ -124,11 +124,9 @@ export class ViewReportComponent implements OnInit {
 						});
 						this.reports = data.result;
 						this.gridApi.setColumnDefs(this.cols);
-						this.gridApi.refreshCells({ force: true });
 					} else {
 						this.reports = data.result;
 						this.gridApi.setColumnDefs(this.cols);
-						this.gridApi.refreshCells({ force: true });
 					}
 				});
 			} else {
