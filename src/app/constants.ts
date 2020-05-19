@@ -9,6 +9,8 @@ export const CONSTANTS = {
 		'attendance',
 		'ot',
 		'cross_ot',
+		'night_day_ot',
+		'night_day_cross_ot',
 		'grooming_failure',
 		'beard',
 		'uniform',
@@ -26,6 +28,8 @@ export const CONSTANTS = {
 		'attendance',
 		'ot',
 		'cross_ot',
+		'night_day_ot',
+		'night_day_cross_ot',
 		'grooming_failure',
 		'beard',
 		'uniform',
@@ -69,8 +73,8 @@ export const CONSTANTS = {
 		{ field: 'comments', header: 'Comments', width: '200px', show: true }
 	],
 	viewReportColumns: [
-		{ field: 'reporting_date', headerName: 'Date', filter: 'agSetColumnFilter'},
-		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter'},
+		{ field: 'reporting_date', headerName: 'Date', filter: 'agSetColumnFilter', pinned: 'left'},
+		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter', pinned: 'left'},
 		// { field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
 	],
 };

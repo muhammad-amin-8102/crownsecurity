@@ -46,8 +46,8 @@ export class ViewReportComponent implements OnInit {
 			this.endDate = data.endDate;
 			if (this.reportSearchForm.valid) {
 				this.userAuditReportService.viewReport({
-					startDate: this.startDate,
-					endDate: this.endDate
+					startDate: this.startDate.toLocaleDateString(),
+					endDate: this.endDate.toLocaleDateString()
 				}).subscribe((data: any) => {
 					this.maxShifts = [];
 					this.cols = cloneDeep(CONSTANTS.viewReportColumns);
@@ -59,9 +59,26 @@ export class ViewReportComponent implements OnInit {
 								headerCellClass: 'text-center',
 								children: [
 									{
+										field: 'short_s' + x,
+										headerName: 'Short',
+										// filter: 'agNumberColumnFilter',
+										width: 100,
+										cellStyle: function(params) {
+											if (params.value > 0) {
+												return { 'background-color': 'orange'};
+											}
+										},
+										cellClassRules: {
+											otColor: function(params) {
+												return params.value > 0;
+											}
+										}
+									},
+									{
 										field: 'ot_s' + x,
 										headerName: 'OT',
-										filter: 'agNumberColumnFilter',
+										// filter: 'agNumberColumnFilter',
+										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
 												return { 'background-color': 'yellow'};
@@ -76,7 +93,8 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'cross_ot_s' + x,
 										headerName: 'Cross OT',
-										filter: 'agNumberColumnFilter',
+										// filter: 'agNumberColumnFilter',
+										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
 												return { 'background-color': 'lightblue'};
@@ -89,9 +107,42 @@ export class ViewReportComponent implements OnInit {
 										}
 									},
 									{
+										field: 'night_day_ot_s' + x,
+										headerName: 'Night/Day OT',
+										// filter: 'agNumberColumnFilter',
+										width: 150,
+										cellStyle: function(params) {
+											if (params.value > 0) {
+												return { 'background-color': 'lightgreen'};
+											}
+										},
+										cellClassRules: {
+											crossColor: function(params) {
+												return params.value > 0;
+											}
+										}
+									},
+									{
+										field: 'night_day_cross_ot_s' + x,
+										headerName: 'Night/Day Cross OT',
+										// filter: 'agNumberColumnFilter',
+										width: 200,
+										cellStyle: function(params) {
+											if (params.value > 0) {
+												return { 'background-color': 'lightred'};
+											}
+										},
+										cellClassRules: {
+											crossColor: function(params) {
+												return params.value > 0;
+											}
+										}
+									},
+									{
 										field: 'grooming_failure_s' + x,
 										headerName: 'GF',
-										filter: 'agNumberColumnFilter',
+										// filter: 'agNumberColumnFilter',
+										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
 												return { 'background-color': 'lightcoral' };
@@ -106,7 +157,8 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'idf_s' + x,
 										headerName: 'ID Failure',
-										filter: 'agNumberColumnFilter',
+										// filter: 'agNumberColumnFilter',
+										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
 												return { 'background-color': 'lightcyan' };

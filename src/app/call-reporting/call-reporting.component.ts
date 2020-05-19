@@ -82,8 +82,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			this.selectedShift = data.selectedShift;
 			if (this.reportSearchForm.valid) {
 				this.userAuditReportService.getByParams({
-					userTodayDate: startOfToday().toISOString(),
-					reportingDate: this.reportingDate,
+					userTodayDate: startOfToday().toLocaleDateString(),
+					reportingDate: this.reportingDate.toLocaleDateString(),
 					siteId: this.selectedSite.id,
 					shift: this.selectedShift.value
 				}).subscribe((data: any) => {
@@ -200,6 +200,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			user_id: report ? +report.user.id : 0,
 			ot: report ? report.ot : false,
 			cross_ot: report ? report.cross_ot : false,
+			night_day_ot: report ? report.night_day_ot : false,
+			night_day_cross_ot: report ? report.night_day_cross_ot : false,
 			grooming_failure: report ? report.grooming_failure : false,
 			attendance: report ? report.attendance : false,
 			beard: report ? report.beard : true,
@@ -221,8 +223,12 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	}
 
 	setGroomingFailure(rowData: any) {
-		rowData.grooming_failure = !(rowData.attendance && rowData.beard && rowData.uniform && rowData.shoes
-		&& rowData.socks && rowData.accessories && rowData.hair_cut);
+		if (rowData.attendance) {
+			rowData.grooming_failure = !(rowData.attendance && rowData.beard && rowData.uniform && rowData.shoes
+				&& rowData.socks && rowData.accessories && rowData.hair_cut);
+		} else {
+			rowData.grooming_failure = 0;
+		}
 	}
 
 	changeRole(rowData: any) {
@@ -248,7 +254,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	setUserData(rowData: any) {
 		this.userService.getCrossOtByUserId({
-			reportingDate: this.reportingDate,
+			reportingDate: this.reportingDate.toLocaleDateString(),
 			siteId: this.selectedSite.id,
 			shift: this.selectedShift.value,
 			user_id: rowData.user.id
@@ -257,6 +263,8 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			rowData.user_id = rowData.user.id;
 			rowData.ot = data.ot > 0;
 			rowData.cross_ot = data.cross_ot > 0;
+			rowData.night_day_ot = data.night_day_ot > 0;
+			rowData.night_day_cross_ot = data.night_day_cross_ot > 0;
 			this.updateSelectedUsers();
 			if (data.cross_ot_not_possible !== 0) {
 				this.messageService.add(CONSTANTS.invalidCrossSiteSameShiftError);
@@ -309,7 +317,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	submitReport() {
 		const auditReportObject = {
-			reportingDate: this.reportingDate,
+			reportingDate: this.reportingDate.toLocaleDateString(),
 			siteId: this.selectedSite.id,
 			shift: this.selectedShift.value,
 			user_audits: [
@@ -321,6 +329,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			auditReportObject['userAuditReportId'] = this.currentReport.id;
 		}
 		this.userAuditReportService.createReport(auditReportObject).subscribe(data => {
+			this.currentReport = data;
 		});
 	}
 

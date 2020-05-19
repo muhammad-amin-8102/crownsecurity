@@ -196,6 +196,8 @@ export class ReportVerificationComponent implements OnInit {
 			user_id: report ? +report.user.id : 0,
 			ot: report ? report.ot : false,
 			cross_ot: report ? report.cross_ot : false,
+			night_day_ot: report ? report.night_day_ot : false,
+			night_day_cross_ot: report ? report.night_day_cross_ot : false,
 			grooming_failure: report ? report.grooming_failure : false,
 			attendance: report ? report.attendance : false,
 			beard: report ? report.beard : false,

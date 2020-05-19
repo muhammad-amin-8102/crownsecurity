@@ -8,6 +8,8 @@ export interface CallReportingGrid {
 	user_id: number;
 	ot: boolean;
 	cross_ot: boolean;
+	night_day_ot: boolean;
+	night_day_cross_ot: boolean;
 	grooming_failure: boolean;
 	attendance: boolean;
 	beard: boolean;
