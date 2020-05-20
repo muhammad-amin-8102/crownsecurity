@@ -94,6 +94,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 						this.populateReportingGrid(true);
 						this.updateSelectedUsers();
 					} else {
+						this.currentReport = {};
 						this.disableReportGrid = data.disableForm;
 						this.showEdit = data.showEdit;
 						this.populateReportingGrid();
