@@ -19,6 +19,7 @@ export class User {
 	password: string;
 	verified: boolean;
 	contact_number: number;
+	alternate_contact_number: number;
 	active: boolean;
 	role: Role;
 	userRole: UserRole;
@@ -35,6 +36,8 @@ export class UserAudit {
 	attendance: boolean;
 	ot: boolean;
 	cross_ot: boolean;
+	night_day_ot: boolean;
+	night_day_cross_ot: boolean;
 	grooming_failure: boolean;
 	beard: boolean;
 	uniform: boolean;

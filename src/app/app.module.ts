@@ -26,6 +26,7 @@ import { MessageService } from 'primeng/api';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ReportVerificationComponent } from './report-verification/report-verification.component';
+import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component';
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { ReportVerificationComponent } from './report-verification/report-verifi
 		CallReportingComponent,
 		SiteComponent,
 		ViewReportComponent,
-		ReportVerificationComponent
+		ReportVerificationComponent,
+		AdhocNewUserComponent
 	],
 	imports: [
 		BrowserModule,

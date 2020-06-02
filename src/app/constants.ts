@@ -4,6 +4,11 @@ export const CONSTANTS = {
 		summary: 'Incorrect Assignment',
 		detail: 'User cannot be assigned on same shift for cross site'
 	},
+	submitReportSuccess : {
+		severity: 'success',
+		summary: 'Report Submitted',
+		detail: 'successfully'
+	},
 	auditRequestProps: [
 		'user_id',
 		'attendance',
@@ -59,9 +64,9 @@ export const CONSTANTS = {
 	callReportingAdhocColumns: [
 		{ field: 'actions', header: 'Actions', width: '100px', show: true },
 		{ field: 'role', header: 'Role', width: '200px', show: true },
-		{ field: 'assigned_role', header: 'Assigned Role', width: '200px', show: true },
 		{ field: 'name', header: 'Name', width: '200px', show: true },
 		{ field: 'user_id', header: 'Code', width: '200px', show: true },
+		{ field: 'assigned_role', header: 'Assigned Role', width: '200px', show: true },
 		{ field: 'attendance', header: 'Attendance', width: '100px', show: true },
 		{ field: 'beard', header: 'Shaved', width: '100px', show: true },
 		{ field: 'uniform', header: 'Uniform', width: '100px', show: true },
@@ -77,4 +82,57 @@ export const CONSTANTS = {
 		{ field: 'site_name', headerName: 'Site Name', filter: 'agSetColumnFilter', pinned: 'left'},
 		// { field: 'zone', headerName: 'Zone', filter: 'agSetColumnFilter'}
 	],
+	adhocNewUsersCols: [
+		{ field: 'actions', header: 'Actions', width: '100px', show: true },
+		{ field: 'role', header: 'Role', width: '200px', show: true },
+		{ field: 'code', header: 'Code', width: '200px', show: true },
+		{ field: 'firstname', header: 'Firstname', width: '200px', show: true },
+		{ field: 'middlename', header: 'Middlename', width: '200px', show: true },
+		{ field: 'lastname', header: 'Lastname', width: '200px', show: true },
+		{ field: 'dob', header: 'DOB', width: '250px', show: true },
+		{ field: 'gender', header: 'Gender', width: '200px', show: true },
+		{ field: 'address', header: 'Address', width: '200px', show: true },
+		{ field: 'pan', header: 'PAN', width: '200px', show: true },
+		{ field: 'adhaar', header: 'ADHAAR', width: '200px', show: true },
+		{ field: 'verified', header: 'Verified', width: '100px', show: true },
+		{ field: 'contact_number', header: 'Contact Number', width: '200px', show: true },
+		{ field: 'alternate_contact_number', header: 'Alternate Contact Number', width: '200px', show: true },
+		{ field: 'active', header: 'Active', width: '100px', show: true },
+	],
+	adhocNewUserCreateRequestProps: [
+		'role_id',
+		'code',
+		'firstname',
+		'middlename',
+		'lastname',
+		'dob',
+		'gender',
+		'address',
+		'pan',
+		'adhaar',
+		'verified',
+		'contact_number',
+		'alternate_contact_number',
+		'active'
+	],
+	adhocNewUserUpdateRequestProps: [
+		'id',
+		'role_id',
+		'code',
+		'firstname',
+		'middlename',
+		'lastname',
+		'dob',
+		'gender',
+		'address',
+		'pan',
+		'adhaar',
+		'verified',
+		'contact_number',
+		'alternate_contact_number',
+		'active'
+	],
+	adhocNewUserDeleteRequestProps: [
+		'id'
+	]
 };

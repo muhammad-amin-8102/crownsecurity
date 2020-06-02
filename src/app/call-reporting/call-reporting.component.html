@@ -126,14 +126,10 @@
 							<td style="text-align:center" [hidden]="!cols[0].show">
 								<button pButton type="button" icon="pi pi-refresh" class="ui-button-info mr-2" (click)="onRowReset(rowData, true)"></button>
 								<button pButton type="button" icon="pi pi-times" class="ui-button-danger" (click)="onRowDelete(rowData, true)"></button>
-            	</td>
+							</td>
 							<td>
 								<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role" optionLabel="name"
 									(onChange)="changeRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
-							</td>
-							<td>
-								<p-dropdown [options]="roles" [(ngModel)]="rowData.assigned_role" placeholder="Assign a role" optionLabel="name"
-									(onChange)="changeAssignedRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
 							</td>
 							<td>
 								<p-dropdown [options]="rowData.users" [(ngModel)]="rowData.user" placeholder="Search a name"
@@ -146,6 +142,10 @@
 									optionLabel="code" (onChange)="changeUserId(rowData)"
 									[disabled]="!rowData.role || !rowData.users || !rowData.users.length || disableReportGrid"
 									[filter]="true" filterBy="value.code"></p-dropdown>
+							</td>
+							<td>
+								<p-dropdown [options]="roles" [(ngModel)]="rowData.assigned_role" placeholder="Assign a role" optionLabel="name"
+									(onChange)="changeAssignedRole(rowData)" [disabled]="disableReportGrid"></p-dropdown>
 							</td>
 							<td>
 								<p-checkbox [binary]="true" [(ngModel)]="rowData.attendance"

@@ -21,3 +21,8 @@ a { cursor: pointer }
 .idfColor {
 	background-color: lightcyan;
 }
+
+.ui-widget,
+    .ui-widget .ui-widget {
+    font-size: 12px !important;
+}

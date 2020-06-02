@@ -13,6 +13,8 @@ import { MessageService } from 'primeng/api';
 import { CONSTANTS } from '@app/constants';
 import { startOfToday } from 'date-fns';
 import { User } from '@app/_models/user';
+import { AdhocService } from '@app/_services/adhoc.service';
+import { AdhocType } from '@app/_models/adhoc';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -46,6 +48,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	users: Array<User> = [];
 	selectedUsers: Array<any> = [];
 	unselectedUsers: Array<any> = [];
+	adhocTypes: Array<AdhocType>;
 
 	constructor(@Host() private appComponent: AppComponent,
 		private siteService: SiteService,
@@ -54,7 +57,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		private userService: UserService,
 		private fb: FormBuilder,
 		private messageService: MessageService,
-		private cdr: ChangeDetectorRef) { }
+		private adhocService: AdhocService) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
@@ -112,6 +115,12 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	getSites() {
 		this.siteService.getAll().subscribe(data => {
 			this.sites = data;
+		});
+	}
+
+	getAdhocTypes() {
+		this.adhocService.getAll().subscribe(data => {
+			this.adhocTypes = data;
 		});
 	}
 
