@@ -1,13 +1,12 @@
 export class Site {
 	id: number;
 	name: string;
-	code: string;
-	branch_name: string;
-	location: string;
-	zone: string;
+	site_code: string;
+	billing_name: string;
+	gst_number: string;
 	address: string;
-	contact: string;
-	contact_person: string;
+	contact_number: string;
+	contact_person_name: string;
 	active: boolean;
 	shift: number;
 	site_strengths: Array<SiteStrength>;
@@ -19,8 +18,9 @@ export class SiteStrength {
 	id: number;
 	requirement_date: Date;
 	site_id: number;
-	strength_count: number;
-	shift: number;
+	strength_count_day: number;
+	strength_count_general: number;
+	strength_count_night: number;
 	createdAt: Date;
 	updatedAt: Date;
 }

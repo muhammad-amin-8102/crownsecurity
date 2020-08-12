@@ -25,7 +25,6 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { ReportVerificationComponent } from './report-verification/report-verification.component';
 import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component
 		CallReportingComponent,
 		SiteComponent,
 		ViewReportComponent,
-		ReportVerificationComponent,
 		AdhocNewUserComponent
 	],
 	imports: [

@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { CallReportingComponent } from './call-reporting/call-reporting.component';
 import { SiteComponent } from './site/site.component';
 import { ViewReportComponent } from './view-report/view-report.component';
-import { ReportVerificationComponent } from './report-verification/report-verification.component';
 import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component';
 
 
@@ -28,11 +27,6 @@ const routes: Routes = [
 	{
 		path: 'view-report',
 		component: ViewReportComponent,
-		canActivate: [AuthGuard]
-	},
-	{
-		path: 'report-verification',
-		component: ReportVerificationComponent,
 		canActivate: [AuthGuard]
 	},
 	{

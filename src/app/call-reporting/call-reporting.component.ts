@@ -27,12 +27,14 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	usersReporting: Array<CallReportingGrid> = [];
 	adhocReporting: Array<CallReportingGrid> = [];
 	shifts: Array<{
-		name: number;
+		name: string;
 		value: number;
+		strength_count: number;
 	}> = [];
 	selectedShift: {
 		name: number;
 		value: number;
+		strength_count: number;
 	};
 	roles: Array<UserRole> = [];
 	cols: any[];
@@ -143,12 +145,15 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	changeSite() {
 		if (this.selectedSite) {
-			const shiftCount = this.selectedSite.shift;
 			this.shifts = [];
-			for (let i = 1; i <= shiftCount; i++) {
+
+			const site_strength = head(this.selectedSite.site_strengths);
+			for (let i = 1; i <= 3; i++) {
+				const shiftType = i === 1 ? 'day' : i === 2 ? 'general' : 'night';
 				this.shifts.push({
-					name: i,
-					value: i
+					name: shiftType,
+					value: i,
+					strength_count: site_strength['strength_count_' + shiftType]
 				});
 			}
 		} else {
@@ -163,7 +168,6 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	populateReportingGrid(dataPresent: boolean = false) {
 		this.usersReporting = [];
 		this.adhocReporting = [];
-		const latestSiteStrength: SiteStrength = this.selectedSite.site_strengths.find(e => +e.shift === +this.selectedShift.value)
 		if (dataPresent) {
 			this.currentReport.user_audits.forEach(report => {
 				const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject(report);
@@ -176,17 +180,17 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 					this.usersReporting.push(callReportingGridObject);
 				}
 			});
-			if (latestSiteStrength && latestSiteStrength.strength_count
-				&& this.usersReporting.length < latestSiteStrength.strength_count) {
-				range(1, latestSiteStrength.strength_count - this.usersReporting.length + 1).forEach(e => {
+			if (this.selectedShift.strength_count
+				&& this.usersReporting.length < this.selectedShift.strength_count) {
+				range(1, this.selectedShift.strength_count - this.usersReporting.length + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
 					this.addDisplayNameToUser(callReportingGridObject);
 					this.usersReporting.push(callReportingGridObject);
 				});
 			}
 		} else {
-			if (latestSiteStrength && latestSiteStrength.strength_count) {
-				range(1, latestSiteStrength.strength_count + 1).forEach(e => {
+			if (this.selectedShift.strength_count) {
+				range(1, this.selectedShift.strength_count + 1).forEach(e => {
 					const callReportingGridObject: CallReportingGrid = this.getCallReportingRowObject();
 					this.addDisplayNameToUser(callReportingGridObject);
 					this.usersReporting.push(callReportingGridObject);
