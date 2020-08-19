@@ -117,6 +117,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	getSites() {
 		this.siteService.getAll().subscribe(data => {
 			this.sites = data;
+			this.sites.forEach((x: any) => x.combined_name = x.name + ' (' + x.site_code + ')');
 		});
 	}
 

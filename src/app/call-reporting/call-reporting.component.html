@@ -1,6 +1,6 @@
 <form [formGroup]="reportSearchForm" class="row">
 	<div class="col-md-2">
-		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="name" placeholder="Select a site" [filter]="true"
+		<p-dropdown [options]="sites" formControlName="selectedSite" optionLabel="combined_name" placeholder="Select a site" [filter]="true"
 			(onChange)="changeSite()"></p-dropdown>
 	</div>
 	<div class="col-md-2">
