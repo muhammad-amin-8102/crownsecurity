@@ -72,7 +72,7 @@
 							</span>
 							<span *ngIf="rowData.edit">
 								<p-dropdown [options]="roles" [style]="{'width':'180px'}" [(ngModel)]="rowData.role" placeholder="Select a role"
-									optionLabel="name" (change)="onChangeRole(rowData)">
+									optionLabel="name" (change)="onChangeRole()">
 								</p-dropdown>
 							</span>
 						</td>
