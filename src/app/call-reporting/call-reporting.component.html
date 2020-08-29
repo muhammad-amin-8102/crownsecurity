@@ -52,6 +52,9 @@
 									[filter]="true" filterBy="value.code"></p-dropdown>
 							</td>
 							<td>
+								<div>{{rowData.user?.contact_number || rowData.user?.alternate_contact_number || ''}}</div>
+							</td>
+							<td>
 								<p-checkbox binary="true" [(ngModel)]="rowData.attendance"
 									(onChange)="setGroomingFailure(rowData)"
 									[disabled]="!rowData.user || disableReportGrid"></p-checkbox>

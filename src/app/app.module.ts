@@ -26,6 +26,13 @@ import { MessageService } from 'primeng/api';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component';
+import { UserComponent } from './user/user.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/api';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SharedService } from './shared.service';
 
 @NgModule({
 	declarations: [
@@ -38,7 +45,9 @@ import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component
 		CallReportingComponent,
 		SiteComponent,
 		ViewReportComponent,
-		AdhocNewUserComponent
+		AdhocNewUserComponent,
+		UserComponent,
+		EditUserComponent
 	],
 	imports: [
 		BrowserModule,
@@ -54,15 +63,22 @@ import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component
 		CardModule,
 		NgxSpinnerModule,
 		ToastModule,
+		DynamicDialogModule,
+		InputTextModule,
+		InputTextareaModule,
 		AgGridModule.withComponents([])
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-		MessageService
+		MessageService,
+		DialogService,
+		SharedService
 		// provider used to create fake backend
 		// fakeBackendProvider
+	],
+	entryComponents: [
+		EditUserComponent
 	],
 	bootstrap: [AppComponent]
 })

@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from './_models/user';
 import { AuthenticationService } from './_services';
-import { Role } from './_models';
+import { RoleService } from './_services/role.service';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'CrownSecurity';
 	currentUser: User;
-	pageTitle = '';
+  pageTitle = '';
 
   constructor(
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private sharedService: SharedService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  ngOnInit() {
+    this.sharedService.getAllData();
+  }
+
   get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
+    return true;
+    // return this.currentUser && this.currentUser.role === Role.Admin;
   }
 
   get isLoggedin() {

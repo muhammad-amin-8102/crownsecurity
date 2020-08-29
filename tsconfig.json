@@ -25,7 +25,8 @@
       "@environments/*": [
         "src/environments/*"
       ]
-    }
+    },
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

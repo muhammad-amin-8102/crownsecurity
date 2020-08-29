@@ -23,6 +23,19 @@ a { cursor: pointer }
 }
 
 .ui-widget,
-    .ui-widget .ui-widget {
-    font-size: 12px !important;
+.ui-widget .ui-widget {
+  font-size: 10px !important;
+}
+
+.ui-calendar .ui-datepicker {
+//   min-width: 80% !important;
+//   width: 80% !important;
+  line-height: 0.3 !important;
+}
+.ui-datepicker table {
+	font-size: 10px !important;
+}
+
+.ui-inputtext {
+  font-size: 10px !important;
 }

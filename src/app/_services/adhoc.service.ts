@@ -28,6 +28,6 @@ export class AdhocService {
     }
 
     deleteUser(params: any) {
-        return this.http.delete(`${environment.apiUrl}/adhoc-new-users`, params);
+        return this.http.post(`${environment.apiUrl}/adhoc-new-users/delete`, params);
     }
 }

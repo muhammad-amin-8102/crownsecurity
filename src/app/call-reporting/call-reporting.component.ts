@@ -1,11 +1,9 @@
-import { Component, OnInit, Host, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Host, OnDestroy } from '@angular/core';
 import { AppComponent } from '@app/app.component';
-import { Site, SiteStrength } from '@app/_models/site';
-import { SiteService } from '@app/_services/site.service';
+import { Site } from '@app/_models/site';
 import { UserAuditReportService } from '@app/_services/user-audit-report.service';
 import { head, range, pick, cloneDeep, differenceBy } from 'lodash';
 import { UserRole } from '@app/_models';
-import { RoleService } from '@app/_services/role.service';
 import { UserService } from '@app/_services/user.service';
 import { CallReportingGrid } from '@app/_models/call-reporting';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
@@ -15,6 +13,7 @@ import { startOfToday } from 'date-fns';
 import { User } from '@app/_models/user';
 import { AdhocService } from '@app/_services/adhoc.service';
 import { AdhocType } from '@app/_models/adhoc';
+import { SharedService } from '@app/shared.service';
 
 @Component({
 	selector: 'app-call-reporting',
@@ -53,8 +52,7 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 	adhocTypes: Array<AdhocType>;
 
 	constructor(@Host() private appComponent: AppComponent,
-		private siteService: SiteService,
-		private roleService: RoleService,
+		private sharedService: SharedService,
 		private userAuditReportService: UserAuditReportService,
 		private userService: UserService,
 		private fb: FormBuilder,
@@ -63,8 +61,14 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Call Reporting';
-		this.getSites();
-		this.getRoles();
+		this.roles = this.sharedService.roles;
+		this.sites = this.sharedService.sites;
+		this.users = this.sharedService.users;
+		this.sharedService.broadcastAllData.subscribe(allData => {
+		if (allData) {
+			[this.roles, this.sites, this.users] = allData;
+		}
+		});
 		this.cols = CONSTANTS.callReportingColumns;
 		this.adhocCols = CONSTANTS.callReportingAdhocColumns;
 		this.frozenCols = [
@@ -72,7 +76,6 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		];
 		this.maxDate = new Date();
 		this.initFormGroup();
-		this.getAllUsers();
 	}
 
 	initFormGroup() {
@@ -114,33 +117,9 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	getSites() {
-		this.siteService.getAll().subscribe(data => {
-			this.sites = data;
-			this.sites.forEach((x: any) => x.combined_name = x.name + ' (' + x.site_code + ')');
-		});
-	}
-
 	getAdhocTypes() {
 		this.adhocService.getAll().subscribe(data => {
 			this.adhocTypes = data;
-		});
-	}
-
-	getRoles() {
-		this.roleService.getAll().subscribe(data => {
-			this.roles = data;
-		});
-	}
-
-	getAllUsers() {
-		this.userService.getAll().subscribe(data => {
-			this.users = data;
-			if (this.users && this.users.length) {
-				this.users.forEach(x => {
-					x.displayname = x.firstname + ' ' + x.lastname;
-				});
-			}
 		});
 	}
 
@@ -251,7 +230,6 @@ export class CallReportingComponent implements OnInit, OnDestroy {
 			rowData.users = differenceBy(this.users.filter(x => +x.role_id === +rowData.role.id), this.selectedUsers, 'id');
 		}
 		if (rowData.adhoc) {
-			
 		}
 	}
 

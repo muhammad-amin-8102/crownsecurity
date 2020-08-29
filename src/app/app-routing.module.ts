@@ -7,6 +7,7 @@ import { CallReportingComponent } from './call-reporting/call-reporting.componen
 import { SiteComponent } from './site/site.component';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { AdhocNewUserComponent } from './adhoc-new-user/adhoc-new-user.component';
+import { UserComponent } from './user/user.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,16 @@ const routes: Routes = [
 	{
 		path: 'adhoc-new-users',
 		component: AdhocNewUserComponent,
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'users',
+		component: UserComponent,
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'sites',
+		component: SiteComponent,
 		canActivate: [AuthGuard]
 	},
 	// otherwise redirect to home

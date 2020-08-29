@@ -54,14 +54,14 @@ export class ViewReportComponent implements OnInit {
 					this.cols[0].valueFormatter = this.dateFormatter;
 					if (data.maxShift) {
 						range(1, data.maxShift + 1).forEach(x => {
+							const shiftName = x === 1 ? 'Day' : x === 2 ? 'General' : 'Night';
 							this.cols.push({
-								headerName: 'Shift ' + x,
+								headerName: shiftName + ' Shift',
 								headerCellClass: 'text-center',
 								children: [
 									{
 										field: 'short_s' + x,
 										headerName: 'Short',
-										// filter: 'agNumberColumnFilter',
 										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -77,7 +77,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'ot_s' + x,
 										headerName: 'OT',
-										// filter: 'agNumberColumnFilter',
 										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -93,7 +92,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'cross_ot_s' + x,
 										headerName: 'Cross OT',
-										// filter: 'agNumberColumnFilter',
 										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -109,7 +107,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'night_day_ot_s' + x,
 										headerName: 'Night/Day OT',
-										// filter: 'agNumberColumnFilter',
 										width: 150,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -125,7 +122,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'night_day_cross_ot_s' + x,
 										headerName: 'Night/Day Cross OT',
-										// filter: 'agNumberColumnFilter',
 										width: 200,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -141,7 +137,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'grooming_failure_s' + x,
 										headerName: 'GF',
-										// filter: 'agNumberColumnFilter',
 										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {
@@ -157,7 +152,6 @@ export class ViewReportComponent implements OnInit {
 									{
 										field: 'idf_s' + x,
 										headerName: 'ID Failure',
-										// filter: 'agNumberColumnFilter',
 										width: 100,
 										cellStyle: function(params) {
 											if (params.value > 0) {

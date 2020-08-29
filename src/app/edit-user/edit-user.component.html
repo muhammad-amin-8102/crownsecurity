@@ -1,0 +1,145 @@
+<div class="ui-g" style="height: 30em; overflow: auto;">
+    <div class="ui-g-12">
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>First Name</h6>
+                    <input pInputText type="text" [(ngModel)]="user.firstname">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Middle Name</h6>
+                    <input pInputText type="text" [(ngModel)]="user.middlename">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Last Name</h6>
+                    <input pInputText type="text" [(ngModel)]="user.lastname">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Role</h6>
+                    <p-dropdown [options]="roles" [(ngModel)]="user.role" placeholder="Select a role"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Code</h6>
+                    <input pInputText type="text" [(ngModel)]="user.code">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Gender</h6>
+                    <p-dropdown [options]="genders" [(ngModel)]="user.genderObj"
+                        placeholder="Select a Gender" optionLabel="name">
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Address</h6>
+                    <input pInputText type="text" [(ngModel)]="user.address">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Contact No.</h6>
+                    <input pInputText type="tel" [(ngModel)]="user.contact_number">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Alternate No.</h6>
+                    <input pInputText type="text" [(ngModel)]="user.alternate_contact_number">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>DOB</h6>
+                </div>
+                <div class="ui-g-nopad">
+                    <p-calendar [(ngModel)]="user.dobDate"
+                        dateFormat="yy-mm-dd" [readonlyInput]="true" [monthNavigator]="true" 
+                        [yearNavigator]="true" yearRange="1900:2100" id="dob-calendar">
+                        </p-calendar>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>PAN</h6>
+                    <input pInputText type="text" [(ngModel)]="user.pan">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Aadhaar</h6>
+                    <input pInputText type="text" [(ngModel)]="user.adhaar">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Adhaar Name</h6>
+                    <input pInputText type="text" [(ngModel)]="user.adhaar_name">
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Site</h6>
+                    <p-dropdown [options]="sites" [(ngModel)]="user.site" [filter]="true"
+                        placeholder="Select a Site" optionLabel="combined_name">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Joining Date</h6>
+                    <p-calendar [(ngModel)]="user.startDateObj" 
+                    dateFormat="yy-mm-dd" [readonlyInput]="true" [monthNavigator]="true" 
+                    [yearNavigator]="true" yearRange="1900:2100">
+                    </p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-nopad">
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Age(Years)</h6>
+                    <div class="text-center" [ngClass]="{'back-red': age(todayDate, user.dobDate) < 25 || age(todayDate, user.dobDate) > 45}">{{age(todayDate, user.dobDate)}}</div>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Active</h6>
+                    <p-checkbox [binary]="true" [(ngModel)]="user.active" [disabled]="!user.edit">
+                    </p-checkbox>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div class="ui-g-nopad">
+                    <h6>Verified</h6>
+                    <p-checkbox [binary]="true" [(ngModel)]="user.verified" [disabled]="!user.edit">
+                    </p-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui-dialog-footer" style="border: none;">
+    <button class="btn btn-primary" (click)="onRowUpsert(user)">
+        Save
+    </button>
+</div>

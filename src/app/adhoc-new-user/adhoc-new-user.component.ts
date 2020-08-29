@@ -1,14 +1,14 @@
-import { Component, OnInit, Host, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Host, OnDestroy, ViewChild } from '@angular/core';
 import { AppComponent } from '@app/app.component';
 import { AdhocService } from '@app/_services/adhoc.service';
 import { AdhocNewUser } from '@app/_models/adhoc';
 import { CONSTANTS } from '@app/constants';
-import { RoleService } from '@app/_services/role.service';
 import { UserRole } from '@app/_models/role';
-import { head, cloneDeep, pick } from 'lodash';
+import { cloneDeep, pick } from 'lodash';
 import { format, isWithinInterval } from 'date-fns';
 import { FilterUtils, LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { SharedService } from '@app/shared.service';
 
 @Component({
 	selector: 'app-adhoc-new-user',
@@ -35,25 +35,23 @@ export class AdhocNewUserComponent implements OnInit, OnDestroy {
 
 	constructor(@Host() private appComponent: AppComponent,
 		private adhocService: AdhocService,
-		private roleService: RoleService) { }
+		private sharedService: SharedService) { }
 
 	ngOnInit() {
 		this.appComponent.pageTitle = 'Adhoc New Users';
 		this.adhocNewUsersVirtual = Array.from({length: 10000});
 		this.getAllUsers();
-		this.getRoles();
-		//custome filters
+		this.roles = this.sharedService.roles;
+		// custome filters
 		FilterUtils['role_dropdown_filter'] = (value, filter): boolean => {
 			if (filter === undefined || filter === null || filter.trim() === '') {
                 return true;
             }
-    
             if (value === undefined || value === null) {
                 return false;
 			}
-			
 			return String(value.name).toLowerCase().indexOf(filter) > -1;
-		}
+		};
 
 		FilterUtils['dob_filter'] = (value, filter): boolean => {
 			if (filter.length && new Date(filter[0]) < new Date(filter[1])) {
@@ -63,18 +61,10 @@ export class AdhocNewUserComponent implements OnInit, OnDestroy {
 				});
 			}
 			return false;
-		}
-		
+		};
 		FilterUtils['gender_filter'] = (value, filter): boolean => {
 			return String(value.name).toLowerCase().includes(String(filter).toLowerCase());
-		}
-	}
-
-	
-	getRoles() {
-		this.roleService.getAll().subscribe(data => {
-			this.roles = data;
-		});
+		};
 	}
 
 	getAllUsers() {
@@ -83,14 +73,13 @@ export class AdhocNewUserComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	loadLazy(event: LazyLoadEvent) {  
-		//load data of required page
-		let loadedUsers = this.adhocNewUsers.slice(event.first, (event.first + event.rows));
+	loadLazy(event: LazyLoadEvent) {
+		// load data of required page
+		const loadedUsers = this.adhocNewUsers.slice(event.first, (event.first + event.rows));
 
-		//populate page of virtual cars
+		// populate page of virtual cars
 		Array.prototype.splice.apply(this.adhocNewUsersVirtual, [...[event.first, event.rows], ...loadedUsers]);
-		
-		//trigger change detection
+		// trigger change detection
 		this.adhocNewUsersVirtual = [...this.adhocNewUsersVirtual];
     }
 
@@ -117,7 +106,7 @@ export class AdhocNewUserComponent implements OnInit, OnDestroy {
 		};
 	}
 
-	dobRangeFilter(value, rangeType) {
+	dobRangeFilter() {
 		if (this.fromDate && this.toDate) {
 			return this.table.filter([this.fromDate, this.toDate], 'dob', 'dob_filter');
 		}
@@ -141,49 +130,50 @@ export class AdhocNewUserComponent implements OnInit, OnDestroy {
 	onRowDelete(rowData: AdhocNewUser) {
 		if (rowData.id) {
 			this.adhocService.deleteUser(pick(rowData, CONSTANTS.adhocNewUserDeleteRequestProps)).subscribe(
-				(res: any) => {
+				() => {
 					this.adhocNewUsers.splice(this.adhocNewUsers.findIndex(x => x === rowData), 1);
 				}
-			)
+			);
+		} else {
+			this.adhocNewUsers.splice(this.adhocNewUsers.findIndex(x => x === rowData), 1);
 		}
 	}
 
 	onRowUpsert(rowData: AdhocNewUser) {
 		rowData.role_id = rowData.role.id;
-		rowData.gender = rowData.gender.name;
-		rowData.dob = format(new Date(rowData.dob.toLocaleDateString()), 'yyyy-MM-dd');
+		rowData.gender = rowData.gender.name ? rowData.gender.name : rowData.gender;
+		rowData.dob = format(new Date(new Date(rowData.dob).toLocaleDateString()), 'yyyy-MM-dd');
 		if (!rowData.id) {
-			//create user
+			// create user
 			this.adhocService.createUser(pick(rowData, CONSTANTS.adhocNewUserCreateRequestProps)).subscribe(
-				(res: any) => {
+				() => {
 					rowData.previous_state = null;
 					rowData.edit = false;
 				}
-			)
+			);
 		} else {
-			//update user
+			// update user
 			this.adhocService.updateUser(pick(rowData, CONSTANTS.adhocNewUserUpdateRequestProps)).subscribe(
-				(res: any) => {
+				() => {
 					rowData.previous_state = null;
 					rowData.edit = false;
 				}
-			)
+			);
 		}
-		
 	}
 
 	onRowCancel(rowData: AdhocNewUser) {
 		const previousStateObject = this.getAdhocNewUserRowObject(cloneDeep(rowData.previous_state));
 		const delsertIndex = this.adhocNewUsers.findIndex(x => x === rowData);
 		rowData.edit = false;
-		this.adhocNewUsers.splice(delsertIndex, 1);// delting edited object
+		this.adhocNewUsers.splice(delsertIndex, 1); // delting edited object
 		this.adhocNewUsers.splice(delsertIndex, 0, previousStateObject); // adding previous object on same index
 	}
 
-	onChangeRole(rowData: AdhocNewUser) {
+	onChangeRole() {
 	}
 
-	onChangeGender(rowData: AdhocNewUser) {
+	onChangeGender() {
 	}
 
 	onDateRangeRefresh() {

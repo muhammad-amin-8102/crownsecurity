@@ -68,17 +68,17 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.role.name}}
+								{{rowData.role.name || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
-								<p-dropdown [options]="roles" [(ngModel)]="rowData.role" placeholder="Select a role"
+								<p-dropdown [options]="roles" [style]="{'width':'180px'}" [(ngModel)]="rowData.role" placeholder="Select a role"
 									optionLabel="name" (change)="onChangeRole(rowData)">
 								</p-dropdown>
 							</span>
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.code}}
+								{{rowData.code || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.code">
@@ -86,7 +86,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.firstname}}
+								{{rowData.firstname || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.firstname">
@@ -94,7 +94,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.middlename}}
+								{{rowData.middlename || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.middlename">
@@ -102,7 +102,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.lastname}}
+								{{rowData.lastname || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.lastname">
@@ -110,7 +110,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.dob}}
+								{{rowData.dob || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<p-calendar [(ngModel)]="rowData.dob" 
@@ -122,7 +122,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.gender.name || ''}}
+								{{rowData.gender.name ? rowData.gender.name : rowData.gender ? rowData.gender : ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<p-dropdown [options]="genders" [(ngModel)]="rowData.gender"
@@ -132,7 +132,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.address}}
+								{{rowData.address || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.address">
@@ -140,7 +140,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.pan}}
+								{{rowData.pan || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.pan">
@@ -148,7 +148,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.adhaar}}
+								{{rowData.adhaar || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="text" [(ngModel)]="rowData.adhaar">
@@ -160,7 +160,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.contact_number}}
+								{{rowData.contact_number || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="tel" [(ngModel)]="rowData.contact_number">
@@ -168,7 +168,7 @@
 						</td>
 						<td>
 							<span *ngIf="!rowData.edit">
-								{{rowData.alternate_contact_number}}
+								{{rowData.alternate_contact_number || ''}}
 							</span>
 							<span *ngIf="rowData.edit">
 								<input type="tel" [(ngModel)]="rowData.alternate_contact_number">
