@@ -24,12 +24,12 @@
 							<input *ngSwitchCase="'middlename'" pInputText type="text" (input)="filterColumns($event.target.value, col.field, 'contains')">
 							<input *ngSwitchCase="'lastname'" pInputText type="text" (input)="filterColumns($event.target.value, col.field, 'contains')">
 							<div *ngSwitchCase="'dob'">
-								<p-calendar (onSelect)="dobRangeFilter($event, 'from')"
+								<p-calendar (onSelect)="dobRangeFilter()"
 									dateFormat="yy-mm-dd" [readonlyInput]="true" [monthNavigator]="true" appendTo="body"
 									[yearNavigator]="true" yearRange="1900:2100" [(ngModel)]="fromDate"
 									[style]="{'width': '100px', 'margin-left': '-1px'}" [inputStyle]="{'width': '100px'}" placeholder="Select from">
 								</p-calendar>
-								<p-calendar (onSelect)="dobRangeFilter($event, 'to')"
+								<p-calendar (onSelect)="dobRangeFilter()"
 									dateFormat="yy-mm-dd" [readonlyInput]="true" [monthNavigator]="true" appendTo="body"
 									[yearNavigator]="true" yearRange="1900:2100" [(ngModel)]="toDate"
 									[style]="{'width': '100px'}" [inputStyle]="{'width': '100px'}" placeholder="Select to">
